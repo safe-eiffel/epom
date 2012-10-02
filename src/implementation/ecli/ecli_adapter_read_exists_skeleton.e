@@ -19,7 +19,9 @@ feature {NONE} -- Framework - Implementation
 
 	exists_cursor : ECLI_CURSOR is
 		do
-			Result := read_cursor
+			check attached read_cursor as l_result then
+				Result := l_result
+			end
 		end
 
 	init_parameters_for_exists (a_pid : like last_pid) is
@@ -29,13 +31,13 @@ feature {NONE} -- Framework - Implementation
 
 	exists_test (a_cursor : like exists_cursor) : BOOLEAN is
 		do
-			a_cursor.start
-			if a_cursor.is_ok then
+--			a_cursor.start
+--			if a_cursor.is_ok then
 				Result := not a_cursor.off
-				if Result then
+--				if Result then
 					a_cursor.go_after
-				end
-			end
+--				end
+--			end
 		end
-		
+
 end

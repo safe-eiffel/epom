@@ -31,10 +31,10 @@
 			<cluster name="ecli"/>
 		</cluster>
 	</cluster>
+		<option name="full_class_checking" value="true"/>
+		<option name="void_safety" value="on_demand"/>
+		<option name="attached_by_default" value="true"/>
 
 	<mount location="${EPOM}/library.xace"/>
-	<mount location="${ECLI}/library.xace" unless="${EIFFELSTORE}"/>
-	<mount location="${EPOM}/implementation/eiffelstore/eiffelstore.xace" if="${EIFFELSTORE}"/>
-	<mount location="${GOBO}/library/library.xace"/>
-	<mount location="${GOBO}/library/kernel.xace"/>
+	<mount location="${ECLI}/library-voidconfident.xace"/>
 </system>

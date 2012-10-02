@@ -27,17 +27,21 @@ feature -- Initialization
 
 feature -- Access
 
-	item (pid : PO_PID) : G is
+	item (pid : PO_PID) : detachable G is
 		do
 			Result := table.item (pid.as_string)
 		end
 
 	new_cursor : DS_LIST_CURSOR [PO_PID] is
+		local
+			r : detachable like new_cursor
 		do
-			Result := pid_list.new_cursor
+			r := pid_list.new_cursor
+			check r /= Void end
+			Result := r
 		end
 
-	found_item : G is
+	found_item : detachable G is
 		do
 			Result := table.found_item
 		end
@@ -70,7 +74,7 @@ feature -- Element change
 	put (object : G) is
 		do
 			table.force (object, object.pid.as_string)
-			pid_list.put_last (object.pid)
+			pid_list.put_last (object.attached_pid)
 		end
 
 	put_void (pid : PO_PID) is
@@ -83,10 +87,11 @@ feature -- Removal
 
 	remove (pid : PO_PID) is
 		local
-			cursor : DS_LIST_CURSOR[PO_PID]
+			cursor : detachable DS_LIST_CURSOR[PO_PID]
 		do
 			table.remove (pid.as_string)
 			cursor := pid_list.new_cursor
+			check cursor /= Void end
 			cursor.start
 			cursor.search_forth (pid)
 			if not cursor.off then
@@ -114,9 +119,9 @@ feature {NONE} -- Implementation
 
 	pid_list : DS_LINKED_LIST[PO_PID]
 
-	table : DS_HASH_TABLE [G, STRING]
+	table : DS_HASH_TABLE [detachable G, STRING]
 
-	default_value : G is do  end
+	default_value : detachable G is do  end
 
 invariant
 

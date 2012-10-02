@@ -37,22 +37,22 @@ feature -- Basic operations
 			do_nothing
 		end
 
-	update (object: like object_anchor) is
+	update (object: attached like object_anchor) is
 		do
 			do_nothing
 		end
 
-	refresh (object: like object_anchor) is
+	refresh (object: attached like object_anchor) is
 		do
 			do_nothing
 		end
 
-	write (object: like object_anchor)  is
+	write (object: attached like object_anchor)  is
 		do
 			do_nothing
 		end
 
-	delete (object: like object_anchor) is
+	delete (object: attached like object_anchor) is
 		do
 			do_nothing
 		end

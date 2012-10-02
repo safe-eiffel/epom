@@ -34,7 +34,7 @@ feature -- Access
 
 	time : INTEGER_64
 
-	item (pid: PO_PID) : G is
+	item (pid: PO_PID) : detachable G is
 		do
 			increment_time
 			Result := precursor (pid)
@@ -78,7 +78,7 @@ feature -- Element change
 			entry : PO_LRU_ENTRY
 		do
 			increment_time
-			pid := object.pid
+			pid := object.attached_pid
 			if full then
 				remove_lru
 			end
@@ -110,11 +110,12 @@ feature {NONE} -- Implementation
 		require
 			full: full
 		local
-			lru : PO_LRU_ENTRY
-			cursor : DS_HASH_TABLE_CURSOR[PO_LRU_ENTRY, STRING]
+			lru : detachable PO_LRU_ENTRY
+			cursor : detachable DS_HASH_TABLE_CURSOR[PO_LRU_ENTRY, STRING]
 		do
+			cursor := lru_entries.new_cursor
+			check cursor /= Void end
 			from
-				cursor := lru_entries.new_cursor
 				cursor.start
 			until
 				cursor.off

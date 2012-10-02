@@ -20,6 +20,10 @@ feature -- Initialization
 	make is
 			-- Creation procedure.
 		do
+			create books.make_empty
+			create password.make_empty
+			create user.make_empty
+			create datasource.make_empty
 			if arguments.argument_count >= 3 then
 				datasource := arguments.argument (1)
 				user := arguments.argument (2)
@@ -45,7 +49,7 @@ feature -- Access
 	user : STRING
 	password : STRING
 
-	last_book : BOOK
+	last_book : detachable BOOK
 
 	books : ARRAY[BOOK]
 
@@ -113,13 +117,13 @@ feature -- Implementation
 	populate_books is
 			-- Populate books.
 		do
-			create books.make (1,3)
+			create books.make_empty
 			write_book ("1", "Title One", "Author one", book_adapter)
-			books.put (last_book, 1)
+			if attached last_book as l_book then books.force (l_book, 1) end
 			write_book ("2", "Title two", "Author two", book_adapter)
-			books.put (last_book, 2)
+			if attached last_book as l_book then books.force (l_book, 2) end
 			write_book ("3", "Title three", "Author three", book_adapter)
-			books.put (last_book, 3)
+			if attached last_book as l_book then books.force (l_book, 3) end
 		end
 
 	populate_borrowers is
@@ -151,12 +155,10 @@ feature -- Implementation
 		local
 			the_book : BOOK
 			the_cursor : PO_CURSOR[BOOK]
-			adapter : BOOK_ADAPTER
 		do
 			pom.search_adapter ("BOOK")
 			if pom.found then
-				adapter ?= pom.last_adapter
-				if adapter /= Void then
+				if attached {BOOK_ADAPTER} pom.last_adapter as adapter then
 					adapter.read_by_title ( "%%")
 					if not adapter.status.is_error then
 						from

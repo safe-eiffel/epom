@@ -15,7 +15,15 @@ inherit
 	ANY
 		redefine
 			is_equal,
-			copy
+			copy,
+			default_create
+		end
+
+feature {} -- Initialization
+
+	default_create
+		do
+			create impl_message.make_empty
 		end
 
 feature -- Access

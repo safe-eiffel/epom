@@ -8,7 +8,7 @@ indexing
 	license: "Eiffel Forum License v2 (see forum.txt)"
 	date: "$Date$"
 
-class BOOKS_DATASTORE_ACCESS
+deferred class BOOKS_DATASTORE_ACCESS
 
 inherit
 
@@ -18,8 +18,31 @@ inherit
 feature {BOOKS_DATASTORE_ACCESS} -- Access
 
 	book_adapter : BOOK_ADAPTER
+		require
+			is_persistence_framework_initialized: is_persistence_framework_initialized
+		do
+			check attached book_adapter_impl as l_result then
+				Result := l_result
+			end
+		end
+
 	copy_adapter : COPY_ADAPTER
+		require
+			is_persistence_framework_initialized: is_persistence_framework_initialized
+		do
+			check attached copy_adapter_impl as l_result then
+				Result := l_result
+			end
+		end
+
 	borrower_adapter : BORROWER_ADAPTER
+		require
+			is_persistence_framework_initialized: is_persistence_framework_initialized
+		do
+			check attached borrower_adapter_impl as l_result then
+				Result := l_result
+			end
+		end
 
 feature -- Status report
 
@@ -34,13 +57,22 @@ feature -- Basic operations
 			session : ECLI_SESSION
 			simple_login : ECLI_SIMPLE_LOGIN
 			manager : PO_MANAGER_IMPL
+			l_store : attached like store
+			l_book_adapter : like book_adapter
+			l_borrower_adapter : like borrower_adapter
+			l_copy_adapter: like copy_adapter
+			l_tracer : ECLI_TRACER
+			l_std: expanded KL_SHARED_STANDARD_FILES
 		do
 			create session.make_default
 			create simple_login.make(datasource_name, user_name, user_password)
 			session.set_login_strategy (simple_login)
-			create store.make (session)
-			store.connect
-			if store.is_connected then
+			create l_store.make (session)
+			store := l_store
+			l_store.connect
+			if l_store.is_connected then
+				create l_tracer.make (l_std.std.output)
+				session.set_tracer (l_tracer)
 				verify_table_existence
 				if not table_exists then
 					create_table
@@ -48,14 +80,17 @@ feature -- Basic operations
 				if table_exists then
 					create manager.make
 					set_manager (manager)
-					create {BOOK_ADAPTER_ECLI}book_adapter.make (store)
-					book_adapter.enable_cache_on_write
-					book_adapter.enable_cache_on_read
-					pom.add_adapter (book_adapter)
-					create {BORROWER_ADAPTER_ECLI}borrower_adapter.make (store)
-					pom.add_adapter (borrower_adapter)
-					create {COPY_ADAPTER_ECLI}copy_adapter.make (store)
-					pom.add_adapter (copy_adapter)
+					create {BOOK_ADAPTER_ECLI}l_book_adapter.make (l_store)
+					l_book_adapter.enable_cache_on_write
+					l_book_adapter.enable_cache_on_read
+					pom.add_adapter (l_book_adapter)
+					book_adapter_impl := l_book_adapter
+					create {BORROWER_ADAPTER_ECLI}l_borrower_adapter.make (l_store)
+					pom.add_adapter (l_borrower_adapter)
+					borrower_adapter_impl := l_borrower_adapter
+					create {COPY_ADAPTER_ECLI}l_copy_adapter.make (l_store)
+					pom.add_adapter (l_copy_adapter)
+					copy_adapter_impl := l_copy_adapter
 					is_persistence_framework_initialized := True
 
 				else
@@ -72,6 +107,10 @@ feature -- Obsolete
 feature -- Inapplicable
 
 feature {NONE} -- Implementation
+
+	book_adapter_impl : detachable BOOK_ADAPTER
+	copy_adapter_impl : detachable COPY_ADAPTER
+	borrower_adapter_impl : detachable BORROWER_ADAPTER
 
 	verify_table_existence is
 		local
@@ -135,6 +174,6 @@ feature {NONE} -- Implementation
 
 	pom : PO_MANAGER is do Result := persistence_manager end
 
-	store : ECLI_DATASTORE
+	store : detachable ECLI_DATASTORE
 
 end

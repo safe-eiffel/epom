@@ -25,22 +25,28 @@ feature -- Access report
 
 feature -- Basic operations
 
-	update (object: like object_anchor) is
+	update (object: attached like object_anchor) is
 			-- Update `object' on datastore using `update_query'.
+		local
+			default_pid: detachable like last_pid
 		do
 			status.reset
 			if object.is_volatile then
 				create_pid_from_object (object)
 			else
-				last_pid ?= object.pid
+				if attached {detachable like last_pid} object.pid as l_pid then
+					last_pid := l_pid
+				else
+					last_pid := default_pid
+				end
 			end
 
 			last_object := default_value
-			if last_pid /= Void then
-				init_parameters_for_update (object, last_pid)
+			if attached last_pid as l_pid then
+				init_parameters_for_update (object, l_pid)
 				update_query.execute
 				if update_query.is_ok then
-					object.set_pid (last_pid)
+					object.set_pid (l_pid)
 					object.disable_modified
 				else
 					--| query failed
@@ -56,13 +62,13 @@ feature -- Basic operations
 
 feature {NONE} -- Framework - Access
 
-	update_query : ECLI_QUERY is
+	update_query : detachable ECLI_QUERY is
 		deferred
 		end
 
 feature {NONE} -- Framework - Basic operations
 
-	init_parameters_for_update (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_update (object : attached like last_object; a_pid : attached like last_pid) is
 			-- Initialize parameters of `update_query' with information from `object' and `a_pid'.
 		require
 			object_not_void: object /= Void

@@ -57,7 +57,7 @@ create
 
 feature {PO_ADAPTER, PO_CURSOR, PO_REFERENCE, PO_PERSISTENT} -- Access
 
-	last_pid : BORROWER_PID
+	last_pid : detachable BORROWER_PID
 
 feature {PO_DATASTORE}-- Basic operations
 
@@ -103,36 +103,36 @@ feature {NONE} -- Framework - Factory
 			create last_pid.make (id)
 		end
 
-	create_pid_from_object (object : like object_anchor) is
+	create_pid_from_object (object : attached like object_anchor) is
 		do
 			create last_pid.make (object.id)
 		end
 
 feature {NONE} -- Framework - Basic operations
 
-	init_parameters_for_read (a_pid : like last_pid) is
+	init_parameters_for_read (a_pid : attached like last_pid) is
 		do
 			read_cursor.set_parameters_object (borrower_id_parameter (a_pid))
 		end
 
-	init_parameters_for_delete  (a_pid : like last_pid) is
+	init_parameters_for_delete  (a_pid : attached like last_pid) is
 		do
 			delete_query.set_parameters_object (borrower_id_parameter (a_pid))
 		end
 
-	init_parameters_for_write (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_write (object : like last_object; a_pid : attached like last_pid) is
 		do
 			write_query.set_parameters_object (modify_parameters(object, a_pid))
 		end
 
-	init_parameters_for_update (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_update (object : attached like last_object; a_pid : attached like last_pid) is
 		do
 			update_query.set_parameters_object (modify_parameters (object, a_pid))
 		end
 
 feature {NONE} -- Framework - Factory
 
-	create_object_from_read_cursor (a_cursor : like read_cursor; a_pid : like last_pid) is
+	create_object_from_read_cursor (a_cursor : like read_cursor; a_pid : attached like last_pid) is
 		do
 			create last_object.make (a_cursor.item.id.as_integer,
 				a_cursor.item.name.as_string,
@@ -151,13 +151,13 @@ feature {NONE} -- Framework - Factory
 			last_cursor.add_last_pid (Current)
 		end
 
-	borrower_id_parameter (a_pid : like last_pid) : BORROWER_ID is
+	borrower_id_parameter (a_pid : attached like last_pid) : BORROWER_ID is
 		do
 			create Result.make
 			Result.id.set_item (a_pid.id)
 		end
 
-	modify_parameters (object : like last_object; a_pid : like last_pid) : BORROWER_MODIFY_PARAMETERS is
+	modify_parameters (object : like last_object; a_pid : attached like last_pid) : BORROWER_MODIFY_PARAMETERS is
 		do
 			create Result.make
 			Result.id.set_item (object.id)
@@ -167,12 +167,12 @@ feature {NONE} -- Framework - Factory
 
 feature {NONE} -- Framework - Implementation
 
-	read_cursor : BORROWER_READ
+	read_cursor : detachable BORROWER_READ
 
-	write_query : BORROWER_WRITE
+	write_query : detachable BORROWER_WRITE
 
-	update_query : BORROWER_UPDATE
+	update_query : detachable BORROWER_UPDATE
 
-	delete_query : BORROWER_DELETE
+	delete_query : detachable BORROWER_DELETE
 
 end

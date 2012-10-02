@@ -12,14 +12,13 @@ inherit
 
 	ECLI_CURSOR
 
-
 create
 
 	make
 
 feature  -- -- Access
 
-	parameters_object: BOOK_ID
+	parameters_object: detachable BOOK_ID
 
 	item: BOOK_ROW
 
@@ -47,13 +46,13 @@ feature {NONE} -- Implementation
 	create_buffers is
 			-- -- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results
 		do
 			create item.make
-			create buffers.make (1,3)
-			buffers.put (item.isbn, 1)
-			buffers.put (item.title, 2)
-			buffers.put (item.author, 3)
+			create buffers.make (1,0)
+			buffers.force (item.isbn, 1)
+			buffers.force (item.title, 2)
+			buffers.force (item.author, 3)
 			set_results (buffers)
 		end
 

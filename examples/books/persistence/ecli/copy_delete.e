@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "Delete copy"
-	
+
 	status: "Cursor/Query automatically generated for 'COPY_DELETE'. DO NOT EDIT!"
 	generated: "2007/01/30 15:29:38.782"
 
@@ -19,7 +19,7 @@ create
 
 feature  -- -- Access
 
-	parameters_object: COPY_ID
+	parameters_object: detachable COPY_ID
 
 feature  -- -- Element change
 

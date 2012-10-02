@@ -100,7 +100,7 @@ feature -- Status setting
 	connect is
 			-- Connect to datastore.
 		local
-			l_simple_login : ECLI_SIMPLE_LOGIN
+--			l_simple_login : ECLI_SIMPLE_LOGIN
 			l_datastore_name : STRING
 			l_error_code : INTEGER_32
 			l_error_message : STRING
@@ -109,11 +109,12 @@ feature -- Status setting
 			if session.is_connected then
 				on_connected
 			else
-				l_simple_login ?= session.login_strategy
-				l_datastore_name := l_simple_login.datasource_name
-				l_error_code := session.native_code
-				l_error_message := session.diagnostic_message
-				error_handler.report_connection_error (l_datastore_name, l_error_code, l_error_message)
+				if attached {ECLI_SIMPLE_LOGIN} session.login_strategy as l_simple_login then
+					l_datastore_name := l_simple_login.datasource_name
+					l_error_code := session.native_code
+					l_error_message := session.diagnostic_message
+					error_handler.report_connection_error (l_datastore_name, l_error_code, l_error_message)
+				end
 			end
 		end
 
@@ -155,10 +156,11 @@ feature {NONE} -- Implementation
 
 	on_connected is
 		local
-			adapters_cursor : DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
+			adapters_cursor : detachable DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
 		do
 			if is_connected then
 				adapters_cursor := adapters.new_cursor
+				check adapters_cursor /= Void end
 				from
 					adapters_cursor.start
 				until
@@ -172,10 +174,11 @@ feature {NONE} -- Implementation
 
 	on_disconnect is
 		local
-			adapters_cursor : DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
+			adapters_cursor : detachable DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
 		do
 			if not is_connected then
 				adapters_cursor := adapters.new_cursor
+				check adapters_cursor /= Void end
 				from
 					adapters_cursor.start
 				until

@@ -30,7 +30,7 @@ feature {NONE} -- Initialization
 		end
 
 	make_serial_unsafe (a_serial : NATURAL_64; a_persistent_class_name : READABLE_STRING_8)
-			-- Make using `a_serial', for `a_persistent_class_name' 
+			-- Make using `a_serial', for `a_persistent_class_name'
 			-- There is no guarantee that `a_persistent_class_name' is related to an adapter in the system.
 		do
 			serial := a_serial
@@ -39,10 +39,10 @@ feature {NONE} -- Initialization
 			serial_set: serial = a_serial
 			persistent_class_name_set: persistent_class_name ~ a_persistence_class_name
 		end
-		
+
 feature -- Access
 
-	persistent_class_name : READABLE_STRING_8
+	persistent_class_name : STRING_8
 
 	serial : NATURAL_64
 

@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "Delete borrower"
-	
+
 	warning: "Generated cursor 'BORROWER_DELETE' : DO NOT EDIT !"
 	author: "QUERY_ASSISTANT"
 	date: "$Date : $"
@@ -22,7 +22,7 @@ create
 
 feature  -- -- Access
 
-	parameters_object: BORROWER_ID
+	parameters_object: detachable BORROWER_ID
 
 feature  -- -- Element change
 

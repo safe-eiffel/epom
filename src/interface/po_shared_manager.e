@@ -14,8 +14,12 @@ feature -- Access
 
 	persistence_manager : PO_MANAGER is
 			-- Persistence manager singleton.
+		local
+			l_res : detachable like persistence_manager
 		do
-			Result := shared_po_manager_cell.item
+			l_res := shared_po_manager_cell.item
+			check l_res /= Void end
+			Result := l_res
 		ensure
 			Result /= Void
 		end
@@ -34,7 +38,7 @@ feature {PO_LAUNCHER} -- Status setting
 
 feature {NONE} -- Implementation
 
-	shared_po_manager_cell : DS_CELL[PO_MANAGER] is
+	shared_po_manager_cell : DS_CELL[detachable PO_MANAGER] is
 			-- The singleton.
 		once ("PROCESS")
 			create Result.make (Void)

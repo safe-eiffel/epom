@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "Update borrower"
-	
+
 	warning: "Generated cursor 'BORROWER_UPDATE' : DO NOT EDIT !"
 	author: "QUERY_ASSISTANT"
 	date: "$Date : $"
@@ -22,7 +22,7 @@ create
 
 feature  -- -- Access
 
-	parameters_object: BORROWER_MODIFY_PARAMETERS
+	parameters_object: detachable BORROWER_MODIFY_PARAMETERS
 
 feature  -- -- Element change
 

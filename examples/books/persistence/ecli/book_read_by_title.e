@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "read book by title"
-	
+
 	status: "Cursor/Query automatically generated for 'BOOK_READ_BY_TITLE'. DO NOT EDIT!"
 	generated: "2005/08/11 12:39:01.656"
 
@@ -12,14 +12,13 @@ inherit
 
 	ECLI_CURSOR
 
-
 create
 
 	make
 
 feature  -- -- Access
 
-	parameters_object: BOOK_READ_BY_TITLE_PARAMETERS
+	parameters_object: detachable BOOK_READ_BY_TITLE_PARAMETERS
 
 	item: BOOK_ROW
 
@@ -47,13 +46,13 @@ feature {NONE} -- Implementation
 	create_buffers is
 			-- -- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results -- ARRAY[like value_anchor]
 		do
 			create item.make
-			create buffers.make (1,3)
-			buffers.put (item.isbn, 1)
-			buffers.put (item.title, 2)
-			buffers.put (item.author, 3)
+			create buffers.make (1,0)
+			buffers.force (item.isbn, 1)
+			buffers.force (item.title, 2)
+			buffers.force (item.author, 3)
 			set_results (buffers)
 		end
 

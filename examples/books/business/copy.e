@@ -13,7 +13,7 @@ class COPY
 inherit
 
 	PO_PERSISTENT
-	
+
 	COPY_PERSISTENT_CLASS_NAME
 
 create
@@ -23,7 +23,7 @@ create
 create
 
 	{COPY_ADAPTER} make_lazy
-	
+
 feature {NONE} -- Initialization
 
 	make (a_book : BOOK; a_number : INTEGER) is
@@ -53,7 +53,7 @@ feature {NONE} -- Initialization
 			book_reference_set: book_reference = a_reference
 			number_set: number = a_number
 		end
-		
+
 feature -- Access
 
 	book : BOOK is
@@ -62,14 +62,14 @@ feature -- Access
 		end
 
 	number : INTEGER
-	
+
 	store : INTEGER
-	
+
 	shelf : INTEGER
-	
+
 	row : INTEGER
-	
-	borrower : BORROWER is
+
+	borrower : detachable BORROWER is
 			-- Borrower that currently holds the copy.
 		do
 			if not borrower_reference.is_void then
@@ -77,17 +77,17 @@ feature -- Access
 			end
 		end
 
-		
+
 feature -- Status report
 
 	is_borrowable : BOOLEAN is
 			-- Can this copy be borrowed by someone ?
-		do 
+		do
 			Result := not borrower_reference.is_identified
 		ensure
 			definition: Result implies borrower = Void
-		end	
-		
+		end
+
 feature -- Basic operations
 
 	set_location (a_store, a_shelf, a_row : INTEGER) is
@@ -122,12 +122,12 @@ feature -- Basic operations
 		ensure
 			is_borrowable: is_borrowable
 		end
-		
+
 feature {COPY_ADAPTER} -- Implementation
 
 	borrower_reference : PO_REFERENCE[BORROWER]
 	book_reference: PO_REFERENCE[BOOK]
-	
+
 invariant
 
 	book_exists : book /= Void

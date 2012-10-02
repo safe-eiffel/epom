@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "Insert a copy"
-	
+
 	status: "Cursor/Query automatically generated for 'COPY_WRITE'. DO NOT EDIT!"
 	generated: "2007/01/30 15:29:38.782"
 
@@ -19,7 +19,7 @@ create
 
 feature  -- -- Access
 
-	parameters_object: COPY_WRITE_PARAMETERS
+	parameters_object: detachable COPY_WRITE_PARAMETERS
 
 feature  -- -- Element change
 

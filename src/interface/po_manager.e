@@ -17,7 +17,7 @@ inherit
 
 feature -- Access
 
-	last_adapter : PO_ADAPTER [PO_PERSISTENT]
+	last_adapter : detachable PO_ADAPTER [PO_PERSISTENT]
 			-- Last adapter found by `search_adapter'.
 
 	adapters : DS_LIST[PO_ADAPTER[PO_PERSISTENT]] is

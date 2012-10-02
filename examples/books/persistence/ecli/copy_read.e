@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "Read copy"
-	
+
 	status: "Cursor/Query automatically generated for 'COPY_READ'. DO NOT EDIT!"
 	generated: "2007/01/30 15:29:38.766"
 
@@ -19,9 +19,9 @@ create
 
 feature  -- -- Access
 
-	parameters_object: COPY_ID
+	parameters_object: detachable COPY_ID
 
-	item: COPY_ROW
+	item: detachable COPY_ROW
 
 feature  -- -- Element change
 
@@ -32,7 +32,7 @@ feature  -- -- Element change
 		do
 			parameters_object := a_parameters_object
 			put_parameter (parameters_object.isbn,"isbn")
-			put_parameter (parameters_object.serial_number,"serial_number")
+		    put_parameter (parameters_object.serial_number,"serial_number")
 			bind_parameters
 		ensure
 			bound_parameters: bound_parameters
@@ -51,16 +51,16 @@ feature {NONE} -- Implementation
 	create_buffers is
 			-- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results
 		do
 			create item.make
-			create buffers.make (1,6)
-			buffers.put (item.isbn, 1)
-			buffers.put (item.serial_number, 2)
-			buffers.put (item.loc_store, 3)
-			buffers.put (item.loc_shelf, 4)
-			buffers.put (item.loc_row, 5)
-			buffers.put (item.borrower, 6)
+			create buffers.make (1,0)
+			buffers.force (item.isbn, 1)
+			buffers.force (item.serial_number, 2)
+			buffers.force (item.loc_store, 3)
+			buffers.force (item.loc_shelf, 4)
+			buffers.force (item.loc_row, 5)
+			buffers.force (item.borrower, 6)
 			set_results (buffers)
 		end
 

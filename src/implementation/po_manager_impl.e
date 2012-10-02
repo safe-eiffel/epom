@@ -31,19 +31,20 @@ feature {NONE} -- Initialization
 feature -- Access
 
 	adapters : DS_LIST [PO_ADAPTER[PO_PERSISTENT]] is
-		local
-			cursor : DS_HASH_TABLE_CURSOR[PO_ADAPTER[PO_PERSISTENT],STRING]
+--		local
+--			cursor : DS_HASH_TABLE_CURSOR[PO_ADAPTER[PO_PERSISTENT],STRING]
 		do
 			create {DS_LINKED_LIST[PO_ADAPTER[PO_PERSISTENT]]}Result.make
-			from
-				cursor := adapters_table.new_cursor
-				cursor.start
-			until
-				cursor.off
-			loop
-				Result.put_last (cursor.item)
-				cursor.forth
-			end
+			adapters_table.do_all (agent Result.put_last (?))
+--			from
+--				cursor := adapters_table.new_cursor
+--				cursor.start
+--			until
+--				cursor.off
+--			loop
+--				Result.put_last (cursor.item)
+--				cursor.forth
+--			end
 		end
 
 	error_handler : PO_ERROR_HANDLER

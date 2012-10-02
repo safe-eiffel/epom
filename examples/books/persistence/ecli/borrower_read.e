@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "Read Borrower"
-	
+
 	warning: "Generated cursor 'BORROWER_READ' : DO NOT EDIT !"
 	author: "QUERY_ASSISTANT"
 	date: "$Date : $"
@@ -22,9 +22,9 @@ create
 
 feature  -- -- Access
 
-	parameters_object: BORROWER_ID
+	parameters_object: detachable BORROWER_ID
 
-	item: BORROWER_ROW
+	item: detachable BORROWER_ROW
 
 feature  -- -- Element change
 
@@ -51,13 +51,13 @@ feature {NONE} -- Implementation
 	create_buffers is
 			-- -- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results
 		do
 			create item.make
-			create buffers.make (1,3)
-			buffers.put (item.id, 1)
-			buffers.put (item.name, 2)
-			buffers.put (item.address, 3)
+			create buffers.make (1,0)
+			buffers.force (item.id, 1)
+			buffers.force (item.name, 2)
+			buffers.force (item.address, 3)
 			set_results (buffers)
 		end
 

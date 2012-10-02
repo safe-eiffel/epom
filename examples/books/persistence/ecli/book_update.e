@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "delete book"
-	
+
 	status: "Cursor/Query automatically generated for 'BOOK_UPDATE'. DO NOT EDIT!"
 	generated: "2005/08/11 12:39:02.093"
 
@@ -19,7 +19,7 @@ create
 
 feature  -- -- Access
 
-	parameters_object: BOOK_MODIFY_PARAMETERS
+	parameters_object: detachable BOOK_MODIFY_PARAMETERS
 
 feature  -- -- Element change
 

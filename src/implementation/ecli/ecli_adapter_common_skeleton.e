@@ -33,10 +33,10 @@ feature {NONE} -- Initialization
 		require
 			a_datastore_not_void: a_datastore /= Void
 		do
-			set_datastore (a_datastore)
-			create {PO_HASHED_CACHE[G]}cache.make (10)
+			make_cache
 			create last_cursor.make
 			create_error_handler
+			set_datastore (a_datastore)
 		ensure
 			datastore_set: a_datastore /= Void
 		end
@@ -64,12 +64,12 @@ feature -- Access
 
 feature {PO_ADAPTER, PO_CURSOR, PO_REFERENCE, PO_PERSISTENT, PO_REFERENCE_ACCESS} -- Framework - Access
 
-	last_pid: PO_PID
+	last_pid: detachable PO_PID
 		-- Last created pid
 
 feature {PO_ADAPTER} -- Framework - Access
 
-	last_object: G
+	last_object: detachable G
 		-- Last created object
 
 feature -- Access
@@ -112,7 +112,7 @@ feature -- Basic operations
 	exists (a_pid: PO_PID): BOOLEAN is
 			-- Does an object identified by `a_pid' exist? Uses `Sql_exists'.
 		local
-			pid_like_last_pid : like last_pid
+--			pid_like_last_pid : like last_pid
 		do
 			create last_cursor.make
 			last_object := default_value
@@ -122,16 +122,16 @@ feature -- Basic operations
 			end
 
 			status.reset
-			pid_like_last_pid ?= a_pid
-			if pid_like_last_pid /= Void then
+			if attached {like last_pid} a_pid as pid_like_last_pid and then attached exists_cursor as l_exists_cursor then
 				init_parameters_for_exists (pid_like_last_pid)
-				exists_cursor.execute
-				if exists_cursor.is_ok then
-					Result :=  exists_test (exists_cursor)
-				end
-				if not exists_cursor.is_ok then
-					status.set_datastore_error (exists_cursor.native_code, exists_cursor.diagnostic_message)
-					error_handler.report_datastore_error (generator, "exists", exists_cursor.native_code, exists_cursor.diagnostic_message)
+				l_exists_cursor.start
+				if l_exists_cursor.is_ok then
+					if not l_exists_cursor.off then
+						Result :=  exists_test (l_exists_cursor)
+					end
+				else
+					status.set_datastore_error (l_exists_cursor.native_code, l_exists_cursor.diagnostic_message)
+					error_handler.report_datastore_error (generator, "exists", l_exists_cursor.native_code, l_exists_cursor.diagnostic_message)
 				end
 			else
 				status.set_framework_error (status.error_non_conformant_pid)
@@ -177,41 +177,47 @@ feature {NONE} -- Framework - Basic operations
 
 feature {NONE} -- Implementation
 
-	query_error_message: STRING is
-			-- Error message associated with last error
-		obsolete
-			"[2007-04-17]"
-		do
-		end
+--	query_error_message: STRING is
+--			-- Error message associated with last error
+--		obsolete
+--			"[2007-04-17]"
+--		do
+--		end
 
-	set_query_error_message (a_string : STRING) is
-			-- Set `query_error_message' to `a_string'.
-		obsolete
-			"[2007-04-17] Use `error_handler'.report_datastore_error"
-		require
-			a_string_not_void: a_string /= Void
-		do
-			error_handler.report_datastore_error (generator, "", 0, a_string)
-		end
+--	set_query_error_message (a_string : STRING) is
+--			-- Set `query_error_message' to `a_string'.
+--		obsolete
+--			"[2007-04-17] Use `error_handler'.report_datastore_error"
+--		require
+--			a_string_not_void: a_string /= Void
+--		do
+--			error_handler.report_datastore_error (generator, "", 0, a_string)
+--		end
 
 feature {NONE} -- Framework - Access
 
-	exists_cursor : ECLI_CURSOR is
+	exists_cursor : detachable ECLI_CURSOR is
 		deferred
 		end
 
 feature {NONE} -- Framework - Status report
 
-	exists_test (a_cursor : like exists_cursor) : BOOLEAN is
+	exists_test (a_cursor : attached like exists_cursor) : BOOLEAN is
 		require
 			a_cursor_not_void: a_cursor /= Void
 			a_cursor_executed: a_cursor.is_executed
-			a_cursor_before: a_cursor.before
+--			a_cursor_before: a_cursor.before
+			a_cursor_not_off: not a_cursor.off
 		deferred
 		ensure
 			a_cursor_after: a_cursor.after
 		end
 
-	default_value : G is do  end
+	default_value : detachable G is do  end
+
+	make_cache
+		do
+			create {PO_HASHED_CACHE[G]}cache.make (10)
+		end
 
 end

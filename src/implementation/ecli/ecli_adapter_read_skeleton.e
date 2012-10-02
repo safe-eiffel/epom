@@ -27,8 +27,8 @@ feature -- Basic operations
 
 	read (a_pid: like last_pid) is
 			-- Read an object identified by `a_pid' using `read_cursor'.
-		local
-			l_pid : like last_pid
+--		local
+--			l_pid : like last_pid
 		do
 			last_object := default_value
 			create last_cursor.make
@@ -36,21 +36,26 @@ feature -- Basic operations
 			if is_enabled_cache_on_read then
 				cache.search (a_pid)
 				if cache.found then
-					if cache.found_item /= Void then
-						last_cursor.add_object (cache.found_item)
+					if attached cache.found_item as l_item then
+						last_cursor.add_object (l_item)
 					end
 				end
 			end
 			if not is_enabled_cache_on_read or else not cache.found then
-				l_pid ?= a_pid
-				if l_pid /= Void then
-					init_parameters_for_read (a_pid)
-					read_cursor.execute
-					if read_cursor.is_ok then
-						load_results (read_cursor, a_pid)
+				if attached {attached like last_pid} a_pid as l_pid and then attached read_cursor as l_read_cursor then
+					init_parameters_for_read (l_pid)
+					l_read_cursor.start
+					if l_read_cursor.is_ok then
+						if not l_read_cursor.off then
+							load_results (l_read_cursor, l_pid)
+						else
+							if is_enabled_cache_on_read then
+								cache.put_void (a_pid)
+							end
+						end
 					else
-						status.set_datastore_error (read_cursor.native_code, read_cursor.diagnostic_message)
-						error_handler.report_datastore_error (generator, "read", read_cursor.native_code, read_cursor.diagnostic_message)
+						status.set_datastore_error (l_read_cursor.native_code, l_read_cursor.diagnostic_message)
+						error_handler.report_datastore_error (generator, "read", l_read_cursor.native_code, l_read_cursor.diagnostic_message)
 					end
 				else
 					status.set_framework_error (status.error_non_conformant_pid)
@@ -61,7 +66,7 @@ feature -- Basic operations
 
 feature {NONE} -- Framework - Access
 
-	read_cursor : ECLI_CURSOR is
+	read_cursor : detachable ECLI_CURSOR is
 		deferred
 		end
 
@@ -105,21 +110,22 @@ feature {NONE} -- Implementation
 		require
 			a_cursor_not_void: a_cursor /= Void
 			a_cursor_executed: a_cursor.is_executed
-			a_cursor_before: a_cursor.before
+--			a_cursor_before: a_cursor.before
+			a_cursor_not_off: not a_cursor.off
 			a_pid_not_void: a_pid /= Void
 		do
-			a_cursor.start
-			if a_cursor.is_ok then
-				if not a_cursor.off then
+--			a_cursor.start
+--			if a_cursor.is_ok then
+--				if not a_cursor.off then
 					create_object_from_read_cursor (a_cursor, a_pid)
-					if last_object /= Void then
-						fill_object_from_read_cursor (a_cursor, last_object)
+					if attached last_object as l_object then
+						fill_object_from_read_cursor (a_cursor, l_object)
 						if status.is_ok then
-							last_object.set_pid (a_pid)
+							l_object.set_pid (a_pid)
 							if is_enabled_cache_on_read then
-								cache.put (last_object)
+								cache.put (l_object)
 							end
-							last_cursor.add_object (last_object)
+							last_cursor.add_object (l_object)
 							a_cursor.go_after
 						else
 							last_cursor.wipe_out
@@ -128,15 +134,15 @@ feature {NONE} -- Implementation
 						status.set_framework_error (status.error_could_not_create_object)
 						error_handler.report_could_not_create_object (generator, "read", persistent_class_name)
 					end
-				else
-					if is_enabled_cache_on_read then
-						cache.put_void (a_pid)
-					end
-				end
-			else
-				status.set_datastore_error (a_cursor.native_code, a_cursor.diagnostic_message)
-				error_handler.report_datastore_error (generator, "load_results", a_cursor.native_code, a_cursor.diagnostic_message)
-			end
+				--else
+--					if is_enabled_cache_on_read then
+--						cache.put_void (a_pid)
+--					end
+--				end
+--			else
+--				status.set_datastore_error (a_cursor.native_code, a_cursor.diagnostic_message)
+--				error_handler.report_datastore_error (generator, "load_results", a_cursor.native_code, a_cursor.diagnostic_message)
+--			end
 		end
 
 end

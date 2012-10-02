@@ -61,18 +61,20 @@ feature -- Access
 		deferred
 		end
 
-	object_anchor : G is do end
+	object_anchor : detachable G is do end
 
-	pid_for_object (object : like object_anchor) : PO_PID is
+	pid_for_object (object : attached like object_anchor) : PO_PID is
 			-- Persistent identifier for `object'.
 		require
 			object_not_void: object /= Void
 		do
 			if object.is_persistent then
-				Result := object.pid
+				Result := object.attached_pid
 			else
 				create_pid_from_object (object)
-				Result := last_pid
+				check attached last_pid as l_pid then
+					Result := l_pid
+				end
 			end
 		ensure
 			definition: Result /= Void
@@ -86,19 +88,32 @@ feature -- Access
 
 feature {PO_ADAPTER, PO_CURSOR, PO_REFERENCE, PO_PERSISTENT, PO_REFERENCE_ACCESS} -- Framework - Access
 
-	last_pid : PO_PID is
+	last_pid : detachable PO_PID is
 			-- Last PID created by factory features.
 		deferred
 		end
 
+	attached_last_pid : attached like last_pid
+		do
+			check attached last_pid as l_result then
+				Result := l_result
+			end
+		end
+
 feature {PO_ADAPTER} -- Framework - Access
 
-	last_object : G is
+	last_object : detachable G is
 			-- Last object created by factory features.
 		deferred
 		ensure
 		end
 
+	attached_last_object: attached like last_object
+		do
+			check attached last_object as l_object then
+				Result := l_object
+			end
+		end
 feature -- Measurement
 
 	cache_count : INTEGER is
@@ -252,7 +267,7 @@ feature -- Basic operations
 			object_cached: (not last_cursor.is_empty and then is_enabled_cache_on_read) implies is_cached (last_cursor.first)
 		end
 
-	write (object : like object_anchor) is
+	write (object : attached like object_anchor) is
 			-- Write `o' on persistent datastore.
 		require
 			can_write: can_write
@@ -269,7 +284,7 @@ feature -- Basic operations
 			object_cached: (not status.is_error and then is_enabled_cache_on_write) implies is_cached (object)
 		end
 
-	update (object : like object_anchor) is
+	update (object : attached like object_anchor) is
 			-- Update `object' on persistent datastore.
 		require
 			can_update: can_update
@@ -282,7 +297,7 @@ feature -- Basic operations
 			object_fresh: not status.is_error implies not object.is_modified
 		end
 
-	refresh (object : like object_anchor) is
+	refresh (object : attached like object_anchor) is
 			-- Refresh `object' by reading its persistent state from datastore.
 		require
 			can_refresh: can_refresh
@@ -295,7 +310,7 @@ feature -- Basic operations
 			object_fresh: not status.is_error implies not object.is_modified
 		end
 
-	delete (object : like object_anchor) is
+	delete (object : attached like object_anchor) is
 			--  Delete `object's persistent image.
 		require
 			can_delete: can_delete
@@ -334,7 +349,7 @@ feature {PO_DATASTORE} -- Framework - Basic Operations
 
 feature -- Contract support
 
-	is_cached (object : like object_anchor) : BOOLEAN is
+	is_cached (object : attached like object_anchor) : BOOLEAN is
 			-- Is `object' in cache ?
 		require
 			persistent_object: object /= Void
@@ -345,14 +360,14 @@ feature -- Contract support
 
 feature {PO_REFERENCE} -- Framework - Factory
 
-	create_pid_from_object (an_object : like object_anchor) is
+	create_pid_from_object (an_object : attached like object_anchor) is
 			-- Create a pid from a volatile object.
 		require
 			object_not_void: an_object /= Void
 			object_is_volatile: an_object.is_volatile
 		deferred
 		ensure
-			exists_and_valid: not status.is_error implies (last_pid /= Void and then is_pid_valid (last_pid))
+			exists_and_valid: not status.is_error implies (attached last_pid as l_pid and then is_pid_valid (l_pid))
 		end
 
 invariant
@@ -360,7 +375,7 @@ invariant
 	class_name_defined: persistent_class_name /= Void and then not persistent_class_name.is_empty
 	datastore_exists : datastore /= Void
 	registered_to_datastore: datastore.adapters.has (Current)
-	valid_last_pid: last_pid /= Void implies is_pid_valid (last_pid)
+	valid_last_pid: attached last_pid as l_pid implies is_pid_valid (l_pid)
 	last_cursor_not_void: last_cursor /= Void
 	error_handler_not_void: error_handler /= Void
 

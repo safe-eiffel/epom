@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "Update copy"
-	
+
 	status: "Cursor/Query automatically generated for 'COPY_UPDATE'. DO NOT EDIT!"
 	generated: "2007/01/30 15:29:38.797"
 
@@ -19,7 +19,7 @@ create
 
 feature  -- -- Access
 
-	parameters_object: COPY_UPDATE_PARAMETERS
+	parameters_object: detachable COPY_UPDATE_PARAMETERS
 
 feature  -- -- Element change
 

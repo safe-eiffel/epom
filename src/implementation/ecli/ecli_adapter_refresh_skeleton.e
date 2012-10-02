@@ -25,16 +25,19 @@ feature -- Status report
 
 feature -- Basic operations
 
-	refresh (object: like last_object) is
+	refresh (object: attached like last_object) is
 			-- Refresh `object' using `refresh_cursor'.
+		local
+			default_pid: detachable like last_pid
 		do
 			status.reset
-			last_pid ?= object.pid
-			if last_pid /= Void then
-				init_parameters_for_refresh (last_pid)
-				refresh_cursor.start
-				if refresh_cursor.is_ok then
-					if not refresh_cursor.off then
+			last_pid := default_pid
+			if attached {attached like last_pid} object.pid as l_pid and attached refresh_cursor as l_refresh_cursor then
+				last_pid := l_pid
+				init_parameters_for_refresh (l_pid)
+				l_refresh_cursor.start
+				if l_refresh_cursor.is_ok then
+					if not l_refresh_cursor.off then
 						fill_from_refresh_cursor (object)
 						if not status.is_error then
 							object.disable_modified
@@ -57,22 +60,24 @@ feature {PO_ADAPTER} -- Basic operations
 
 	init_parameters_for_refresh (a_pid : like last_pid) is
 			-- Initialize parameters of `refresh_cursor' with information from `a_pid'.
+		require
+			refresh_cursor_not_void: refresh_cursor /= Void
 		deferred
 		ensure
 			bound_parameters: refresh_cursor.bound_parameters
 		end
 
-	fill_from_refresh_cursor (object : like last_object) is
+	fill_from_refresh_cursor (object : attached like last_object) is
 			-- Fill `last_object' using `refresh_cursor' results.
 		require
-			read_cursor_not_void: refresh_cursor /= Void
+			refresh_cursor_not_void: refresh_cursor /= Void
 			object_not_void: object /= Void
 		deferred
 		end
 
 feature {PO_ADAPTER} -- Implementation
 
-	refresh_cursor : ECLI_CURSOR is
+	refresh_cursor : detachable ECLI_CURSOR is
 		deferred
 		end
 

@@ -70,7 +70,7 @@ feature -- Access
 		-- Cursor the handles a linked list of PO_REFERENCE, i.e implementing load-on-demand of objects
 
 
-	last_pid: PO_PID
+	last_pid: detachable PO_PID
 		-- Last created pid
 
 feature {PO_ADAPTER} -- Access
@@ -273,16 +273,17 @@ feature -- Basic operations
 			last_object := default_object
 
 			status.reset
-			if object.is_volatile then
-				create_pid_from_object (object)
+			if object.is_persistent and attached object.pid as l_pid then
+				last_pid := l_pid
 			else
-				last_pid ?= object.pid
+				-- object.is_volatile
+				create_pid_from_object (object)
 			end
 			last_object := object
-			if last_pid /= Void then
+			if attached {attached like last_pid} last_pid as l_pid then
 				create change.make (datastore.session)
 				change.set_sql (Sql_update)
-				init_parameters_for_update (object, last_pid)
+				init_parameters_for_update (object, l_pid)
 				change.bind_parameters
 				change.execute
 				if change.is_ok then

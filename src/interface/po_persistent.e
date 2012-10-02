@@ -19,8 +19,18 @@ inherit
 
 feature {PO_PERSISTENT, PO_REFERENCE, PO_ADAPTER, PO_CACHE, PO_ERROR} -- Access
 
-	frozen pid : PO_PID
+	frozen pid : detachable PO_PID
 		-- Persistence identifier, if any.
+
+	frozen attached_pid : PO_PID
+			-- Attached persistence identifier
+		require
+			is_persistent: is_persistent
+		do
+			check attached pid as l_result then
+				Result := l_result
+			end
+		end
 
 feature -- Access
 
@@ -46,6 +56,8 @@ feature -- Status report
 			-- does Current have a persistent image on datastore ?
 		do
 			Result := (pid /= Void)
+		ensure
+			definition: Result implies pid /= Void
 		end
 
 	is_volatile : BOOLEAN is
@@ -77,16 +89,13 @@ feature -- Status report
 
 	exists : BOOLEAN is
 			-- Does current object exist in datastore ?
-		local
-			adapter : PO_ADAPTER[like Current]
 		do
 			if is_persistent then
 				Result := True
 			elseif is_deleted then
 				Result := False
 			elseif is_volatile then
-				adapter := adapter_for_me
-				if adapter /= Void then
+				if attached {PO_ADAPTER[like Current]} adapter_for_me as adapter then
 					Result := adapter.exists (adapter.pid_for_object (Current))
 				end
 			end
@@ -174,11 +183,8 @@ feature -- Basic operations
 			has_adapter: persistence_manager.has_adapter (persistent_class_name)
 			volatile: is_volatile
 			writable: is_writable
-		local
-			adapter : PO_ADAPTER[like Current]
 		do
-			adapter := adapter_for_me
-			if adapter /= Void then
+			if attached {PO_ADAPTER[like Current]} adapter_for_me as adapter then
 				adapter.write (Current)
 				status.copy (adapter.status)
 			else
@@ -194,11 +200,8 @@ feature -- Basic operations
 			has_adapter: persistence_manager.has_adapter (persistent_class_name)
 			persistent: is_persistent
 			updatable: is_updatable
-		local
-			adapter : PO_ADAPTER[like Current]
 		do
-			adapter := adapter_for_me
-			if adapter /= Void then
+			if attached {PO_ADAPTER[like Current]} adapter_for_me as adapter then
 				adapter.update (Current)
 				status.copy (adapter.status)
 			else
@@ -214,11 +217,8 @@ feature -- Basic operations
 			has_adapter: persistence_manager.has_adapter (persistent_class_name)
 			persistent: is_persistent
 			deletable: is_deletable
-		local
-			adapter : PO_ADAPTER[like Current]
 		do
-			adapter := adapter_for_me
-			if adapter /= Void then
+			if attached {PO_ADAPTER[like Current]} adapter_for_me as adapter then
 				adapter.delete (Current)
 				status.copy (adapter.status)
 			else
@@ -235,11 +235,8 @@ feature -- Basic operations
 			has_adapter: persistence_manager.has_adapter (persistent_class_name)
 			persistent: is_persistent
 			refreshable: is_refreshable
-		local
-			adapter : PO_ADAPTER[like Current]
 		do
-			adapter := adapter_for_me
-			if adapter /= Void then
+			if attached {PO_ADAPTER[like Current]} adapter_for_me as adapter then
 				adapter.refresh (Current)
 				status.copy (adapter.status)
 			else
@@ -251,7 +248,7 @@ feature -- Basic operations
 
 feature {NONE} -- Implementation
 
-	adapter_for_me : PO_ADAPTER[like Current] is
+	adapter_for_me : detachable PO_ADAPTER[like Current] is
 		local
 			persistent_name : STRING
 		do
@@ -282,7 +279,7 @@ feature {NONE} -- Implementation
 invariant
 
 	persistent_has_a_pid: is_persistent implies pid /= Void
-	persistent_class_name_not_void: persistent_class_name /= Void and not persistent_class_name.is_empty
+	persistent_class_name_not_void: persistent_class_name /= Void and then not persistent_class_name.is_empty
 	volatile_and_persistent_state_are_exclusive: is_volatile xor is_persistent
 	deleted_implies_volatile: is_deleted implies is_volatile
 

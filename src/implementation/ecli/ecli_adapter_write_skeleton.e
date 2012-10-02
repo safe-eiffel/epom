@@ -23,20 +23,20 @@ feature -- Status report
 
 feature -- Basic operations
 
-	write (object: like object_anchor) is
+	write (object: attached like object_anchor) is
 			-- Write `object' on datastore.
 		do
 			status.reset
 			create_pid_from_object (object)
 			last_object := object
-			if last_pid /= Void then
-				init_parameters_for_write (object, last_pid)
+			if attached last_pid as l_pid then
+				init_parameters_for_write (object, l_pid)
 				write_query.execute
 				if write_query.is_ok then
-					object.set_pid (last_pid)
+					object.set_pid (l_pid)
 					object.disable_modified
 					if is_enabled_cache_on_write then
-						cache.put (last_object)
+						cache.put (object)
 					end
 				else
 					status.set_datastore_error (write_query.native_code, write_query.diagnostic_message)
@@ -50,7 +50,7 @@ feature -- Basic operations
 
 feature {NONE} -- Framework - Access
 
-	write_query : ECLI_QUERY is
+	write_query : detachable ECLI_QUERY is
 		deferred
 		end
 
@@ -60,6 +60,7 @@ feature {NONE} -- Framework - Basic operations
 			-- Initialize parameters of `write_query' with information from `object' and `a_pid'.
 		require
 			object_not_void: object /= Void
+			write_query_not_attached: attached write_query
 			a_pid_not_void: a_pid /= Void
 		deferred
 		ensure

@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "Get the borrowed copies"
-	
+
 	status: "Cursor/Query automatically generated for 'COPY_BORROWED'. DO NOT EDIT!"
 	generated: "2007/01/30 15:29:38.750"
 
@@ -11,7 +11,6 @@ class COPY_BORROWED
 inherit
 
 	ECLI_CURSOR
-
 
 create
 
@@ -32,12 +31,12 @@ feature {NONE} -- Implementation
 	create_buffers is
 			-- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results
 		do
 			create item.make
-			create buffers.make (1,2)
-			buffers.put (item.isbn, 1)
-			buffers.put (item.serial_number, 2)
+			create buffers.make (1,0)
+			buffers.force (item.isbn, 1)
+			buffers.force (item.serial_number, 2)
 			set_results (buffers)
 		end
 

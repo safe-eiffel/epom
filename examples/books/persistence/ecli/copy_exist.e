@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "Does a COPY exist?"
-	
+
 	status: "Cursor/Query automatically generated for 'COPY_EXIST'. DO NOT EDIT!"
 	generated: "2007/01/30 15:29:38.750"
 
@@ -19,9 +19,9 @@ create
 
 feature  -- -- Access
 
-	parameters_object: COPY_ID
+	parameters_object: detachable COPY_ID
 
-	item: EXISTS_COUNT
+	item: detachable EXISTS_COUNT
 
 feature  -- -- Element change
 
@@ -49,11 +49,11 @@ feature {NONE} -- Implementation
 	create_buffers is
 			-- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results -- ARRAY[like value_anchor]
 		do
 			create item.make
-			create buffers.make (1,1)
-			buffers.put (item.exists_count, 1)
+			create buffers.make (1,0)
+			buffers.force (item.exists_count, 1)
 			set_results (buffers)
 		end
 

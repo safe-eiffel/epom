@@ -1,8 +1,8 @@
 indexing
 
-	
+
 		description: "Search for borrower with name like some pattern"
-	
+
 	warning: "Generated cursor 'BORROWER_READ_LIKE' : DO NOT EDIT !"
 	author: "QUERY_ASSISTANT"
 	date: "$Date : $"
@@ -15,14 +15,13 @@ inherit
 
 	ECLI_CURSOR
 
-
 create
 
 	make
 
 feature  -- -- Access
 
-	parameters_object: BORROWER_READ_LIKE_PARAMETERS
+	parameters_object: detachable BORROWER_READ_LIKE_PARAMETERS
 
 	item: BORROWER_ID
 
@@ -51,11 +50,11 @@ feature {NONE} -- Implementation
 	create_buffers is
 			-- -- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results -- ARRAY[like value_anchor]
 		do
 			create item.make
-			create buffers.make (1,1)
-			buffers.put (item.id, 1)
+			create buffers.make (1,0)
+			buffers.force (item.id, 1)
 			set_results (buffers)
 		end
 

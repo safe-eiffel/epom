@@ -14,11 +14,11 @@ inherit
 
 feature  -- Access
 
-	last_object: PO_PERSISTENT is
+	last_object: detachable PO_PERSISTENT is
 		deferred
 		end
 
-	last_cursor: PO_CURSOR[like last_object] is
+	last_cursor: PO_CURSOR[attached like last_object] is
 		deferred
 		end
 

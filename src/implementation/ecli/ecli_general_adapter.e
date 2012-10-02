@@ -60,25 +60,25 @@ feature {PO_ADAPTER} -- Basic operations
 			--| Redefine in descendant classes
 		end
 
-	init_parameters_for_delete (a_pid : like last_pid) is
+	init_parameters_for_delete (a_pid : attached like last_pid) is
 			-- Initialize parameters of `Sql_delete' with information from `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
-	init_parameters_for_write (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_write (object : attached like last_object; a_pid : like last_pid) is
 			-- Initialize parameters of `Sql_write' with information from `object' and `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
-	init_parameters_for_update (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_update (object : attached like last_object; a_pid : attached like last_pid) is
 			-- Initialize parameters of `Sql_update' with information from `object' and `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
-	create_pid_from_object (object : like last_object) is
+	create_pid_from_object (object : attached like last_object) is
 			--
 		do
 			--|TODO redefine in descendant classes

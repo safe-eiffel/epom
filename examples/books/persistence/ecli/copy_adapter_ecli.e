@@ -62,7 +62,7 @@ create
 
 feature {NONE} -- Access
 
-	last_pid : COPY_PID
+	last_pid : detachable COPY_PID
 
 feature -- Basic operations
 
@@ -93,7 +93,7 @@ feature -- Basic operations
 
 feature {NONE} -- Framework - Factory
 
-	create_pid_from_object (an_object : like object_anchor) is
+	create_pid_from_object (an_object : attached like object_anchor) is
 			--
 		do
 			create last_pid.make (an_object.book.isbn, an_object.number)
@@ -127,21 +127,21 @@ feature {PO_DATASTORE} -- Framework - Basic operations
 
 feature {NONE} -- Framework - Implementation
 
-	read_cursor : COPY_READ
+	read_cursor : detachable COPY_READ
 
-	exists_cursor : COPY_EXIST
+	exists_cursor : detachable COPY_EXIST
 
-	delete_query : COPY_DELETE
+	delete_query : detachable COPY_DELETE
 
-	write_query : COPY_WRITE
+	write_query : detachable COPY_WRITE
 
-	refresh_cursor : like read_cursor is
+	refresh_cursor : detachable like read_cursor is
 		do
 			Result := read_cursor
 		end
 
 
-	update_query : COPY_UPDATE
+	update_query : detachable COPY_UPDATE
 
 	copy_id_from_pid (a_pid : like last_pid) : COPY_ID is
 			--
@@ -153,13 +153,13 @@ feature {NONE} -- Framework - Implementation
 
 	exists_value : INTEGER is do Result := exists_cursor.item.exists_count.as_integer end
 
-	exists_test (a_cursor : like exists_cursor) : BOOLEAN is
+	exists_test (a_cursor : attached like exists_cursor) : BOOLEAN is
 		do
-			a_cursor.start
-			if a_cursor.is_ok then
+--			a_cursor.start
+--			if a_cursor.is_ok then
 				Result := a_cursor.item.exists_count.as_integer > 0
 				a_cursor.go_after
-			end
+--			end
 		end
 
 	init_parameters_for_read (a_pid: like last_pid) is
@@ -170,7 +170,7 @@ feature {NONE} -- Framework - Implementation
 			read_cursor.set_parameters_object (parameters)
 		end
 
-	init_parameters_for_update (object: like last_object; a_pid: like last_pid) is
+	init_parameters_for_update (object: attached like last_object; a_pid: attached like last_pid) is
 		local
 			parameters : COPY_UPDATE_PARAMETERS
 		do
@@ -207,7 +207,7 @@ feature {NONE} -- Framework - Implementation
 			exists_cursor.set_parameters_object (copy_id_from_pid (a_pid))
 		end
 
-	init_parameters_for_delete (a_pid : like last_pid) is
+	init_parameters_for_delete (a_pid : attached like last_pid) is
 		do
 			delete_query.set_parameters_object (copy_id_from_pid (a_pid))
 		end
@@ -220,22 +220,22 @@ feature {NONE} -- Framework - Implementation
 		do
 			create book_name
 			persistence_manager.search_adapter (book_name.persistent_class_name)
-			if persistence_manager.found then
-				book_adapter ?= persistence_manager.last_adapter
+			if persistence_manager.found and then attached {BOOK_ADAPTER} persistence_manager.last_adapter as l_adapter then
+				book_adapter := l_adapter
+				book_adapter.create_pid_for_isbn (a_cursor.item.isbn.as_string)
+				create book_reference.set_pid_from_adapter (book_adapter)
+				create last_object.make_lazy (book_reference, a_cursor.item.serial_number.as_integer)
+			else
+				--FIXME -- Error reporting
 			end
-			check
-				book_adapter_not_void:  book_adapter /= Void
-			end
-			book_adapter.create_pid_for_isbn (a_cursor.item.isbn.as_string)
-			create book_reference.set_pid_from_adapter (book_adapter)
-			create last_object.make_lazy (book_reference, a_cursor.item.serial_number.as_integer)
 		end
-	fill_from_refresh_cursor (object : like last_object) is
+
+	fill_from_refresh_cursor (object : attached like last_object) is
 		do
 
 		end
 
-	init_parameters_for_refresh (a_pid : like last_pid) is
+	init_parameters_for_refresh (a_pid : attached like last_pid) is
 		do
 
 		end
@@ -243,7 +243,7 @@ feature {NONE} -- Framework - Implementation
 
 	fill_object_from_read_cursor  (a_cursor : like read_cursor; object : like last_object) is
 		local
-			ba : BORROWER_ADAPTER
+--			ba : BORROWER_ADAPTER
 			bpn : BORROWER_PERSISTENT_CLASS_NAME
 			borrower_id : INTEGER
 		do
@@ -259,8 +259,8 @@ feature {NONE} -- Framework - Implementation
 				else
 					borrower_id := a_cursor.item.borrower.as_integer
 					if borrower_id > 0 then
-						ba ?= persistence_manager.last_adapter
-						if ba /= Void then
+--						ba ?= persistence_manager.last_adapter
+						if attached {BORROWER_ADAPTER} persistence_manager.last_adapter as ba then
 							ba.create_pid_from_id (a_cursor.item.borrower.as_integer)
 							object.borrower_reference.set_pid_from_adapter (ba)
 						else

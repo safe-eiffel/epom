@@ -10,9 +10,17 @@ indexing
 	license: "Eiffel Forum License v2 (see forum.txt)"
 	date: "$Date$"
 
-class
+deferred class
 	PO_CACHE_USE [G -> PO_PERSISTENT]
 
+feature -- Initialization
+
+	make_cache
+		deferred
+		ensure
+			cache_created: cache /= Void
+		end
+		
 feature -- Status report
 
 	is_cached (object : G) : BOOLEAN is
