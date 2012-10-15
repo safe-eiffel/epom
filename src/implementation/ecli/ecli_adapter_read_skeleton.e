@@ -27,8 +27,6 @@ feature -- Basic operations
 
 	read (a_pid: like last_pid) is
 			-- Read an object identified by `a_pid' using `read_cursor'.
---		local
---			l_pid : like last_pid
 		do
 			last_object := default_value
 			create last_cursor.make
@@ -44,21 +42,6 @@ feature -- Basic operations
 			if not is_enabled_cache_on_read or else not cache.found then
 				if attached {attached like last_pid} a_pid as l_pid and then attached read_cursor as l_read_cursor then
 					init_parameters_for_read (l_pid)
---					l_read_cursor.start
---					if l_read_cursor.is_ok then
---						if not l_read_cursor.off then
---							load_results (l_read_cursor, l_pid)
---						else
---							if is_enabled_cache_on_read then
---								cache.put_void (a_pid)
---							end
---						end
---					else
---						status.set_datastore_error (l_read_cursor.native_code, l_read_cursor.diagnostic_message)
---						error_handler.report_datastore_error (generator, "read", l_read_cursor.native_code, l_read_cursor.diagnostic_message)
---					end
-
---<<--
 					read_cursor.execute
 					if read_cursor.is_ok then
 						load_results (read_cursor, a_pid)
@@ -66,7 +49,6 @@ feature -- Basic operations
 						status.set_datastore_error (l_read_cursor.native_code, l_read_cursor.diagnostic_message)
 						error_handler.report_datastore_error (generator, "read", l_read_cursor.native_code, l_read_cursor.diagnostic_message)
 					end
--->>--
 				else
 					status.set_framework_error (status.error_non_conformant_pid)
 					error_handler.report_non_conformant_pid (generator, "read", "[like last_pid]", a_pid.generator)
@@ -121,7 +103,6 @@ feature {NONE} -- Implementation
 			a_cursor_not_void: a_cursor /= Void
 			a_cursor_executed: a_cursor.is_executed
 			a_cursor_before: a_cursor.before  --<<>>--
---			a_cursor_not_off: not a_cursor.off
 			a_pid_not_void: a_pid /= Void
 		do
 			a_cursor.start
