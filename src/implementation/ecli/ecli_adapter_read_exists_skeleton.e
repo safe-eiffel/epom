@@ -31,13 +31,14 @@ feature {NONE} -- Framework - Implementation
 
 	exists_test (a_cursor : like exists_cursor) : BOOLEAN is
 		do
---			a_cursor.start
---			if a_cursor.is_ok then
+			a_cursor.start
+			if a_cursor.is_ok then
 				Result := not a_cursor.off
---				if Result then
+				if Result then
 					a_cursor.go_after
---				end
---			end
+				end
+--!! FIXME: error handling !
+			end
 		end
 
 end

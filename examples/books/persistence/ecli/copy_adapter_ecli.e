@@ -155,11 +155,11 @@ feature {NONE} -- Framework - Implementation
 
 	exists_test (a_cursor : attached like exists_cursor) : BOOLEAN is
 		do
---			a_cursor.start
---			if a_cursor.is_ok then
+			a_cursor.start
+			if a_cursor.is_ok then
 				Result := a_cursor.item.exists_count.as_integer > 0
 				a_cursor.go_after
---			end
+			end
 		end
 
 	init_parameters_for_read (a_pid: like last_pid) is

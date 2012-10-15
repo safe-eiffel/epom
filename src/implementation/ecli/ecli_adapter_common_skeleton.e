@@ -124,13 +124,12 @@ feature -- Basic operations
 			status.reset
 			if attached {like last_pid} a_pid as pid_like_last_pid and then attached exists_cursor as l_exists_cursor then
 				init_parameters_for_exists (pid_like_last_pid)
-				l_exists_cursor.start
-				if l_exists_cursor.is_ok then
-					if not l_exists_cursor.off then
-						Result :=  exists_test (l_exists_cursor)
-					end
-				else
-					status.set_datastore_error (l_exists_cursor.native_code, l_exists_cursor.diagnostic_message)
+				l_exists_cursor.execute
+				if exists_cursor.is_ok then
+					Result :=  exists_test (l_exists_cursor)
+				end
+				if not exists_cursor.is_ok then
+					status.set_datastore_error (exists_cursor.native_code, l_exists_cursor.diagnostic_message)
 					error_handler.report_datastore_error (generator, "exists", l_exists_cursor.native_code, l_exists_cursor.diagnostic_message)
 				end
 			else
@@ -202,12 +201,11 @@ feature {NONE} -- Framework - Access
 
 feature {NONE} -- Framework - Status report
 
-	exists_test (a_cursor : attached like exists_cursor) : BOOLEAN is
+	exists_test (a_cursor : attached like exists_cursor) : BOOLEAN
 		require
 			a_cursor_not_void: a_cursor /= Void
 			a_cursor_executed: a_cursor.is_executed
---			a_cursor_before: a_cursor.before
-			a_cursor_not_off: not a_cursor.off
+			a_cursor_before: a_cursor.before
 		deferred
 		ensure
 			a_cursor_after: a_cursor.after
