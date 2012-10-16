@@ -1,10 +1,12 @@
-indexing
+note
 
-
+	
 		description: "delete book"
-
+	
 	status: "Cursor/Query automatically generated for 'BOOK_DELETE'. DO NOT EDIT!"
-	generated: "2005/08/11 12:39:02.406"
+	generated: "2012/10/16 08:36:50.328"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\book.xml"
 
 class BOOK_DELETE
 
@@ -23,7 +25,7 @@ feature  -- -- Access
 
 feature  -- -- Element change
 
-	set_parameters_object (a_parameters_object: BOOK_ID) is
+	set_parameters_object (a_parameters_object: BOOK_ID)
 			-- set `parameters_object' to `a_parameters_object'
 		require
 			a_parameters_object_not_void: a_parameters_object /= Void
@@ -37,7 +39,8 @@ feature  -- -- Element change
 
 feature  -- Constants
 
-	definition: STRING is "delete from book where isbn = ?isbn%N%
-%	"
+	definition: STRING = "[
+delete from book where isbn = ?isbn
+]"
 
-end -- class BOOK_DELETE
+end

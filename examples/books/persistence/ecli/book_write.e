@@ -1,10 +1,12 @@
-indexing
+note
 
-
+	
 		description: "Write book"
-
+	
 	status: "Cursor/Query automatically generated for 'BOOK_WRITE'. DO NOT EDIT!"
-	generated: "2005/08/11 12:39:02.250"
+	generated: "2012/10/16 08:36:50.328"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\book.xml"
 
 class BOOK_WRITE
 
@@ -23,7 +25,7 @@ feature  -- -- Access
 
 feature  -- -- Element change
 
-	set_parameters_object (a_parameters_object: BOOK_MODIFY_PARAMETERS) is
+	set_parameters_object (a_parameters_object: BOOK_MODIFY_PARAMETERS)
 			-- set `parameters_object' to `a_parameters_object'
 		require
 			a_parameters_object_not_void: a_parameters_object /= Void
@@ -39,6 +41,8 @@ feature  -- -- Element change
 
 feature  -- Constants
 
-	definition: STRING is "insert into book values (?isbn, ?title, ?author)	"
+	definition: STRING = "[
+insert into book values (?isbn, ?title, ?author)
+]"
 
-end -- class BOOK_WRITE
+end

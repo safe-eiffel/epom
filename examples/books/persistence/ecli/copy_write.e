@@ -1,10 +1,12 @@
-indexing
+note
 
-
+	
 		description: "Insert a copy"
-
+	
 	status: "Cursor/Query automatically generated for 'COPY_WRITE'. DO NOT EDIT!"
-	generated: "2007/01/30 15:29:38.782"
+	generated: "2012/10/16 08:34:16.656"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\copy.xml"
 
 class COPY_WRITE
 
@@ -23,7 +25,7 @@ feature  -- -- Access
 
 feature  -- -- Element change
 
-	set_parameters_object (a_parameters_object: COPY_WRITE_PARAMETERS) is
+	set_parameters_object (a_parameters_object: COPY_WRITE_PARAMETERS)
 			-- set `parameters_object' to `a_parameters_object'
 		require
 			a_parameters_object_not_void: a_parameters_object /= Void
@@ -42,8 +44,8 @@ feature  -- -- Element change
 
 feature  -- Constants
 
-	definition: STRING is "[
+	definition: STRING = "[
 insert into copy values (?isbn, ?serial_number, ?loc_store, ?loc_shelf, ?loc_row, ?borrower )
 ]"
 
-end -- class COPY_WRITE
+end

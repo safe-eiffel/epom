@@ -1,8 +1,10 @@
-indexing
+note
 
 	description: "Buffer objects for database transfer."
 	status: "Automatically generated.  DOT NOT MODIFY !"
-	generated: "2005/08/11 12:39:02.906"
+	generated: "2012/10/16 08:36:50.359"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\book.xml"
 
 class BOOK_MODIFY_PARAMETERS
 
@@ -12,8 +14,8 @@ create
 
 feature {NONE} -- Initialization
 
-	make is
-			-- -- Creation of buffers
+	make
+			-- Creation of buffers
 		do
 			create isbn.make (14)
 			create title.make (100)
@@ -32,4 +34,4 @@ feature  -- Access
 
 	author: ECLI_VARCHAR
 
-end -- class BOOK_MODIFY_PARAMETERS
+end

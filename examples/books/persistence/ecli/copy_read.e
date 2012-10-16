@@ -1,10 +1,12 @@
-indexing
+note
 
-
+	
 		description: "Read copy"
-
+	
 	status: "Cursor/Query automatically generated for 'COPY_READ'. DO NOT EDIT!"
-	generated: "2007/01/30 15:29:38.766"
+	generated: "2012/10/16 08:34:16.625"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\copy.xml"
 
 class COPY_READ
 
@@ -21,18 +23,18 @@ feature  -- -- Access
 
 	parameters_object: detachable COPY_ID
 
-	item: detachable COPY_ROW
+	item: COPY_ROW
 
 feature  -- -- Element change
 
-	set_parameters_object (a_parameters_object: COPY_ID) is
+	set_parameters_object (a_parameters_object: COPY_ID)
 			-- set `parameters_object' to `a_parameters_object'
 		require
 			a_parameters_object_not_void: a_parameters_object /= Void
 		do
 			parameters_object := a_parameters_object
 			put_parameter (parameters_object.isbn,"isbn")
-		    put_parameter (parameters_object.serial_number,"serial_number")
+			put_parameter (parameters_object.serial_number,"serial_number")
 			bind_parameters
 		ensure
 			bound_parameters: bound_parameters
@@ -40,7 +42,7 @@ feature  -- -- Element change
 
 feature  -- Constants
 
-	definition: STRING is "[
+	definition: STRING = "[
 select isbn, serial_number, LOC_STORE, LOC_SHELF, LOC_ROW, BORROWER 
 from COPY 
 where isbn=?isbn and serial_number=?serial_number
@@ -48,7 +50,7 @@ where isbn=?isbn and serial_number=?serial_number
 
 feature {NONE} -- Implementation
 
-	create_buffers is
+	create_buffers
 			-- Creation of buffers
 		local
 			buffers: like results
@@ -64,4 +66,4 @@ feature {NONE} -- Implementation
 			set_results (buffers)
 		end
 
-end -- class COPY_READ
+end

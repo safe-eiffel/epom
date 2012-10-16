@@ -1,8 +1,10 @@
-indexing
+note
 
 	description: "Buffer objects for database transfer."
 	status: "Automatically generated.  DOT NOT MODIFY !"
-	generated: "2007/01/30 15:29:38.813"
+	generated: "2012/10/16 08:34:16.843"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\copy.xml"
 
 class COPY_ROW
 
@@ -12,7 +14,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make is
+	make
 			-- Creation of buffers
 		do
 			create isbn.make (14)
@@ -44,4 +46,4 @@ feature  -- Access
 
 	borrower: ECLI_INTEGER
 
-end -- class COPY_ROW
+end
