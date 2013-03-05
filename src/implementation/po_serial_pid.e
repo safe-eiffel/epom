@@ -37,7 +37,7 @@ feature {NONE} -- Initialization
 			persistent_class_name := a_persistent_class_name.twin
 		ensure
 			serial_set: serial = a_serial
-			persistent_class_name_set: persistent_class_name ~ a_persistence_class_name
+			persistent_class_name_set: persistent_class_name ~ a_persistent_class_name
 		end
 
 feature -- Access
