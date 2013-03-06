@@ -4,6 +4,9 @@ class PO_ERROR
 
 inherit
 	UT_ERROR
+		redefine
+			parameters
+		end
 
 create
 	make_datastore_error,
@@ -129,6 +132,12 @@ feature {NONE} -- Initialization
 			default_template_set: default_template = tpl_connection_error
 			code_set: code = code_connection_error
 		end
+
+feature -- Access
+
+	parameters: ARRAY [STRING]
+			-- Parameters used for building the error message
+			-- (See header comment of `message' for details.)
 
 feature {NONE} -- Implementation
 
