@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<project name="epom_control" default="help">
+
+	<description>
+		system: "epom control application."
+		copyright: "Copyright (c) 2002-2012, Paul G. Crismer"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)"
+		date: "$Date$"
+		revision: "$Revision$"
+	</description>
+
+	<inherit>
+		<parent location="${GOBO}/misc/eiffel.eant">
+			<redefine target="init_system"/>
+		</parent>
+	</inherit>
+
+
+<!-- Implementation -->
+
+	<target name="init_system">
+		<set name="system" value="control"/>
+		<set name="system_dir" value="${EPOM}/examples/${system}"/>
+	</target>
+
+
+</project>
