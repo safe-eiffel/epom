@@ -1,4 +1,6 @@
 EIFGENs
 *.orig
 *.bak
+*.rc
+compile_ise.ecf
 
