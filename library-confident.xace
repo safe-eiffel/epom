@@ -13,4 +13,6 @@
 		<option name="recursive" value="true"/>
 		<option name="read_only" value="true"/>
 	</cluster>
+
+	<mount location="${GOBO}/library/kernel-confident.xace"/>
 </library>

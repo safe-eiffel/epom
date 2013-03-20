@@ -35,6 +35,7 @@
 		<option name="void_safety" value="on_demand"/>
 		<option name="attached_by_default" value="true"/>
 
-	<mount location="${EPOM}/library.xace"/>
-	<mount location="${ECLI}/library-voidconfident.xace"/>
+	<mount location="${EPOM}/library-confident.xace"/>
+	<mount location="${ECLI}/library-confident.xace"/>
+	<mount location="${ECLI}/xace/gobo-core-confident.xace"/>
 </system>
