@@ -55,9 +55,9 @@ feature  {NONE} -- Implementation facilities for descendants
 				loop
 					last_object := default_value
 					create_object_from_read_cursor (read_cursor, Void)
-					if last_object /= Void then
-						fill_object_from_read_cursor (read_cursor, last_object)
-						last_cursor.add_object (last_object)
+					if attached last_object as l_object then
+						fill_object_from_read_cursor (read_cursor, l_object)
+						last_cursor.add_object (l_object)
 					end
 					read_cursor.forth
 				end

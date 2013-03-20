@@ -75,10 +75,10 @@ feature -- Access
 
 feature {PO_ADAPTER} -- Access
 
-	last_object: G
+	last_object: detachable G
 		-- Last created object
 
-	default_object : G is
+	default_object : detachable G is
 			-- default (Void) object
 		do
 		end
@@ -151,7 +151,7 @@ feature {PO_LAUNCHER} -- Element change
 
 feature -- Basic operations
 
-	exists (a_pid: like last_pid): BOOLEAN is
+	exists (a_pid: PO_PID): BOOLEAN is
 			-- Does an object identified by `a_pid' exist? Uses `Sql_exists'.
 		do
 			status.reset
@@ -181,8 +181,8 @@ feature -- Basic operations
 			if is_enabled_cache_on_read then
 				cache.search (a_pid)
 				if cache.found then
-					if cache.found_item /= Void then
-						last_cursor.add_object (cache.found_item)
+					if attached cache.found_item as l_item then
+						last_cursor.add_object (l_item)
 					end
 				end
 			end
@@ -198,9 +198,9 @@ feature -- Basic operations
 							fill_object_from_row_cursor
 							last_object.set_pid (a_pid)
 							if is_enabled_cache_on_read then
-								cache.put (last_object)
+								cache.put (attached_(last_object))
 							end
-							last_cursor.add_object (last_object)
+							last_cursor.add_object (attached_(last_object))
 						else
 							status.set_framework_error (status.error_could_not_create_object)
 						end
@@ -214,7 +214,7 @@ feature -- Basic operations
 			end
 		end
 
-	refresh (object: like last_object) is
+	refresh (object: attached like object_anchor) is
 			-- Refresh `object'.  Uses `Sql_refresh'.
 		do
 			last_object := default_object
@@ -242,7 +242,7 @@ feature -- Basic operations
 			end
 		end
 
-	delete (object: like last_object) is
+	delete (object: attached like object_anchor) is
 			-- Delete `object' from datastore.  Uses `Sql_delete'.
 		do
 			last_object := default_object
@@ -267,7 +267,7 @@ feature -- Basic operations
 			end
 		end
 
-	update (object: like last_object) is
+	update (object: attached like object_anchor) is
 			-- Update `object' on datastore. Uses `Sql_update'.
 		do
 			last_object := default_object
@@ -287,7 +287,7 @@ feature -- Basic operations
 				change.bind_parameters
 				change.execute
 				if change.is_ok then
-					object.set_pid (last_pid)
+					object.set_pid (l_pid)
 				else
 					--| query failed
 					status.set_datastore_error (row_cursor.native_code, row_cursor.diagnostic_message)
@@ -299,24 +299,26 @@ feature -- Basic operations
 			end
 		end
 
-	write (object: like last_object) is
+	write (object: attached like object_anchor) is
 			-- Write `object' on datastore. Uses `Sql_write'.
+		local
+			l_pid : attached like last_pid
 		do
 			last_object := default_object
 
 			status.reset
 			create_pid_from_object (object)
 			last_object := object
-			if last_pid /= Void then
+			if attached last_pid as l_last_pid then
 				create change.make (datastore.session)
 				change.set_sql (Sql_write)
-				init_parameters_for_write (object, last_pid)
+				init_parameters_for_write (object, l_last_pid)
 				change.bind_parameters
 				change.execute
 				if change.is_ok then
-					object.set_pid (last_pid)
+					object.set_pid (l_last_pid)
 					if is_enabled_cache_on_write then
-						cache.put (last_object)
+						cache.put (attached_(last_object))
 					end
 				else
 					status.set_datastore_error (row_cursor.native_code, row_cursor.diagnostic_message)
@@ -411,7 +413,7 @@ feature {PO_ADAPTER} -- Implementation
 		local
 			ref : PO_REFERENCE[G]
 		do
-			create ref.set_item (last_object)
+			create ref.set_item (attached_(last_object))
 			last_cursor.add_reference (ref)
 		end
 
@@ -533,6 +535,13 @@ feature  {NONE} -- Implementation
 
 	change : ECLI_STATEMENT
 			-- Ecli change object
+
+	attached_ (o : detachable ANY) : attached like o
+		do
+			check attached o as l_o then
+				Result := o
+			end
+		end
 
 invariant
 
