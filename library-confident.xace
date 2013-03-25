@@ -6,6 +6,7 @@
 		license: "Eiffel Forum version 2"
 		date: "$Date$"
 		revision: "$Revision$"
+		voidsafety: confident
 	</description>
 
 	<cluster name="epom_confident">

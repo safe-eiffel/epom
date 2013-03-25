@@ -9,6 +9,7 @@
 		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
 		date:        "$Date $"
 		revision:    "$Revision$"
+		voidsafety:	confident
 	</description>
 
 	<root class="CONTROL_APPLICATION" creation="make"/>
