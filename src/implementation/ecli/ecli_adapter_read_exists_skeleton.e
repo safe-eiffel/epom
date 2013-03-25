@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -17,19 +17,19 @@ inherit
 
 feature {NONE} -- Framework - Implementation
 
-	exists_cursor : ECLI_CURSOR is
+	exists_cursor : ECLI_CURSOR
 		do
 			check attached read_cursor as l_result then
 				Result := l_result
 			end
 		end
 
-	init_parameters_for_exists (a_pid : like last_pid) is
+	init_parameters_for_exists (a_pid : like last_pid)
 		do
 			init_parameters_for_read (a_pid)
 		end
 
-	exists_test (a_cursor : like exists_cursor) : BOOLEAN is
+	exists_test (a_cursor : like exists_cursor) : BOOLEAN
 		do
 			a_cursor.start
 			if a_cursor.is_ok then

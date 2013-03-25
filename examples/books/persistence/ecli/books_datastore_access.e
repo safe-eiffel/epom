@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -14,6 +14,8 @@ inherit
 
 	PO_SHARED_MANAGER
 	PO_LAUNCHER
+
+	KL_SHARED_STANDARD_FILES
 
 feature {BOOKS_DATASTORE_ACCESS} -- Access
 
@@ -50,7 +52,7 @@ feature -- Status report
 
 feature -- Basic operations
 
-	initialize_persistence_framework (datasource_name, user_name, user_password : STRING) is
+	initialize_persistence_framework (datasource_name, user_name, user_password : STRING)
 		require
 			not_initialized: not is_persistence_framework_initialized
 		local
@@ -62,7 +64,6 @@ feature -- Basic operations
 			l_borrower_adapter : like borrower_adapter
 			l_copy_adapter: like copy_adapter
 			l_tracer : ECLI_TRACER
-			l_std: expanded KL_SHARED_STANDARD_FILES
 		do
 			create session.make_default
 			create simple_login.make(datasource_name, user_name, user_password)
@@ -71,7 +72,7 @@ feature -- Basic operations
 			store := l_store
 			l_store.connect
 			if l_store.is_connected then
-				create l_tracer.make (l_std.std.output)
+				create l_tracer.make (std.output)
 				session.set_tracer (l_tracer)
 				verify_table_existence
 				if not table_exists then
@@ -112,7 +113,7 @@ feature {NONE} -- Implementation
 	copy_adapter_impl : detachable COPY_ADAPTER
 	borrower_adapter_impl : detachable BORROWER_ADAPTER
 
-	verify_table_existence is
+	verify_table_existence
 		local
 			cursor : ECLI_TABLES_CURSOR
 			criteria : ECLI_NAMED_METADATA
@@ -131,7 +132,7 @@ feature {NONE} -- Implementation
 
 	table_exists : BOOLEAN
 
-	create_table is
+	create_table
 		local
 			ddl : ECLI_STATEMENT
 		do
@@ -172,7 +173,7 @@ feature {NONE} -- Implementation
 
 
 
-	pom : PO_MANAGER is do Result := persistence_manager end
+	pom : PO_MANAGER do Result := persistence_manager end
 
 	store : detachable ECLI_DATASTORE
 

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -40,30 +40,30 @@ inherit
 
 feature -- Access
 
-	class_name: STRING is
+	class_name: STRING
 		obsolete "[2004-08-26] Use `persistent_class_name' instead."
 		do
 			Result := persistent_class_name
 		end
 
-	persistent_class_name : STRING is
+	persistent_class_name : STRING
 			-- Persistence class name of objects that this adapter can handle.
 		deferred
 		end
 
-	datastore : PO_DATASTORE is
+	datastore : PO_DATASTORE
 			-- Datastore on which I/O operations will occur.
 		deferred
 		end
 
-	last_cursor : PO_CURSOR [G] is
+	last_cursor : PO_CURSOR [G]
 			-- Last cursor on objects that have been read.
 		deferred
 		end
 
-	object_anchor : detachable G is do end
+	object_anchor : detachable G do end
 
-	pid_for_object (object : attached like object_anchor) : PO_PID is
+	pid_for_object (object : attached like object_anchor) : PO_PID
 			-- Persistent identifier for `object'.
 		require
 			object_not_void: object /= Void
@@ -82,13 +82,13 @@ feature -- Access
 			created_for_volatile: object.is_volatile implies Result = last_pid
 		end
 
-	error_handler : PO_ERROR_HANDLER is
+	error_handler : PO_ERROR_HANDLER
 		deferred
 		end
 
 feature {PO_ADAPTER, PO_CURSOR, PO_REFERENCE, PO_PERSISTENT, PO_REFERENCE_ACCESS} -- Framework - Access
 
-	last_pid : detachable PO_PID is
+	last_pid : detachable PO_PID
 			-- Last PID created by factory features.
 		deferred
 		end
@@ -102,7 +102,7 @@ feature {PO_ADAPTER, PO_CURSOR, PO_REFERENCE, PO_PERSISTENT, PO_REFERENCE_ACCESS
 
 feature {PO_ADAPTER} -- Framework - Access
 
-	last_object : detachable G is
+	last_object : detachable G
 			-- Last object created by factory features.
 		deferred
 		ensure
@@ -116,28 +116,28 @@ feature {PO_ADAPTER} -- Framework - Access
 		end
 feature -- Measurement
 
-	cache_count : INTEGER is
+	cache_count : INTEGER
 			-- Number of objects in cache.
 		deferred
 		end
 
 feature -- Status report
 
-	is_error : BOOLEAN is
+	is_error : BOOLEAN
 			-- is the last operation in error ?
 		obsolete "use `status.is_error' instead"
 		do
 			Result := status.is_error
 		end
 
-	is_ok : BOOLEAN is
+	is_ok : BOOLEAN
 			-- is the last operation ok ?
 		obsolete "use `status.is_ok' instead"
 		do
 			Result := status.is_ok
 		end
 
-	is_pid_valid (some_pid : PO_PID): BOOLEAN is
+	is_pid_valid (some_pid : PO_PID): BOOLEAN
 			-- Is `some_pid' a valid pid ?
 		require
 			some_pid_not_void: some_pid /= Void
@@ -145,7 +145,7 @@ feature -- Status report
 			Result := some_pid.persistent_class_name.is_equal (persistent_class_name)
 		end
 
-	no_data_found : BOOLEAN is
+	no_data_found : BOOLEAN
 			-- have no data been found ?
 		do
 			Result := (last_cursor.count = 0)
@@ -153,44 +153,44 @@ feature -- Status report
 			definition: Result = (last_cursor.count = 0)
 		end
 
-	can_read : BOOLEAN is
+	can_read : BOOLEAN
 			-- does this adapter implement read access ?
 		deferred
 		end
 
-	can_refresh : BOOLEAN is
+	can_refresh : BOOLEAN
 			-- does this adapter implement refresh access ?
 		deferred
 		end
 
-	can_write : BOOLEAN is
+	can_write : BOOLEAN
 			-- does this adapter implement write access ?
 		deferred
 		end
 
-	can_update : BOOLEAN is
+	can_update : BOOLEAN
 			-- does this adapter implement update access ?
 		deferred
 		end
 
-	can_delete : BOOLEAN is
+	can_delete : BOOLEAN
 			-- does this adapter implement delete access ?
 		deferred
 		end
 
-	is_enabled_cache_on_write : BOOLEAN is
+	is_enabled_cache_on_write : BOOLEAN
 			-- Are written objects inserted in cache ?
 		deferred
 		end
 
-	is_enabled_cache_on_read : BOOLEAN is
+	is_enabled_cache_on_read : BOOLEAN
 			-- Are read objects inserted in cache ?
 		deferred
 		end
 
 feature -- Status setting
 
-	reset_error is
+	reset_error
 			-- Reset `is_error' so that operations can continue.
 		obsolete "use `status.reset' instead."
 		do
@@ -199,28 +199,28 @@ feature -- Status setting
 			not_is_error: not is_error
 		end
 
-	enable_cache_on_read is
+	enable_cache_on_read
 			-- Cache objects after they have been read.
 		deferred
 		ensure
 			definition: is_enabled_cache_on_read
 		end
 
-	disable_cache_on_read is
+	disable_cache_on_read
 			-- Do not cache objects after they have been read.
 		deferred
 		ensure
 			definition: not is_enabled_cache_on_read
 		end
 
-	enable_cache_on_write is
+	enable_cache_on_write
 			-- Cache objects after they have been written.
 		deferred
 		ensure
 			definition: is_enabled_cache_on_write
 		end
 
-	disable_cache_on_write is
+	disable_cache_on_write
 			-- Do not cache objects after they have been written.
 		deferred
 		ensure
@@ -229,7 +229,7 @@ feature -- Status setting
 
 feature {PO_LAUNCHER} -- Element change
 
-	set_datastore (a_datastore : PO_DATASTORE) is
+	set_datastore (a_datastore : PO_DATASTORE)
 			-- Attach to `a_datastore'.
 		require
 			a_datastore_not_void: a_datastore /= Void
@@ -241,7 +241,7 @@ feature {PO_LAUNCHER} -- Element change
 
 feature -- Basic operations
 
-	exists (pid : PO_PID) : BOOLEAN is
+	exists (pid : PO_PID) : BOOLEAN
 			-- Does an object identifed by `pid' exist in datastore ?
 		require
 			pid_not_void: pid /= Void
@@ -251,7 +251,7 @@ feature -- Basic operations
 		deferred
 		end
 
-	read (pid : like last_pid) is
+	read (pid : like last_pid)
 			-- Read a persistent object using identifier `pid'.
 		require
 			can_read: can_read
@@ -267,7 +267,7 @@ feature -- Basic operations
 			object_cached: (not last_cursor.is_empty and then is_enabled_cache_on_read) implies is_cached (last_cursor.first)
 		end
 
-	write (object : attached like object_anchor) is
+	write (object : attached like object_anchor)
 			-- Write `o' on persistent datastore.
 		require
 			can_write: can_write
@@ -284,7 +284,7 @@ feature -- Basic operations
 			object_cached: (not status.is_error and then is_enabled_cache_on_write) implies is_cached (object)
 		end
 
-	update (object : attached like object_anchor) is
+	update (object : attached like object_anchor)
 			-- Update `object' on persistent datastore.
 		require
 			can_update: can_update
@@ -297,7 +297,7 @@ feature -- Basic operations
 			object_fresh: not status.is_error implies not object.is_modified
 		end
 
-	refresh (object : attached like object_anchor) is
+	refresh (object : attached like object_anchor)
 			-- Refresh `object' by reading its persistent state from datastore.
 		require
 			can_refresh: can_refresh
@@ -310,7 +310,7 @@ feature -- Basic operations
 			object_fresh: not status.is_error implies not object.is_modified
 		end
 
-	delete (object : attached like object_anchor) is
+	delete (object : attached like object_anchor)
 			--  Delete `object's persistent image.
 		require
 			can_delete: can_delete
@@ -324,7 +324,7 @@ feature -- Basic operations
 			no_more_cached: not status.is_error implies not is_cached (object)
 		end
 
-	clear_cache is
+	clear_cache
 			-- Clear cache.
 		deferred
 		ensure
@@ -333,14 +333,14 @@ feature -- Basic operations
 
 feature {PO_DATASTORE} -- Framework - Basic Operations
 
-	on_adapter_connected is
+	on_adapter_connected
 			-- Callback after adapter has been connected.
 			-- * to be redefined in descendant classes
 		do
 
 		end
 
-	on_adapter_disconnect is
+	on_adapter_disconnect
 			-- Callback before adapter is disconnected.
 			-- * to be redefined in descendant classes
 		do
@@ -349,7 +349,7 @@ feature {PO_DATASTORE} -- Framework - Basic Operations
 
 feature -- Contract support
 
-	is_cached (object : attached like object_anchor) : BOOLEAN is
+	is_cached (object : attached like object_anchor) : BOOLEAN
 			-- Is `object' in cache ?
 		require
 			persistent_object: object /= Void
@@ -360,7 +360,7 @@ feature -- Contract support
 
 feature {PO_REFERENCE} -- Framework - Factory
 
-	create_pid_from_object (an_object : attached like object_anchor) is
+	create_pid_from_object (an_object : attached like object_anchor)
 			-- Create a pid from a volatile object.
 		require
 			object_not_void: an_object /= Void

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -20,7 +20,7 @@ create
 	
 feature -- Initialization
 
-	make is
+	make
 			-- Creation routine.
 		do
 			create list.make
@@ -28,36 +28,36 @@ feature -- Initialization
 		
 feature -- Access
 
-	item: G is do Result := list.item_for_iteration.item end
+	item: G do Result := list.item_for_iteration.item end
 
-	first : G is do Result := list.first.item end
+	first : G do Result := list.first.item end
 	
 feature -- Measurement
 
-	count : INTEGER is do Result := list.count end
+	count : INTEGER do Result := list.count end
 	
 feature -- Status report
 
-	after: BOOLEAN is do Result := list.after end
-	before: BOOLEAN is do Result := list.before end
-	off: BOOLEAN is do Result := list.off end
+	after: BOOLEAN do Result := list.after end
+	before: BOOLEAN do Result := list.before end
+	off: BOOLEAN do Result := list.off end
 	
 feature -- Basic operations
 
-	forth is
+	forth
 		do
 			list.forth
 		end
 		
 
-	start is
+	start
 		do
 			list.start
 		end
 		
 feature {PO_ADAPTER} -- Element change
 
-	add_reference (a_reference : PO_REFERENCE[G]) is
+	add_reference (a_reference : PO_REFERENCE[G])
 			-- Add `a_reference' into the collection.
 		require
 			a_reference_not_void: a_reference /= Void
@@ -65,7 +65,7 @@ feature {PO_ADAPTER} -- Element change
 			list.put_last (a_reference)
 		end
 	
-	add_object (object : G) is
+	add_object (object : G)
 			-- Add `object' into the collection.
 		require
 			object_valid: object /= Void and object.is_persistent
@@ -76,7 +76,7 @@ feature {PO_ADAPTER} -- Element change
 			add_reference (a_reference)
 		end
 	
-	add_last_pid (adapter : PO_ADAPTER[G]) is
+	add_last_pid (adapter : PO_ADAPTER[G])
 			-- Add `adapter.last_pid' into the collection.
 		require
 			last_pid_valid: adapter /= Void and then adapter.last_pid /= Void
@@ -87,7 +87,7 @@ feature {PO_ADAPTER} -- Element change
 			add_reference (a_reference)
 		end
 
-	wipe_out is
+	wipe_out
 			-- Wipe out elements.
 		do
 			list.wipe_out

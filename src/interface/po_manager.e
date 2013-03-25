@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -20,33 +20,33 @@ feature -- Access
 	last_adapter : detachable PO_ADAPTER [PO_PERSISTENT]
 			-- Last adapter found by `search_adapter'.
 
-	adapters : DS_LIST[PO_ADAPTER[PO_PERSISTENT]] is
+	adapters : DS_LIST[PO_ADAPTER[PO_PERSISTENT]]
 			-- Known adapters.
 		deferred
 		end
 
-	error_handler : PO_ERROR_HANDLER is
+	error_handler : PO_ERROR_HANDLER
 		deferred
 		end
 
 
 feature -- Measurement
 
-	count : INTEGER is
+	count : INTEGER
 			-- Number of known adapters.
 		deferred
 		end
 
 feature -- Status report
 
-	found : BOOLEAN is
+	found : BOOLEAN
 			-- Has the last search_adapter operation succeeded ?
 		deferred
 		ensure
 			status: not Result implies status.is_error
 		end
 
-	has_adapter (persistent_class_name : STRING) : BOOLEAN is
+	has_adapter (persistent_class_name : STRING) : BOOLEAN
 			-- Has the POM an adapter for  `class_name'?
 		require
 			class_name_not_void: persistent_class_name /= Void
@@ -57,7 +57,7 @@ feature -- Status report
 
 feature {PO_LAUNCHER} -- Status setting
 
-	add_adapter (an_adapter : PO_ADAPTER[PO_PERSISTENT]) is
+	add_adapter (an_adapter : PO_ADAPTER[PO_PERSISTENT])
 			-- Add `an_adapter'.
 		require
 			adapter_not_void: an_adapter /= Void
@@ -68,7 +68,7 @@ feature {PO_LAUNCHER} -- Status setting
 			inserted: adapters.has (an_adapter) and then count = old count + 1
 		end
 
-	set_error_handler (an_error_handler : PO_ERROR_HANDLER) is
+	set_error_handler (an_error_handler : PO_ERROR_HANDLER)
 			-- Set `error_handler' to `an_error_handler'.
 		require
 			an_error_handler_not_void: an_error_handler /= Void
@@ -79,7 +79,7 @@ feature {PO_LAUNCHER} -- Status setting
 
 feature -- Basic operations
 
-	search_adapter (persistent_class_name : STRING) is
+	search_adapter (persistent_class_name : STRING)
 			-- Search of adapter for class of `class_name'.
 		require
 			class_name_not_void: persistent_class_name /= Void

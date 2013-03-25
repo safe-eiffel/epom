@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -23,14 +23,14 @@ feature -- Initialization
 		
 feature -- Status report
 
-	is_cached (object : G) : BOOLEAN is
+	is_cached (object : G) : BOOLEAN
 		do
 			Result := cache.has_item (object)
 		end
 
 feature {PO_ADAPTER} -- Basic operations
 
-	clear_cache is
+	clear_cache
 		do
 			cache.wipe_out
 		end

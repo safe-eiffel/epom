@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -26,7 +26,7 @@ create
 	
 feature -- Initialization
 
-	make_from_isbn (an_isbn : STRING) is
+	make_from_isbn (an_isbn : STRING)
 			-- Make from `an_isbn'.
 		require
 			an_isbn_not_void:  an_isbn /= Void
@@ -43,7 +43,7 @@ feature -- Access
 	
 feature -- Basic operations
 
-	as_string : STRING is
+	as_string : STRING
 		do
 			create Result.make_from_string (persistent_class_name)
 			Result.append_character(',')

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -16,14 +16,14 @@ inherit
 
 feature -- Status report
 
-	can_write : BOOLEAN is
+	can_write : BOOLEAN
 		do
 			Result := True
 		end
 
 feature -- Basic operations
 
-	write (object: attached like object_anchor) is
+	write (object: attached like object_anchor)
 			-- Write `object' on datastore.
 		do
 			status.reset
@@ -50,13 +50,13 @@ feature -- Basic operations
 
 feature {NONE} -- Framework - Access
 
-	write_query : detachable ECLI_QUERY is
+	write_query : detachable ECLI_QUERY
 		deferred
 		end
 
 feature {NONE} -- Framework - Basic operations
 
-	init_parameters_for_write (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_write (object : like last_object; a_pid : like last_pid)
 			-- Initialize parameters of `write_query' with information from `object' and `a_pid'.
 		require
 			object_not_void: object /= Void

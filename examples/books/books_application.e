@@ -1,4 +1,4 @@
-indexing
+note
 
 	description	: "Books sample application for EPOM"
 
@@ -17,7 +17,7 @@ create
 
 feature -- Initialization
 
-	make is
+	make
 			-- Creation procedure.
 		do
 			create books.make_empty
@@ -55,7 +55,7 @@ feature -- Access
 
 feature -- Basic operations
 
-	populate is
+	populate
 			-- Populate BOOKS database.
 		do
 			populate_books
@@ -64,7 +64,7 @@ feature -- Basic operations
 		end
 
 
-	borrow_copy_to_borrower (book_isbn : STRING; copy_number : INTEGER; borrower_id : INTEGER) is
+	borrow_copy_to_borrower (book_isbn : STRING; copy_number : INTEGER; borrower_id : INTEGER)
 			-- Borrow some copy identified by (`book_isbn',`copy_number') for borrower `borrower_id'.
 		require
 			book_isbn_exists: book_isbn /= Void and not book_isbn.is_empty
@@ -94,7 +94,7 @@ feature -- Basic operations
 			end
 		end
 
-	show is
+	show
 			-- Show various objects.
 		do
 			show_books
@@ -104,7 +104,7 @@ feature -- Basic operations
 
 feature -- Implementation
 
-	print_usage is
+	print_usage
 		do
 			print("{
 	Usage: books <datasource_name> <user_name> <password>
@@ -114,7 +114,7 @@ feature -- Implementation
 )
 		end
 
-	populate_books is
+	populate_books
 			-- Populate books.
 		do
 			create books.make_empty
@@ -126,7 +126,7 @@ feature -- Implementation
 			if attached last_book as l_book then books.force (l_book, 3) end
 		end
 
-	populate_borrowers is
+	populate_borrowers
 			-- Populate borrowers.
 		do
 			write_borrower (1, "Borrower 1", "One, borrower rd., MOON-1")
@@ -134,7 +134,7 @@ feature -- Implementation
 			write_borrower (3, "Borrower 3", "Three, borrower rd., VENUS-3")
 		end
 
-	populate_copies is
+	populate_copies
 			-- Populate copies.
 		do
 			write_copy (books.item (1),1,1,1,1)
@@ -151,7 +151,7 @@ feature -- Implementation
 			write_copy (books.item (3),5,8,2,1)
 		end
 
-	show_books is
+	show_books
 		local
 			the_book : BOOK
 			the_cursor : PO_CURSOR[BOOK]
@@ -179,7 +179,7 @@ feature -- Implementation
 			end
 		end
 
-	show_borrowed_copies is
+	show_borrowed_copies
 			-- Show copies that have been borrowed.
 		local
 			the_book : BOOK
@@ -206,7 +206,7 @@ feature -- Implementation
 		end
 
 
-	write_book (book_isbn, book_title, book_author : STRING; adapter : BOOK_ADAPTER) is
+	write_book (book_isbn, book_title, book_author : STRING; adapter : BOOK_ADAPTER)
 			-- Write new book object [`book_isbn', `book_title', `book_author'] through `adapter'.
 		local
 			b : BOOK
@@ -216,7 +216,7 @@ feature -- Implementation
 			last_book := b
 		end
 
-	write_borrower (borrower_id : INTEGER; borrower_name, borrower_address : STRING) is
+	write_borrower (borrower_id : INTEGER; borrower_name, borrower_address : STRING)
 			-- Write new borrower object [`borrower_id', `borrower_name', `borrower_address'].
 		local
 			b : BORROWER
@@ -225,7 +225,7 @@ feature -- Implementation
 			try_write (b)
 		end
 
-	write_copy (book : BOOK; a_number: INTEGER; a_store: INTEGER; a_shelf: INTEGER; a_row: INTEGER) is
+	write_copy (book : BOOK; a_number: INTEGER; a_store: INTEGER; a_shelf: INTEGER; a_row: INTEGER)
 			-- Write new copy of `book', having attributes `a_number', `a_store', `a_shelf', `a_row'.
 		local
 			book_copy : COPY
@@ -235,7 +235,7 @@ feature -- Implementation
 			try_write (book_copy)
 		end
 
-	delete_copy (isbn : STRING; a_copy : INTEGER) is
+	delete_copy (isbn : STRING; a_copy : INTEGER)
 		local
 			l_copy : COPY
 		do
@@ -246,7 +246,7 @@ feature -- Implementation
 			end
 		end
 
-	try_write (o : PO_PERSISTENT) is
+	try_write (o : PO_PERSISTENT)
 			-- Try writing `o'.
 		do
 			if not o.exists then

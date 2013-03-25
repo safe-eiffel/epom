@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -22,21 +22,21 @@ feature -- Access
 	
 feature -- Basic operations
 		
-	read_by_isbn (an_isbn : STRING) is
+	read_by_isbn (an_isbn : STRING)
 			-- Read book by `an_isbn'.
 		require
 			an_isbn_not_void: an_isbn /= Void
 		deferred
 		end
 
-	read_by_title (a_title : STRING) is
+	read_by_title (a_title : STRING)
 			-- Read book by `a_title'.
 		require
 			a_title_not_void: a_title /= Void
 		deferred
 		end
 	
-	read_by_author (author_name : STRING) is
+	read_by_author (author_name : STRING)
 			-- Read books by `author_name'.
 		require
 			author_name_not_void:  author_name /= Void
@@ -45,7 +45,7 @@ feature -- Basic operations
 
 feature {PO_ADAPTER} -- Factory
 
-	create_pid_for_isbn (an_isbn : STRING) is
+	create_pid_for_isbn (an_isbn : STRING)
 		require
 			an_isbn_not_void:  an_isbn /= Void
 		deferred

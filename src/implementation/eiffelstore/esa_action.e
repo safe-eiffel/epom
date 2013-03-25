@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -16,7 +16,7 @@ inherit
 
 feature -- Initialization
 
-	make (an_adapter : like adapter) is
+	make (an_adapter : like adapter)
 		require
 			an_adapter_not_void: an_adapter /= Void
 		do

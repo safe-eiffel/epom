@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -16,7 +16,7 @@ inherit
 
 feature -- Access report
 
-	can_update : BOOLEAN is
+	can_update : BOOLEAN
 		do
 			Result := True
 		ensure then
@@ -25,7 +25,7 @@ feature -- Access report
 
 feature -- Basic operations
 
-	update (object: attached like object_anchor) is
+	update (object: attached like object_anchor)
 			-- Update `object' on datastore using `update_query'.
 		local
 			default_pid: detachable like last_pid
@@ -62,13 +62,13 @@ feature -- Basic operations
 
 feature {NONE} -- Framework - Access
 
-	update_query : detachable ECLI_QUERY is
+	update_query : detachable ECLI_QUERY
 		deferred
 		end
 
 feature {NONE} -- Framework - Basic operations
 
-	init_parameters_for_update (object : attached like last_object; a_pid : attached like last_pid) is
+	init_parameters_for_update (object : attached like last_object; a_pid : attached like last_pid)
 			-- Initialize parameters of `update_query' with information from `object' and `a_pid'.
 		require
 			object_not_void: object /= Void

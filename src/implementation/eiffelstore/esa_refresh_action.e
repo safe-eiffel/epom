@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -23,7 +23,7 @@ create
 	
 feature -- Basic operations
 
-	execute is
+	execute
 		do
 			adapter.execute_refresh_procedure (adapter.row)
 		end

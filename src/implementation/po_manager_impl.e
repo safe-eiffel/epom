@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -20,7 +20,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make is
+	make
 			-- Creation.
 
 		do
@@ -30,7 +30,7 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	adapters : DS_LIST [PO_ADAPTER[PO_PERSISTENT]] is
+	adapters : DS_LIST [PO_ADAPTER[PO_PERSISTENT]]
 --		local
 --			cursor : DS_HASH_TABLE_CURSOR[PO_ADAPTER[PO_PERSISTENT],STRING]
 		do
@@ -51,7 +51,7 @@ feature -- Access
 
 feature -- Measurement
 
-	count: INTEGER is
+	count: INTEGER
 		do
 			Result := adapters_table.count
 		end
@@ -59,12 +59,12 @@ feature -- Measurement
 feature -- Status report
 
 
-	found: BOOLEAN is
+	found: BOOLEAN
 		do
 			Result := adapters_table.found
 		end
 
-	has_adapter (class_name: STRING): BOOLEAN is
+	has_adapter (class_name: STRING): BOOLEAN
 		do
 			last_adapter := Void
 			adapters_table.search (class_name)
@@ -78,19 +78,19 @@ feature -- Element change
 
 feature {PO_LAUNCHER} -- Element change
 
-	add_adapter (an_adapter: PO_ADAPTER [PO_PERSISTENT]) is
+	add_adapter (an_adapter: PO_ADAPTER [PO_PERSISTENT])
 		do
 			adapters_table.force (an_adapter, an_adapter.persistent_class_name)
 		end
 
-	set_error_handler (an_error_handler : PO_ERROR_HANDLER) is
+	set_error_handler (an_error_handler : PO_ERROR_HANDLER)
 		do
 			error_handler := an_error_handler
 		end
 
 feature -- Basic operations
 
-	search_adapter (class_name: STRING) is
+	search_adapter (class_name: STRING)
 		do
 			adapters_table.search (class_name)
 			if adapters_table.found then

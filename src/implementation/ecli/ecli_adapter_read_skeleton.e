@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -16,7 +16,7 @@ inherit
 
 feature -- Status report
 
-	can_read : BOOLEAN is
+	can_read : BOOLEAN
 		do
 			Result := True
 		ensure then
@@ -25,7 +25,7 @@ feature -- Status report
 
 feature -- Basic operations
 
-	read (a_pid: like last_pid) is
+	read (a_pid: like last_pid)
 			-- Read an object identified by `a_pid' using `read_cursor'.
 		do
 			last_object := default_value
@@ -58,13 +58,13 @@ feature -- Basic operations
 
 feature {NONE} -- Framework - Access
 
-	read_cursor : detachable ECLI_CURSOR is
+	read_cursor : detachable ECLI_CURSOR
 		deferred
 		end
 
 feature {NONE} -- Framework - Basic operations
 
-	init_parameters_for_read (a_pid : like last_pid) is
+	init_parameters_for_read (a_pid : like last_pid)
 			-- Initialize parameters of `read_cursor' with information from `a_pid'.
 		require
 			a_pid_not_void: a_pid /= Void
@@ -75,7 +75,7 @@ feature {NONE} -- Framework - Basic operations
 
 feature {NONE} -- Framework - Factory
 
-	create_object_from_read_cursor  (a_cursor : like read_cursor; a_pid : like last_pid) is
+	create_object_from_read_cursor  (a_cursor : like read_cursor; a_pid : like last_pid)
 			-- Create object and just ensure invariant.
 		require
 			last_object_void: last_object = Void
@@ -87,7 +87,7 @@ feature {NONE} -- Framework - Factory
 			last_object_created_if_no_error: not status.is_error implies last_object /= Void
 		end
 
-	fill_object_from_read_cursor (a_cursor : like read_cursor; object : like last_object) is
+	fill_object_from_read_cursor (a_cursor : like read_cursor; object : like last_object)
 			-- Fill `last_object' using `read_cursor' results.
 		require
 			a_cursor_not_void: a_cursor /= Void
@@ -97,7 +97,7 @@ feature {NONE} -- Framework - Factory
 
 feature {NONE} -- Implementation
 
-	load_results (a_cursor : like read_cursor; a_pid : like last_pid) is
+	load_results (a_cursor : like read_cursor; a_pid : like last_pid)
 			-- Load results from a cursor.
 		require
 			a_cursor_not_void: a_cursor /= Void

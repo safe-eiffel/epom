@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -22,7 +22,7 @@ create
 
 feature -- Initialization
 
-	make (an_id : INTEGER; a_name, an_address : STRING) is
+	make (an_id : INTEGER; a_name, an_address : STRING)
 			-- Make using `an_id', `a_name', `an_address'.
 		require
 			an_id_stricly_positive: an_id > 0
@@ -46,7 +46,7 @@ feature -- Access
 
 	address : STRING
 
-	borrowed_copies : detachable DS_LIST [COPY] is
+	borrowed_copies : detachable DS_LIST [COPY]
 		do
 			--|FIXME: TODO
 		end

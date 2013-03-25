@@ -1,4 +1,4 @@
-indexing
+note
 	description: "Objects that ..."
 	author: ""
 	date: "$Date$"
@@ -15,7 +15,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make_query_error (an_adapter, a_feature : STRING; a_query : ECLI_QUERY) is
+	make_query_error (an_adapter, a_feature : STRING; a_query : ECLI_QUERY)
 			-- Report Query error in {`an_adapter'}.`a_feature' for `a_query'.
 		require
 			an_adapter_not_void: an_adapter /= Void
@@ -38,8 +38,8 @@ feature {NONE} -- Initialization
 
 feature {NONE} -- Implementation
 
-	tpl_query_error : STRING is "[$1] {$2}.$3 : Qery Error Native-code='$4' Message=<<$5>> Query=<<$6>>"
+	tpl_query_error : STRING = "[$1] {$2}.$3 : Qery Error Native-code='$4' Message=<<$5>> Query=<<$6>>"
 
-	code_query_error : STRING is "EPOM-E-SQLERR"
+	code_query_error : STRING = "EPOM-E-SQLERR"
 	
 end

@@ -1,4 +1,4 @@
- indexing
+ note
 
 	description:
 
@@ -47,7 +47,7 @@ inherit
 
 feature {NONE} -- Initialization
 
-	make (a_datastore : ECLI_DATASTORE) is
+	make (a_datastore : ECLI_DATASTORE)
 			-- Make using `datastore'.
 		require
 			a_datastore_not_void: a_datastore /= Void
@@ -59,6 +59,11 @@ feature {NONE} -- Initialization
 		ensure
 			datastore_set: a_datastore /= Void
 			no_cache_on_write: not is_enabled_cache_on_write
+		end
+
+	make_cache
+		do
+			create {PO_HASHED_CACHE[G]}cache.make (10)
 		end
 
 feature -- Access
@@ -78,7 +83,7 @@ feature {PO_ADAPTER} -- Access
 	last_object: detachable G
 		-- Last created object
 
-	default_object : detachable G is
+	default_object : detachable G
 			-- default (Void) object
 		do
 		end
@@ -87,7 +92,7 @@ feature -- Status report
 
 	error_code : INTEGER
 
-	error_meaning : STRING is
+	error_meaning : STRING
 			-- Human readable meaning for current `error_code'.
 		do
 			create Result.make(0)
@@ -104,31 +109,31 @@ feature -- Status report
 	is_enabled_cache_on_read : BOOLEAN
 			-- Are read objects inserted in cache ?
 
-	can_read : BOOLEAN is do Result := True end
-	can_write : BOOLEAN is do Result := True end
-	can_update : BOOLEAN is do Result := True end
-	can_delete : BOOLEAN is do Result := True end
-	can_refresh : BOOLEAN is do Result := True end
+	can_read : BOOLEAN do Result := True end
+	can_write : BOOLEAN do Result := True end
+	can_update : BOOLEAN do Result := True end
+	can_delete : BOOLEAN do Result := True end
+	can_refresh : BOOLEAN do Result := True end
 
 
 feature -- Status setting
 
-	enable_cache_on_read is
+	enable_cache_on_read
 		do
 			is_enabled_cache_on_read := True
 		end
 
-	disable_cache_on_read is
+	disable_cache_on_read
 		do
 			is_enabled_cache_on_read := False
 		end
 
-	enable_cache_on_write is
+	enable_cache_on_write
 		do
 			is_enabled_cache_on_write := True
 		end
 
-	disable_cache_on_write is
+	disable_cache_on_write
 		do
 			is_enabled_cache_on_write := False
 		end
@@ -136,7 +141,7 @@ feature -- Status setting
 feature -- Measurement
 
 
-	cache_count : INTEGER is
+	cache_count : INTEGER
 			-- Number of objects in cache.
 		do
 			Result := cache.count
@@ -144,14 +149,14 @@ feature -- Measurement
 
 feature {PO_LAUNCHER} -- Element change
 
-	set_datastore (a_datastore: ECLI_DATASTORE) is
+	set_datastore (a_datastore: ECLI_DATASTORE)
 		do
 			datastore := a_datastore
 		end
 
 feature -- Basic operations
 
-	exists (a_pid: PO_PID): BOOLEAN is
+	exists (a_pid: PO_PID): BOOLEAN
 			-- Does an object identified by `a_pid' exist? Uses `Sql_exists'.
 		do
 			status.reset
@@ -172,7 +177,7 @@ feature -- Basic operations
 			row_cursor.close
 		end
 
-	read (a_pid: like last_pid) is
+	read (a_pid: like last_pid)
 			-- Read an object identified by `a_pid'.  Uses `Sql_read'.
 		do
 			last_object := default_object
@@ -194,13 +199,13 @@ feature -- Basic operations
 				if row_cursor.is_ok then
 					if not row_cursor.off then
 						create_object_from_row_cursor
-						if last_object /= Void then
+						if attached last_object as l_object then
 							fill_object_from_row_cursor
 							last_object.set_pid (a_pid)
 							if is_enabled_cache_on_read then
-								cache.put (attached_(last_object))
+								cache.put (l_object)
 							end
-							last_cursor.add_object (attached_(last_object))
+							last_cursor.add_object (l_object)
 						else
 							status.set_framework_error (status.error_could_not_create_object)
 						end
@@ -214,7 +219,7 @@ feature -- Basic operations
 			end
 		end
 
-	refresh (object: attached like object_anchor) is
+	refresh (object: attached like object_anchor)
 			-- Refresh `object'.  Uses `Sql_refresh'.
 		do
 			last_object := default_object
@@ -242,7 +247,7 @@ feature -- Basic operations
 			end
 		end
 
-	delete (object: attached like object_anchor) is
+	delete (object: attached like object_anchor)
 			-- Delete `object' from datastore.  Uses `Sql_delete'.
 		do
 			last_object := default_object
@@ -267,7 +272,7 @@ feature -- Basic operations
 			end
 		end
 
-	update (object: attached like object_anchor) is
+	update (object: attached like object_anchor)
 			-- Update `object' on datastore. Uses `Sql_update'.
 		do
 			last_object := default_object
@@ -299,7 +304,7 @@ feature -- Basic operations
 			end
 		end
 
-	write (object: attached like object_anchor) is
+	write (object: attached like object_anchor)
 			-- Write `object' on datastore. Uses `Sql_write'.
 		local
 			l_pid : attached like last_pid
@@ -318,7 +323,7 @@ feature -- Basic operations
 				if change.is_ok then
 					object.set_pid (l_last_pid)
 					if is_enabled_cache_on_write then
-						cache.put (attached_(last_object))
+						cache.put (object)
 					end
 				else
 					status.set_datastore_error (row_cursor.native_code, row_cursor.diagnostic_message)
@@ -334,7 +339,7 @@ feature {PO_ADAPTER} -- Implementation
 	query_error_message: STRING
 			-- Error message associated with last error
 
-	set_query_error_message (a_string : STRING) is
+	set_query_error_message (a_string : STRING)
 			--
 		require
 			a_string_not_void: a_string /= Void
@@ -344,42 +349,42 @@ feature {PO_ADAPTER} -- Implementation
 			query_error_message_set: query_error_message = a_string
 		end
 
-	init_parameters_for_exists (a_pid : like last_pid) is
+	init_parameters_for_exists (a_pid : like last_pid)
 			-- Initialize parameters of `Sql_exists' with information from `a_pid'.
 		deferred
 		end
 
-	init_parameters_for_read (a_pid : like last_pid) is
+	init_parameters_for_read (a_pid : like last_pid)
 			-- Initialize parameters of `Sql_read' with information from `a_pid'.
 		deferred
 		end
 
-	init_parameters_for_refresh (a_pid : like last_pid) is
+	init_parameters_for_refresh (a_pid : like last_pid)
 			-- Initialize parameters of `Sql_refresh' with information from `a_pid'.
 		deferred
 		end
 
-	init_parameters_for_delete (a_pid : like last_pid) is
+	init_parameters_for_delete (a_pid : like last_pid)
 			-- Initialize parameters of `Sql_delete' with information from `a_pid'.
 		deferred
 		end
 
-	init_parameters_for_write (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_write (object : like last_object; a_pid : like last_pid)
 			-- Initialize parameters of `Sql_write' with information from `object' and `a_pid'.
 		deferred
 		end
 
-	init_parameters_for_update (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_update (object : like last_object; a_pid : like last_pid)
 			-- Initialize parameters of `Sql_update' with information from `object' and `a_pid'.
 		deferred
 		end
 
-	create_pid_from_object (an_object: G) is
+	create_pid_from_object (an_object: G)
 			-- Create `last_pid' based on the content of `an_object'.
 		deferred
 		end
 
-	create_pid_from_row_cursor is
+	create_pid_from_row_cursor
 			-- Create `last_pid' based on the content of the row_cursor.
 		require
 			last_pid_void: last_pid = Void
@@ -387,7 +392,7 @@ feature {PO_ADAPTER} -- Implementation
 		deferred
 		end
 
-	create_object_from_row_cursor is
+	create_object_from_row_cursor
 			-- Create object and just ensure invariant.
 
 		require
@@ -398,7 +403,7 @@ feature {PO_ADAPTER} -- Implementation
 			last_objet_is_persistent: last_object /= Void implies last_object.is_persistent
 		end
 
-	add_pid_to_cursor is
+	add_pid_to_cursor
 			-- Extend last_cursor with a PO_REFERENCE p, with p.pid initialized to `last_pid'.
 		local
 			ref : PO_REFERENCE[G]
@@ -408,16 +413,16 @@ feature {PO_ADAPTER} -- Implementation
 			last_cursor.add_reference (ref)
 		end
 
-	add_object_to_cursor is
+	add_object_to_cursor
 			-- Extend last_cursor with a PO_REFERENCE p, with p.pid initialized to `last_pid'.
 		local
 			ref : PO_REFERENCE[G]
 		do
-			create ref.set_item (attached_(last_object))
+			create ref.set_item (last_object.as_attached)
 			last_cursor.add_reference (ref)
 		end
 
-	fill_object_from_row_cursor is
+	fill_object_from_row_cursor
 			-- Fill `last_object' using `row' content.
 		require
 			row_cursor_not_void: row_cursor /= Void
@@ -428,39 +433,39 @@ feature {PO_ADAPTER} -- Implementation
 	row_cursor : ECLI_ROW_CURSOR
 			-- Cursor on virtual rows.
 
-	Sql_exists : STRING is
+	Sql_exists : STRING
 			-- SQL query for 'exists'.
 		 deferred
 		 end
 
-	Sql_read : STRING  is
+	Sql_read : STRING
 			-- SQL query for 'read'.
 		 deferred
 		 end
 
-	Sql_refresh : STRING  is
+	Sql_refresh : STRING
 			-- SQL query for 'refresh'.
 		 deferred
 		 end
 
-	Sql_update : STRING  is
+	Sql_update : STRING
 			-- SQL query for 'update'.
 		 deferred
 		 end
 
-	Sql_write : STRING is
+	Sql_write : STRING
 			-- SQL query for 'write'.
 		 deferred
 		 end
 
-	Sql_delete : STRING is
+	Sql_delete : STRING
 			-- SQL query for 'delete'.
 		 deferred
 		 end
 
 feature  {NONE} -- Implementation facilities for descendants
 
-	read_object_collection is
+	read_object_collection
 			-- Read a collection of objects from current row_cursor.
 		require
 			row_cursor_ready: row_cursor /= Void
@@ -497,7 +502,7 @@ feature  {NONE} -- Implementation facilities for descendants
 			end
 		end
 
-	read_pid_collection is
+	read_pid_collection
 			-- Read a collection of pid from current row_cursor
 		require
 			row_cursor_ready: row_cursor /= Void
@@ -527,7 +532,7 @@ feature  {NONE} -- Implementation facilities for descendants
 
 feature  {NONE} -- Implementation	
 
-	set_error (a_code : INTEGER) is
+	set_error (a_code : INTEGER)
 			-- set `error_code' to `a_code'
 		do
 			error_code := a_code
@@ -536,12 +541,12 @@ feature  {NONE} -- Implementation
 	change : ECLI_STATEMENT
 			-- Ecli change object
 
-	attached_ (o : detachable ANY) : attached like o
-		do
-			check attached o as l_o then
-				Result := o
-			end
-		end
+--	attached_ (o : detachable ANY) : attached like o
+--		do
+--			check attached o as l_o then
+--				Result := o
+--			end
+--		end
 
 invariant
 

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -12,6 +12,6 @@ class BOOK_PERSISTENT_CLASS_NAME
 
 feature -- Constants
 
-	persistent_class_name : STRING is "BOOK"
+	persistent_class_name : STRING = "BOOK"
 	
 end

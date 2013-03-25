@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -28,7 +28,7 @@ inherit
 
 feature {NONE} -- Initialization
 
-	make (a_datastore : ECLI_DATASTORE) is
+	make (a_datastore : ECLI_DATASTORE)
 			-- Make using `datastore'.
 		require
 			a_datastore_not_void: a_datastore /= Void
@@ -41,7 +41,7 @@ feature {NONE} -- Initialization
 			datastore_set: a_datastore /= Void
 		end
 
-	make_with_cache (a_datastore : ECLI_DATASTORE; a_cache : PO_CACHE[G]) is
+	make_with_cache (a_datastore : ECLI_DATASTORE; a_cache : PO_CACHE[G])
 			-- Make using `a_datastore' and `a_cache'.
 		require
 			a_datastore_not_void: a_datastore /= Void
@@ -58,7 +58,7 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	error_handler : PO_ECLI_ERROR_HANDLER is
+	error_handler : PO_ECLI_ERROR_HANDLER
 		deferred
 		end
 
@@ -90,7 +90,7 @@ feature -- Status report
 
 feature -- Measurement
 
-	cache_count : INTEGER is
+	cache_count : INTEGER
 			-- Number of objects in cache.
 		do
 			Result := cache.count
@@ -98,7 +98,7 @@ feature -- Measurement
 
 feature {PO_LAUNCHER} -- Element change
 
-	set_datastore (a_datastore: ECLI_DATASTORE) is
+	set_datastore (a_datastore: ECLI_DATASTORE)
 		do
 			datastore := a_datastore
 			datastore.register_adapter (Current)
@@ -109,7 +109,7 @@ feature {PO_LAUNCHER} -- Element change
 
 feature -- Basic operations
 
-	exists (a_pid: PO_PID): BOOLEAN is
+	exists (a_pid: PO_PID): BOOLEAN
 			-- Does an object identified by `a_pid' exist? Uses `Sql_exists'.
 		local
 --			pid_like_last_pid : like last_pid
@@ -138,36 +138,36 @@ feature -- Basic operations
 			end
 		end
 
-	enable_cache_on_read is
+	enable_cache_on_read
 		do
 			is_enabled_cache_on_read := True
 		end
 
-	disable_cache_on_read is
+	disable_cache_on_read
 		do
 			is_enabled_cache_on_read := False
 		end
 
-	enable_cache_on_write is
+	enable_cache_on_write
 		do
 			is_enabled_cache_on_write := True
 		end
 
-	disable_cache_on_write is
+	disable_cache_on_write
 		do
 			is_enabled_cache_on_write := False
 		end
 
 feature {NONE} -- Framework - Basic operations
 
-	create_error_handler is
+	create_error_handler
 			-- Create `error_handler'.
 		deferred
 		ensure
 			error_handler_not_void: error_handler /= Void
 		end
 
-	init_parameters_for_exists (a_pid : like last_pid) is
+	init_parameters_for_exists (a_pid : like last_pid)
 			-- Initialize parameters of `Sql_exists' with information from `a_pid'.
 		require
 			a_pid_not_void: a_pid /= Void
@@ -195,7 +195,7 @@ feature {NONE} -- Implementation
 
 feature {NONE} -- Framework - Access
 
-	exists_cursor : detachable ECLI_CURSOR is
+	exists_cursor : detachable ECLI_CURSOR
 		deferred
 		end
 
@@ -211,7 +211,7 @@ feature {NONE} -- Framework - Status report
 			a_cursor_after: a_cursor.after
 		end
 
-	default_value : detachable G is do  end
+	default_value : detachable G do  end
 
 	make_cache
 		do

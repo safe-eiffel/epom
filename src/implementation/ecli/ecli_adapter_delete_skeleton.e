@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -16,7 +16,7 @@ inherit
 
 feature -- Status report
 
-	can_delete : BOOLEAN is
+	can_delete : BOOLEAN
 		do
 			Result := True
 		ensure then
@@ -25,7 +25,7 @@ feature -- Status report
 
 feature -- Basic operations
 
-	delete (object: attached like object_anchor) is
+	delete (object: attached like object_anchor)
 			-- Delete `object' from datastore using `delete_query'.
 		local
 			default_pid : like last_pid
@@ -60,13 +60,13 @@ feature -- Basic operations
 
 feature {NONE} -- Framework - Access
 
-	delete_query : detachable ECLI_QUERY is
+	delete_query : detachable ECLI_QUERY
 		deferred
 		end
 
 feature {PO_ADAPTER} -- Framework - Basic operations
 
-	init_parameters_for_delete (a_pid : attached like last_pid) is
+	init_parameters_for_delete (a_pid : attached like last_pid)
 			-- Initialize parameters of `delete_query' with information from `a_pid'.
 		require
 			a_pid_not_void: a_pid /= Void

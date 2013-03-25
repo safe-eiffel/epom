@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -61,7 +61,7 @@ feature {PO_ADAPTER, PO_CURSOR, PO_REFERENCE, PO_PERSISTENT} -- Access
 
 feature {PO_DATASTORE}-- Basic operations
 
-	on_adapter_connected is
+	on_adapter_connected
 		do
 			create read_cursor.make (datastore.session)
 			create write_query.make (datastore.session)
@@ -69,7 +69,7 @@ feature {PO_DATASTORE}-- Basic operations
 			create delete_query.make (datastore.session)
 		end
 
-	on_adapter_disconnect is
+	on_adapter_disconnect
 		do
 			read_cursor.close
 			write_query.close
@@ -79,14 +79,14 @@ feature {PO_DATASTORE}-- Basic operations
 
 feature -- Basic operations
 
-	read_by_id (id : INTEGER) is
+	read_by_id (id : INTEGER)
 			-- Read by `id'.
 		do
 			create last_pid.make (id)
 			read (last_pid)
 		end
 
-	read_by_name_pattern (name_pattern : STRING) is
+	read_by_name_pattern (name_pattern : STRING)
 			-- Read by `name_pattern'.
 		local
 			cursor : BORROWER_READ_LIKE
@@ -98,66 +98,66 @@ feature -- Basic operations
 
 feature {NONE} -- Framework - Factory
 
-	create_pid_from_id (id : INTEGER) is
+	create_pid_from_id (id : INTEGER)
 		do
 			create last_pid.make (id)
 		end
 
-	create_pid_from_object (object : attached like object_anchor) is
+	create_pid_from_object (object : attached like object_anchor)
 		do
 			create last_pid.make (object.id)
 		end
 
 feature {NONE} -- Framework - Basic operations
 
-	init_parameters_for_read (a_pid : attached like last_pid) is
+	init_parameters_for_read (a_pid : attached like last_pid)
 		do
 			read_cursor.set_parameters_object (borrower_id_parameter (a_pid))
 		end
 
-	init_parameters_for_delete  (a_pid : attached like last_pid) is
+	init_parameters_for_delete  (a_pid : attached like last_pid)
 		do
 			delete_query.set_parameters_object (borrower_id_parameter (a_pid))
 		end
 
-	init_parameters_for_write (object : like last_object; a_pid : attached like last_pid) is
+	init_parameters_for_write (object : like last_object; a_pid : attached like last_pid)
 		do
 			write_query.set_parameters_object (modify_parameters(object, a_pid))
 		end
 
-	init_parameters_for_update (object : attached like last_object; a_pid : attached like last_pid) is
+	init_parameters_for_update (object : attached like last_object; a_pid : attached like last_pid)
 		do
 			update_query.set_parameters_object (modify_parameters (object, a_pid))
 		end
 
 feature {NONE} -- Framework - Factory
 
-	create_object_from_read_cursor (a_cursor : like read_cursor; a_pid : attached like last_pid) is
+	create_object_from_read_cursor (a_cursor : like read_cursor; a_pid : attached like last_pid)
 		do
 			create last_object.make (a_cursor.item.id.as_integer,
 				a_cursor.item.name.as_string,
 				a_cursor.item.address.as_string)
 		end
 
-	fill_object_from_read_cursor  (a_cursor : like read_cursor; object : like last_object) is
+	fill_object_from_read_cursor  (a_cursor : like read_cursor; object : like last_object)
 			--
 		do
 			do_nothing
 		end
 
-	extend_cursor_from_borrower_id (id : BORROWER_ID) is
+	extend_cursor_from_borrower_id (id : BORROWER_ID)
 		do
 			create last_pid.make (id.id.as_integer)
 			last_cursor.add_last_pid (Current)
 		end
 
-	borrower_id_parameter (a_pid : attached like last_pid) : BORROWER_ID is
+	borrower_id_parameter (a_pid : attached like last_pid) : BORROWER_ID
 		do
 			create Result.make
 			Result.id.set_item (a_pid.id)
 		end
 
-	modify_parameters (object : like last_object; a_pid : attached like last_pid) : BORROWER_MODIFY_PARAMETERS is
+	modify_parameters (object : like last_object; a_pid : attached like last_pid) : BORROWER_MODIFY_PARAMETERS
 		do
 			create Result.make
 			Result.id.set_item (object.id)

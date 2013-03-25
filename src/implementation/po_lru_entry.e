@@ -1,4 +1,4 @@
-indexing
+note
 	description: "LRU cache entries."
 	author: "Paul G. Crismer"
 	date: "$Date$"
@@ -12,7 +12,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (a_pid : PO_PID) is
+	make (a_pid : PO_PID)
 			-- Make for `a_pid'.
 		require
 			a_pid_not_void: a_pid /= Void
@@ -36,7 +36,7 @@ feature -- Measurement
 			
 feature -- Element change
 
-	record_access (a_time : INTEGER_64) is
+	record_access (a_time : INTEGER_64)
 			-- Record item acces on `a_time'
 		require
 			a_time_greater_time: a_time > time

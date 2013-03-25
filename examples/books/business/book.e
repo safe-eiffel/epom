@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -22,7 +22,7 @@ create
 	
 feature -- Initialization
 
-	make (an_isbn, a_title, an_author : STRING) is
+	make (an_isbn, a_title, an_author : STRING)
 			-- Make with `an_isbn', `a_title', `an_author'.
 		require
 			a_isbn_valid:  an_isbn /= Void and an_isbn.count > 0 and an_isbn.count <= 14

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -47,7 +47,7 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
-	execute is
+	execute
 		do
 			adapter.execute_read_collection_object_procedure -- (adapter.row)
 		end

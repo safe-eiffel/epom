@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -12,6 +12,6 @@ class COPY_PERSISTENT_CLASS_NAME
 
 feature -- Constants
 
-	persistent_class_name : STRING is "COPY"
+	persistent_class_name : STRING = "COPY"
 
 end

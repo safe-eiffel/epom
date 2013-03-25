@@ -1,4 +1,4 @@
-indexing
+note
 	description: "Virtual row on BORROWER table."
 	author: "Paul G. Crismer"
 	date: "$Date$"

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -12,7 +12,7 @@ class PO_STATUS_USE
 
 feature -- Access
 
-	status : PO_STATUS is
+	status : PO_STATUS
 			-- Status related to latest persistance operation.
 		do
 			if attached impl_status as l_result then

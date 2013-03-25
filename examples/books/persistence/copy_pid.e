@@ -1,4 +1,4 @@
-indexing
+note
 	description: "Persitent identifiers for COPY objects"
 	author: "Paul G. Crismer"
 	date: "$Date$"
@@ -21,7 +21,7 @@ create
 	
 feature -- Initialization
 
-	make (an_isbn : STRING; a_serial : INTEGER) is
+	make (an_isbn : STRING; a_serial : INTEGER)
 			-- Make pid by `an_isbn', `a_serial'.
 		require
 			an_isbn_not_void:  an_isbn /= Void
@@ -42,7 +42,7 @@ feature -- Access
 	
 feature -- Conversion
 
-	as_string : STRING is
+	as_string : STRING
 		do
 			create Result.make_from_string (persistent_class_name)
 			Result.append_character(',')

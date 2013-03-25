@@ -1,4 +1,4 @@
-indexing
+note
 	description: "Persistent class names for BORROWER objects"
 	author: "Paul G. Crismer"
 	date: "$Date$"
@@ -9,6 +9,6 @@ class
 
 feature -- Constants
 
-	persistent_class_name : STRING is "BORROWER"
+	persistent_class_name : STRING = "BORROWER"
 	
 end

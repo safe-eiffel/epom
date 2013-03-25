@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -26,7 +26,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (a_book : BOOK; a_number : INTEGER) is
+	make (a_book : BOOK; a_number : INTEGER)
 			-- Create copy `a_number' for `a_book'.
 		require
 			a_book_not_void:  a_book /= Void
@@ -40,7 +40,7 @@ feature {NONE} -- Initialization
 			number_set: number = a_number
 		end
 
-	make_lazy (a_reference : PO_REFERENCE[BOOK]; a_number : INTEGER) is
+	make_lazy (a_reference : PO_REFERENCE[BOOK]; a_number : INTEGER)
 			-- Create copy `a_number' for a book passed by `a_reference'.
 		require
 			a_reference_not_void:  a_reference /= Void and then not a_reference.is_void
@@ -56,7 +56,7 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	book : BOOK is
+	book : BOOK
 		do
 			Result := book_reference.item
 		end
@@ -69,7 +69,7 @@ feature -- Access
 
 	row : INTEGER
 
-	borrower : detachable BORROWER is
+	borrower : detachable BORROWER
 			-- Borrower that currently holds the copy.
 		do
 			if not borrower_reference.is_void then
@@ -80,7 +80,7 @@ feature -- Access
 
 feature -- Status report
 
-	is_borrowable : BOOLEAN is
+	is_borrowable : BOOLEAN
 			-- Can this copy be borrowed by someone ?
 		do
 			Result := not borrower_reference.is_identified
@@ -90,7 +90,7 @@ feature -- Status report
 
 feature -- Basic operations
 
-	set_location (a_store, a_shelf, a_row : INTEGER) is
+	set_location (a_store, a_shelf, a_row : INTEGER)
 			-- Set location to `a_store', `a_shelf', `a_location'.
 		do
 			row := a_row
@@ -102,7 +102,7 @@ feature -- Basic operations
 			shelf_set: shelf = a_shelf
 		end
 
-	borrow (a_borrower : BORROWER) is
+	borrow (a_borrower : BORROWER)
 			-- Borrow this copy by `a_borrower'.
 		require
 			borrowable: is_borrowable
@@ -113,7 +113,7 @@ feature -- Basic operations
 			borrower_set: borrower = a_borrower
 		end
 
-	set_borrowable is
+	set_borrowable
 			-- Set the book borrowable.
 		require
 			borrowed: not is_borrowable

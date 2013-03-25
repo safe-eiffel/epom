@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -16,7 +16,7 @@ inherit
 
 feature -- Status report
 
-	can_refresh : BOOLEAN is
+	can_refresh : BOOLEAN
 		do
 			Result := True
 		ensure then
@@ -25,7 +25,7 @@ feature -- Status report
 
 feature -- Basic operations
 
-	refresh (object: attached like last_object) is
+	refresh (object: attached like last_object)
 			-- Refresh `object' using `refresh_cursor'.
 		local
 			default_pid: detachable like last_pid
@@ -58,7 +58,7 @@ feature -- Basic operations
 
 feature {PO_ADAPTER} -- Basic operations
 
-	init_parameters_for_refresh (a_pid : like last_pid) is
+	init_parameters_for_refresh (a_pid : like last_pid)
 			-- Initialize parameters of `refresh_cursor' with information from `a_pid'.
 		require
 			refresh_cursor_not_void: refresh_cursor /= Void
@@ -67,7 +67,7 @@ feature {PO_ADAPTER} -- Basic operations
 			bound_parameters: refresh_cursor.bound_parameters
 		end
 
-	fill_from_refresh_cursor (object : attached like last_object) is
+	fill_from_refresh_cursor (object : attached like last_object)
 			-- Fill `last_object' using `refresh_cursor' results.
 		require
 			refresh_cursor_not_void: refresh_cursor /= Void
@@ -77,7 +77,7 @@ feature {PO_ADAPTER} -- Basic operations
 
 feature {PO_ADAPTER} -- Implementation
 
-	refresh_cursor : detachable ECLI_CURSOR is
+	refresh_cursor : detachable ECLI_CURSOR
 		deferred
 		end
 
