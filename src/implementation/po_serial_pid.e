@@ -26,7 +26,7 @@ feature {NONE} -- Initialization
 			persistent_class_name := an_adapter.persistent_class_name
 		ensure
 			serial_set: serial = a_serial
-			persistent_class_name_set: persistent_class_name = an_adapter.persistent_class_name
+			persistent_class_name_set: persistent_class_name ~ an_adapter.persistent_class_name
 		end
 
 	make_serial_unsafe (a_serial : NATURAL_64; a_persistent_class_name : READABLE_STRING_8)
