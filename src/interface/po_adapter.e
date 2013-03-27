@@ -2,29 +2,30 @@ note
 
 	description:
 
-		"Objects that handle all accesses to persistent objects of type G on a datastore.%N%
-		% %
-		%The persistent objects all have `persistent_class_name' as persistence name.%N%
-		% %
-		%Adapters are factories for read objects, which are put into `last_cursor'."
+	"[
+		Objects that handle all accesses to persistent objects of type G on a datastore.
+		The persistent objects all have `persistent_class_name' as persistence name. 
+		Adapters are factories for read objects, which are put into `last_cursor'.
+	]"
 
 	author: "Paul G. Crismer"
 
-	implementation_note: " %
-		%	- implement needed accesses %
-		%		- `read', `can_read' %
-		%		- `write', `can_write' %
-		%		- `update', `can_update' %
-		%		- `refresh', `can_refresh' %
-		%		- `delete', `can_delete' %
-		%	- implement factories %
-		%		- `create_pid_from_object', `last_pid' %
-		%		- creation of `last_object'  %
-		%		- inserting `last_object' into `last_cursor' %
-		%	- redefine, if needed %
-		%		- `on_adapter_connected' %
-		%		- `on_adapter_disconnect' %
-		% "
+	implementation_note: 
+	"[		 
+		- implement needed accesses 
+			- `read', `can_read' 
+			- `write', `can_write' 
+			- `update', `can_update' 
+			- `refresh', `can_refresh' 
+			- `delete', `can_delete' 
+		- implement factories 
+			- `create_pid_from_object', `last_pid' 
+			- creation of `last_object'  
+			- inserting `last_object' into `last_cursor' 
+		- redefine, if needed 
+			- `on_adapter_connected' 
+			- `on_adapter_disconnect' 
+	]"
 
 
 	Usage: "Inherit.  Define all deferred features."

@@ -137,25 +137,34 @@ feature {NONE} -- Implementation
 			ddl : ECLI_STATEMENT
 		do
 			create ddl.make (store.session)
-			ddl.set_sql ("create table COPY (%
-				% isbn varchar(14),%
-				% serial_number integer,%
-				% loc_store integer,%
-				% loc_shelf integer,%
-				% loc_row integer,%
-				% borrower integer)")
+			ddl.set_sql (
+	"[
+		create table COPY (
+			isbn varchar(14),
+			serial_number integer,
+			loc_store integer,
+			loc_shelf integer,
+			loc_row integer,
+			borrower integer)
+	]")
 			ddl.execute
 			if ddl.is_ok then
-				ddl.set_sql ("create table BORROWER (%
-					% id integer,%
-					% name varchar (30),%
-					% address varchar (50))")
+				ddl.set_sql (
+	"[
+		create table BORROWER (
+			id integer,
+			name varchar (30),
+			address varchar (50))
+	]")
 				ddl.execute
 				if ddl.is_ok then
-					ddl.set_sql ("create table BOOK (%
-						% isbn varchar(14),%
-						% title varchar(100),%
-						% author varchar(30))")
+					ddl.set_sql (
+	"[
+		create table BOOK (
+			isbn varchar(14),
+			title varchar(100),
+			author varchar(30))
+	]")
 					ddl.execute
 					if ddl.is_ok then
 						table_exists := True

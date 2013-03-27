@@ -2,22 +2,26 @@ note
 
 	description:
 
-		"EiffelStore partial implementation of PO_ADAPTERs.%N%
-	 % %N%
-	 % Caches all read objects until `clear_cache' is called.%N%
-	 % When `is_enabled_cache_on_write' is True then written object%N%
-	 % also are inserted in the cache."
+	"[
+		EiffelStore partial implementation of PO_ADAPTERs.
+		
+		Caches all read objects until `clear_cache' is called.
+		When `is_enabled_cache_on_write' is True then written object
+		also are inserted in the cache.
+	]"
 		
 	author: "Paul G. Crismer"
 	
-	usage: "%N%
-	%	* Inherit from it.%N% 
-	%	* Implement deferred features. %N%
-	%	* Redefine `last_pid'.%N%
-	%	%N%
-	%	Implement any other access (query) on objects.%N%
-	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
-	%	exact-match or multiple-match queries, respectively."
+	usage: 
+	"[
+		* Inherit from it.
+		* Implement deferred features.
+		* Redefine `last_pid'.
+		
+		Implement any other access (query) on objects.
+		Features `read_one' and `read_object_collection' can be used as facility routines for
+		exact-match or multiple-match queries, respectively.
+	]"
 
 	date: "$Date$"
 	revision: "$Revision$"
