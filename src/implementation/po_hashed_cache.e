@@ -28,11 +28,13 @@ feature -- Initialization
 feature -- Access
 
 	item (pid : PO_PID) : detachable G
+			-- <Precursor>
 		do
 			Result := table.item (pid.as_string)
 		end
 
 	new_cursor : DS_LIST_CURSOR [PO_PID]
+			-- <Precursor>	
 		local
 			r : detachable like new_cursor
 		do
@@ -42,6 +44,7 @@ feature -- Access
 		end
 
 	found_item : detachable G
+			-- <Precursor>
 		do
 			Result := table.found_item
 		end
@@ -49,13 +52,13 @@ feature -- Access
 feature -- Measurement
 
 	count : INTEGER
-			-- Count of items.
+			-- <Precursor>
 		do
 			Result := table.count
 		end
 
 	capacity : INTEGER
-			-- Capacity of container.
+			-- <Precursor>
 		do
 			Result := table.capacity
 		end
@@ -63,6 +66,7 @@ feature -- Measurement
 feature -- Status report
 
 	has (pid : PO_PID) : BOOLEAN
+			-- <Precursor>
 		do
 			Result := table.has (pid.as_string)
 		end
@@ -72,12 +76,14 @@ feature -- Status report
 feature -- Element change
 
 	put (object : G)
+			-- <Precursor>
 		do
 			table.force (object, object.pid.as_string)
 			pid_list.put_last (object.attached_pid)
 		end
 
 	put_void (pid : PO_PID)
+			-- <Precursor>
 		do
 			table.force (default_value, pid.as_string)
 			pid_list.put_last (pid)
@@ -86,6 +92,7 @@ feature -- Element change
 feature -- Removal
 
 	remove (pid : PO_PID)
+			-- <Precursor>
 		local
 			cursor : detachable DS_LIST_CURSOR[PO_PID]
 		do
@@ -102,6 +109,7 @@ feature -- Removal
 		end
 
 	wipe_out
+			-- <Precursor>
 		do
 			table.wipe_out
 			pid_list.wipe_out
@@ -110,6 +118,7 @@ feature -- Removal
 feature -- Basic operations
 
 	search (a_pid : PO_PID)
+			-- <Precursor>
 		do
 			table.search (a_pid.as_string)
 			found := table.found
