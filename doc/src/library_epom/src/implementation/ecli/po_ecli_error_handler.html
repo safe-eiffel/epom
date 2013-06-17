@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PO_ECLI_ERROR_HANDLER (EPOM)</title>
+<link rel="stylesheet" type="text/css" href="../../../../style.css"/>
+</head>
+<body>
+<div class="header">
+<div class="header-title" id="top"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../../index.html" class="button">Overview</a>
+<a href="../../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../../classes.all.html" class="button">Classes</a>
+<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+<hr/>
+<div class="cluster-small"><a href="../../../../library_epom/cluster.epom_library_epom.html" class="cluster-name">library_epom</a>.<a href="../../../../library_epom/src/cluster.epom_src.html" class="cluster-name">src</a>.<a href="../../../../library_epom/src/implementation/cluster.epom_implementation.html" class="cluster-name">implementation</a>.<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="cluster-name">ecli</a></div>
+<h1>Class PO_ECLI_ERROR_HANDLER</h1>
+<hr/>
+<h2>Direct ancestors</h2>
+<div>
+<a href="../../../../library_epom/src/interface/po_error_handler.html" class="class-name">PO_ERROR_HANDLER</a></div>
+<hr/>
+<div class="feature-list">
+<h2 id="features-list">Creation</h2>
+<ul class="feature-list-features">
+<li><a href="#creator-make_tee" class="feature-name">make_tee</a></li>
+</ul>
+<h2>Features</h2>
+<ul class="feature-list-clauses">
+<li>
+<strong><a href="#clause-Basic_operations">Basic&nbsp;operations</a></strong>
+<ul class="feature-list-features">
+<li><a href="#report_query_error" class="feature-name">report_query_error</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#invariant">Invariants</a></h2>
+</div>
+<h2 class="keyword">note</h2>
+<div class="indexing-list indent">
+<h3 class="indexing-tag">description</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Error handlers for ECLI queries/cursors.
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">author</h3>
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">class</span>
+<span class="class-name">PO_ECLI_ERROR_HANDLER</span>
+</h2>
+<h2 class="keyword">inherit</h2>
+<div class="indent">
+<div><a href="../../../../library_epom/src/interface/po_error_handler.html" class="class-name">PO_ERROR_HANDLER</a></div>
+</div>
+<h2>
+<a id="create"><span class="keyword">create</span></a>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="creator-make_tee"><span class="feature-name">make_tee</span></a> <span class="symbol">(</span>an_error_handler<span class="symbol">:</span><span class="class-name">UT_ERROR_HANDLER</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- make a T with <span class="feature-name-comment">an_error_handler</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">an_error_handler_not_void:</span> an_error_handler<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Basic_operations" class="keyword">feature</a>
+<span class="comment">-- Basic operations</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="report_query_error"><span class="feature-name">report_query_error</span></a> <span class="symbol">(</span>an_adapter<span class="symbol">,</span>a_feature<span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">;</span>a_query<span class="symbol">:</span><span class="class-name">ECLI_QUERY</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Report Query error in {<span class="feature-name-comment">an_adapter</span>}.<span class="feature-name-comment">a_feature</span> for <span class="feature-name-comment">a_query</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">an_adapter_not_void:</span> an_adapter<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">a_feature_not_void:</span> a_feature<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">a_query_not_void:</span> a_query<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2 class="keyword" id="invariant">invariant</h2>
+<div class="indent">
+</div>
+<span class="keyword">end</span>
+<hr/>
+<p>
+<br/>
+</p>
+<div class="footer">
+<div class="header-title"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../../index.html" class="button">Overview</a>
+<a href="../../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../../classes.all.html" class="button">Classes</a>
+<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+</body>
+</html>

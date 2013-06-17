@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PO_SHARED_MANAGER (EPOM)</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css"/>
+</head>
+<body>
+<div class="header">
+<div class="header-title" id="top"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+<hr/>
+<div class="cluster-small"><a href="../../../library_epom/cluster.epom_library_epom.html" class="cluster-name">library_epom</a>.<a href="../../../library_epom/src/cluster.epom_src.html" class="cluster-name">src</a>.<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="cluster-name">interface</a></div>
+<h1>Class PO_SHARED_MANAGER</h1>
+<hr/>
+<h2>Known direct descendants</h2>
+<div>
+<a href="../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a>, <a href="../../../library_epom/src/interface/po_reference.html" class="class-name">PO_REFERENCE</a>, <a href="../../../library_epom/src/implementation/ecli/ecli_adapter_common_skeleton.html" class="class-name">ECLI_ADAPTER_COMMON_SKELETON</a>, <a href="../../../library_epom/src/implementation/ecli/ecli_simple_adapter.html" class="class-name">ECLI_SIMPLE_ADAPTER</a></div>
+<hr/>
+<div class="feature-list">
+<h2 id="features-list">Features</h2>
+<ul class="feature-list-clauses">
+<li>
+<strong><a href="#clause-Access">Access</a></strong>
+<ul class="feature-list-features">
+<li><a href="#persistence_manager" class="feature-name">persistence_manager</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_setting">Status&nbsp;setting</a></strong>
+<ul class="feature-list-features">
+<li><a href="#set_manager" class="feature-name">set_manager</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#invariant">Invariants</a></h2>
+</div>
+<h2 class="keyword">note</h2>
+<div class="indexing-list indent">
+<h3 class="indexing-tag">description</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Objects that share a single <a href="../../../library_epom/src/interface/po_manager.html" class="class-name">PO_MANAGER</a>.
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">copyright</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Copyright (c) 2004, Paul G. Crismer and others
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">license</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Eiffel Forum License v2 (see forum.txt)
+</p>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">class</span>
+<span class="class-name">PO_SHARED_MANAGER</span>
+</h2>
+<h2>
+<a id="clause-Access" class="keyword">feature</a>
+<span class="comment">-- Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="persistence_manager"><span class="feature-name">persistence_manager</span></a><span class="symbol">:</span><a href="../../../library_epom/src/interface/po_manager.html" class="class-name">PO_MANAGER</a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Persistence manager singleton.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="special-keyword">Result</span><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_setting" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../library_epom/src/interface/po_launcher.html" class="class-name">PO_LAUNCHER</a><span class="symbol">}</span>
+<span class="comment">-- Status setting</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="set_manager"><span class="feature-name">set_manager</span></a> <span class="symbol">(</span>manager<span class="symbol">:</span><a href="../../../library_epom/src/interface/po_manager.html" class="class-name">PO_MANAGER</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Set <a href="#persistence_manager" class="feature-name">persistence_manager</a> to <span class="feature-name-comment">manager</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">manager_not_void:</span> manager<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">persistence_manager_set:</span> <a href="../../../library_epom/src/interface/po_shared_manager.html#persistence_manager" class="feature-name">persistence_manager</a><span class="symbol">=</span>manager <br/>
+</div>
+</div>
+</div>
+</div>
+<h2 class="keyword" id="invariant">invariant</h2>
+<div class="indent">
+<span class="assertion-tag">cell_not_void:</span> shared_po_manager_cell<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<span class="keyword">end</span>
+<hr/>
+<p>
+<br/>
+</p>
+<div class="footer">
+<div class="header-title"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+</body>
+</html>

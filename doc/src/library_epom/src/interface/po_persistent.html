@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PO_PERSISTENT (EPOM)</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css"/>
+</head>
+<body>
+<div class="header">
+<div class="header-title" id="top"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+<hr/>
+<div class="cluster-small"><a href="../../../library_epom/cluster.epom_library_epom.html" class="cluster-name">library_epom</a>.<a href="../../../library_epom/src/cluster.epom_src.html" class="cluster-name">src</a>.<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="cluster-name">interface</a></div>
+<h1>Class PO_PERSISTENT</h1>
+<hr/>
+<h2>Direct ancestors</h2>
+<div>
+<a href="../../../library_epom/src/interface/po_shared_manager.html" class="class-name">PO_SHARED_MANAGER</a>, <a href="../../../library_epom/src/interface/po_status_use.html" class="class-name">PO_STATUS_USE</a>, <a href="../../../library_epom/src/interface/po_status_management.html" class="class-name">PO_STATUS_MANAGEMENT</a></div>
+<hr/>
+<div class="feature-list">
+<h2 id="features-list">Features</h2>
+<ul class="feature-list-clauses">
+<li>
+<strong><a href="#clause-Access">Access</a></strong>
+<ul class="feature-list-features">
+<li><a href="#persistence_error_meaning" class="feature-name">persistence_error_meaning</a></li>
+<li><a href="#persistent_class_name" class="feature-name">persistent_class_name</a></li>
+<li><a href="#attached_pid" class="feature-name">attached_pid</a></li>
+<li><a href="#pid" class="feature-name">pid</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_report">Status&nbsp;report</a></strong>
+<ul class="feature-list-features">
+<li><a href="#exists" class="feature-name">exists</a></li>
+<li><a href="#is_deletable" class="feature-name">is_deletable</a></li>
+<li><a href="#is_deleted" class="feature-name">is_deleted</a></li>
+<li><a href="#is_modified" class="feature-name">is_modified</a></li>
+<li><a href="#is_persistence_error" class="feature-name">is_persistence_error</a></li>
+<li><a href="#is_persistent" class="feature-name">is_persistent</a></li>
+<li><a href="#is_refreshable" class="feature-name">is_refreshable</a></li>
+<li><a href="#is_updatable" class="feature-name">is_updatable</a></li>
+<li><a href="#is_volatile" class="feature-name">is_volatile</a></li>
+<li><a href="#is_writable" class="feature-name">is_writable</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_setting">Status&nbsp;setting</a></strong>
+<ul class="feature-list-features">
+<li><a href="#set_deleted" class="feature-name">set_deleted</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Element_change">Element&nbsp;change</a></strong>
+<ul class="feature-list-features">
+<li><a href="#disable_modified" class="feature-name">disable_modified</a></li>
+<li><a href="#set_pid" class="feature-name">set_pid</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Basic_operations">Basic&nbsp;operations</a></strong>
+<ul class="feature-list-features">
+<li><a href="#delete" class="feature-name">delete</a></li>
+<li><a href="#refresh" class="feature-name">refresh</a></li>
+<li><a href="#update" class="feature-name">update</a></li>
+<li><a href="#write" class="feature-name">write</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#invariant">Invariants</a></h2>
+</div>
+<h2 class="keyword">note</h2>
+<div class="indexing-list indent">
+<h3 class="indexing-tag">description</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Objects that can persist on some datastore.
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">copyright</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Copyright (c) 2004, Paul G. Crismer and others
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">license</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Eiffel Forum License v2 (see forum.txt)
+</p>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">deferred class</span>
+<span class="class-name">PO_PERSISTENT</span>
+</h2>
+<h2 class="keyword">inherit</h2>
+<div class="indent">
+<div><a href="../../../library_epom/src/interface/po_shared_manager.html" class="class-name">PO_SHARED_MANAGER</a></div>
+<div><a href="../../../library_epom/src/interface/po_status_use.html" class="class-name">PO_STATUS_USE</a></div>
+<div><a href="../../../library_epom/src/interface/po_status_management.html" class="class-name">PO_STATUS_MANAGEMENT</a></div>
+</div>
+<h2>
+<a id="clause-Access" class="keyword">feature</a>
+<span class="comment">-- Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="persistence_error_meaning"><span class="feature-name">persistence_error_meaning</span></a><span class="symbol">:</span><span class="class-name">STRING</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Error meaning, if any.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">obsolete</div>
+<div class="indent">
+<div class="comment">
+<p>
+use <span class="feature-name-comment">status.message</span> instead
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+status<span class="symbol">.</span>is_error <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="persistent_class_name"><span class="feature-name">persistent_class_name</span></a><span class="symbol">:</span><span class="class-name">STRING</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Name of class for persistence. .<br/>
+-- To be redefined when a single adapter takes care of<br/>
+-- a whole class hierarchy (different classes, same persistent class name)<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">feature</span>
+<span class="symbol">{</span><a href="../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a><span class="symbol">, </span><a href="../../../library_epom/src/interface/po_reference.html" class="class-name">PO_REFERENCE</a><span class="symbol">, </span><a href="../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a><span class="symbol">, </span><a href="../../../library_epom/src/interface/po_cache.html" class="class-name">PO_CACHE</a><span class="symbol">, </span><a href="../../../library_epom/src/interface/po_error.html" class="class-name">PO_ERROR</a><span class="symbol">}</span>
+<span class="comment">-- Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<span class="keyword">frozen</span> <a id="attached_pid"><span class="feature-name">attached_pid</span></a><span class="symbol">:</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Attached persistence identifier<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">is_persistent:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_persistent" class="feature-name">is_persistent</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<span class="keyword">frozen</span> <a id="pid"><span class="feature-name">pid</span></a><span class="symbol">:</span><span class="keyword">detachable</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Persistence identifier, if any.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_report" class="keyword">feature</a>
+<span class="comment">-- Status report</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="exists"><span class="feature-name">exists</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Does current object exist in datastore ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_deletable"><span class="feature-name">is_deletable</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Is Current deletable on datastore?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_deleted"><span class="feature-name">is_deleted</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- has Current's persistent image been deleted from datastore ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_modified"><span class="feature-name">is_modified</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- has Current been modified since last persistence operation ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_persistence_error"><span class="feature-name">is_persistence_error</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- has last persistence operation given an error ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">obsolete</div>
+<div class="indent">
+<div class="comment">
+<p>
+use `status.is_error
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_persistent"><span class="feature-name">is_persistent</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- does Current have a persistent image on datastore ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="special-keyword">Result</span><span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_persistent.html#pid" class="feature-name">pid</a><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_refreshable"><span class="feature-name">is_refreshable</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Is Current refreshable from datastore?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_updatable"><span class="feature-name">is_updatable</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Is Current updatable on datastore?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_volatile"><span class="feature-name">is_volatile</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- does Current have no persistent image on datastore ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="special-keyword">Result</span><span class="symbol">=</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_persistent.html#is_persistent" class="feature-name">is_persistent</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_writable"><span class="feature-name">is_writable</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Is Current writable on datastore?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_setting" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a><span class="symbol">}</span>
+<span class="comment">-- Status setting</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="set_deleted"><span class="feature-name">set_deleted</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Set <a href="#is_deleted" class="feature-name">is_deleted</a>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">is_persistent:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_persistent" class="feature-name">is_persistent</a> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">is_deleted:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_deleted" class="feature-name">is_deleted</a> <br/>
+<span class="assertion-tag">is_volatile:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_volatile" class="feature-name">is_volatile</a> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Element_change" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a><span class="symbol">}</span>
+<span class="comment">-- Element change</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="disable_modified"><span class="feature-name">disable_modified</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Set <a href="#is_modified" class="feature-name">is_modified</a> to False.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">fresh:</span> <span class="keyword">not</span><a href="../../../library_epom/src/interface/po_persistent.html#is_modified" class="feature-name">is_modified</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="set_pid"><span class="feature-name">set_pid</span></a> <span class="symbol">(</span>p<span class="symbol">:</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Set <a href="#pid" class="feature-name">pid</a> to <span class="feature-name-comment">p</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">p_not_void:</span> p<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">same_persistent_class_names:</span> p<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_persistent.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">.</span>is_equal<span class="symbol">(</span><a href="../../../library_epom/src/interface/po_persistent.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">)</span> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">shared_pid:</span> <a href="../../../library_epom/src/interface/po_persistent.html#pid" class="feature-name">pid</a><span class="symbol">=</span>p <br/>
+<span class="assertion-tag">same_class_names:</span> equal<span class="symbol">(</span><a href="../../../library_epom/src/interface/po_persistent.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">,</span><a href="../../../library_epom/src/interface/po_persistent.html#pid" class="feature-name">pid</a><span class="symbol">.</span><a href="../../../library_epom/src/interface/po_persistent.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Basic_operations" class="keyword">feature</a>
+<span class="comment">-- Basic operations</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="delete"><span class="feature-name">delete</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Delete current object state from data store.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">has_adapter:</span> persistence_manager<span class="symbol">.</span>has_adapter<span class="symbol">(</span><a href="../../../library_epom/src/interface/po_persistent.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">)</span> <br/>
+<span class="assertion-tag">persistent:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_persistent" class="feature-name">is_persistent</a> <br/>
+<span class="assertion-tag">deletable:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_deletable" class="feature-name">is_deletable</a> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">deleted:</span> <span class="keyword">not</span>status<span class="symbol">.</span>is_error<span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_persistent.html#is_deleted" class="feature-name">is_deleted</a><span class="keyword">and</span><span class="keyword">then</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_persistent.html#exists" class="feature-name">exists</a> <br/>
+<span class="assertion-tag">volatile:</span> <span class="keyword">not</span>status<span class="symbol">.</span>is_error<span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_persistent.html#is_volatile" class="feature-name">is_volatile</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="refresh"><span class="feature-name">refresh</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Delete current object state from data store.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">has_adapter:</span> persistence_manager<span class="symbol">.</span>has_adapter<span class="symbol">(</span><a href="../../../library_epom/src/interface/po_persistent.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">)</span> <br/>
+<span class="assertion-tag">persistent:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_persistent" class="feature-name">is_persistent</a> <br/>
+<span class="assertion-tag">refreshable:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_refreshable" class="feature-name">is_refreshable</a> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="keyword">not</span>status<span class="symbol">.</span>is_error<span class="keyword">implies</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_persistent.html#is_modified" class="feature-name">is_modified</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="update"><span class="feature-name">update</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Update data store from current object state.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">has_adapter:</span> persistence_manager<span class="symbol">.</span>has_adapter<span class="symbol">(</span><a href="../../../library_epom/src/interface/po_persistent.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">)</span> <br/>
+<span class="assertion-tag">persistent:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_persistent" class="feature-name">is_persistent</a> <br/>
+<span class="assertion-tag">updatable:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_updatable" class="feature-name">is_updatable</a> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="keyword">not</span>status<span class="symbol">.</span>is_error<span class="keyword">implies</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_persistent.html#is_modified" class="feature-name">is_modified</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="write"><span class="feature-name">write</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Write current object state to data store.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">has_adapter:</span> persistence_manager<span class="symbol">.</span>has_adapter<span class="symbol">(</span><a href="../../../library_epom/src/interface/po_persistent.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">)</span> <br/>
+<span class="assertion-tag">volatile:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_volatile" class="feature-name">is_volatile</a> <br/>
+<span class="assertion-tag">writable:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_writable" class="feature-name">is_writable</a> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="keyword">not</span>status<span class="symbol">.</span>is_error<span class="keyword">implies</span><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_persistent.html#is_persistent" class="feature-name">is_persistent</a><span class="keyword">and</span><span class="keyword">then</span><a href="../../../library_epom/src/interface/po_persistent.html#exists" class="feature-name">exists</a><span class="keyword">and</span><span class="keyword">then</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_persistent.html#is_modified" class="feature-name">is_modified</a><span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2 class="keyword" id="invariant">invariant</h2>
+<div class="indent">
+<span class="assertion-tag">persistent_has_a_pid:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_persistent" class="feature-name">is_persistent</a><span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_persistent.html#pid" class="feature-name">pid</a><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">persistent_class_name_not_void:</span> <a href="../../../library_epom/src/interface/po_persistent.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">/=</span><span class="special-keyword">Void</span><span class="keyword">and</span><span class="keyword">then</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_persistent.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">.</span>is_empty <br/>
+<span class="assertion-tag">volatile_and_persistent_state_are_exclusive:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_volatile" class="feature-name">is_volatile</a><span class="keyword">xor</span><a href="../../../library_epom/src/interface/po_persistent.html#is_persistent" class="feature-name">is_persistent</a> <br/>
+<span class="assertion-tag">deleted_implies_volatile:</span> <a href="../../../library_epom/src/interface/po_persistent.html#is_deleted" class="feature-name">is_deleted</a><span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_persistent.html#is_volatile" class="feature-name">is_volatile</a> <br/>
+</div>
+<span class="keyword">end</span>
+<hr/>
+<p>
+<br/>
+</p>
+<div class="footer">
+<div class="header-title"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+</body>
+</html>

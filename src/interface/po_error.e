@@ -1,5 +1,7 @@
 note
 
+	description: "Object that represent EPOM framework errors."
+	
 class PO_ERROR
 
 inherit

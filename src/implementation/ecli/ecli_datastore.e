@@ -155,6 +155,7 @@ feature {NONE} -- Implementation
 	adapters_impl : DS_LINKED_LIST[PO_ADAPTER[PO_PERSISTENT]]
 
 	on_connected
+			-- <Precursor>
 		local
 			adapters_cursor : detachable DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
 		do
@@ -173,10 +174,11 @@ feature {NONE} -- Implementation
 		end
 
 	on_disconnect
+			-- <Precursor>
 		local
 			adapters_cursor : detachable DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
 		do
-			if not is_connected then
+			if is_connected then
 				adapters_cursor := adapters.new_cursor
 				check adapters_cursor /= Void end
 				from

@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PO_CACHE (EPOM)</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css"/>
+</head>
+<body>
+<div class="header">
+<div class="header-title" id="top"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+<hr/>
+<div class="cluster-small"><a href="../../../library_epom/cluster.epom_library_epom.html" class="cluster-name">library_epom</a>.<a href="../../../library_epom/src/cluster.epom_src.html" class="cluster-name">src</a>.<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="cluster-name">interface</a></div>
+<h1>Class PO_CACHE</h1>
+<hr/>
+<h2>Known direct descendants</h2>
+<div>
+<a href="../../../library_epom/src/implementation/po_hashed_cache.html" class="class-name">PO_HASHED_CACHE</a></div>
+<hr/>
+<div class="feature-list">
+<h2 id="features-list">Features</h2>
+<ul class="feature-list-clauses">
+<li>
+<strong><a href="#clause-Access">Access</a></strong>
+<ul class="feature-list-features">
+<li><a href="#found_item" class="feature-name">found_item</a></li>
+<li><a href="#item" class="feature-name">item</a></li>
+<li><a href="#new_cursor" class="feature-name">new_cursor</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Measurement">Measurement</a></strong>
+<ul class="feature-list-features">
+<li><a href="#count" class="feature-name">count</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_report">Status&nbsp;report</a></strong>
+<ul class="feature-list-features">
+<li><a href="#found" class="feature-name">found</a></li>
+<li><a href="#has" class="feature-name">has</a></li>
+<li><a href="#has_item" class="feature-name">has_item</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Element_change">Element&nbsp;change</a></strong>
+<ul class="feature-list-features">
+<li><a href="#put" class="feature-name">put</a></li>
+<li><a href="#put_void" class="feature-name">put_void</a></li>
+<li><a href="#remove" class="feature-name">remove</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Basic_operations">Basic&nbsp;operations</a></strong>
+<ul class="feature-list-features">
+<li><a href="#search" class="feature-name">search</a></li>
+<li><a href="#wipe_out" class="feature-name">wipe_out</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#invariant">Invariants</a></h2>
+</div>
+<h2 class="keyword">note</h2>
+<div class="indexing-list indent">
+<h3 class="indexing-tag">description</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Caches that hold <a href="../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a> object keyed by their pid
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">author</h3>
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">deferred class</span>
+<span class="class-name">PO_CACHE</span>
+<span class="non-bold"><span class="symbol">[</span>G<span class="symbol">-&gt;</span><a href="../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a><span class="symbol">]</span> </span>
+</h2>
+<h2>
+<a id="clause-Access" class="keyword">feature</a>
+<span class="comment">-- Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="found_item"><span class="feature-name">found_item</span></a><span class="symbol">:</span><span class="keyword">detachable</span>G 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Found item by last search operation.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="item"><span class="feature-name">item</span></a> <span class="symbol">(</span>a_pid<span class="symbol">:</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span><span class="symbol">:</span><span class="keyword">detachable</span>G 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Item associated to <span class="feature-name-comment">a_pid</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">a_pid_not_void:</span> a_pid<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">has_a_pid:</span> <a href="../../../library_epom/src/interface/po_cache.html#has" class="feature-name">has</a><span class="symbol">(</span>a_pid<span class="symbol">)</span> <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">same_pids:</span> <span class="special-keyword">Result</span><span class="symbol">/=</span><span class="special-keyword">Void</span><span class="keyword">implies</span><span class="special-keyword">Result</span><span class="symbol">.</span>pid<span class="symbol">.</span>is_equal<span class="symbol">(</span>a_pid<span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="new_cursor"><span class="feature-name">new_cursor</span></a><span class="symbol">:</span><span class="class-name">DS_LIST_CURSOR</span><span class="symbol">[</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">]</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Cursor on a list of <a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a> that are associated in Current.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">result_not_void:</span> <span class="special-keyword">Result</span><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Measurement" class="keyword">feature</a>
+<span class="comment">-- Measurement</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="count"><span class="feature-name">count</span></a><span class="symbol">:</span><span class="class-name">INTEGER</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Count of cached objects.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_report" class="keyword">feature</a>
+<span class="comment">-- Status report</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="found"><span class="feature-name">found</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Has last search operation succeeded ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="has"><span class="feature-name">has</span></a> <span class="symbol">(</span>a_pid<span class="symbol">:</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Has <span class="feature-name-comment">a_pid</span> been associated ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">a_pid_not_void:</span> a_pid<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="special-keyword">Result</span><span class="keyword">implies</span><span class="keyword">attached</span><a href="../../../library_epom/src/interface/po_cache.html#item" class="feature-name">item</a><span class="symbol">(</span>a_pid<span class="symbol">)</span><span class="keyword">as</span>l_item<span class="keyword">and</span><span class="keyword">then</span>a_pid<span class="symbol">.</span>is_equal<span class="symbol">(</span>l_item<span class="symbol">.</span>attached_pid<span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="has_item"><span class="feature-name">has_item</span></a> <span class="symbol">(</span>object<span class="symbol">:</span>G<span class="symbol">)</span><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Is <span class="feature-name-comment">object</span> cached ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">object_not_void:</span> object<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="special-keyword">Result</span><span class="keyword">implies</span><span class="symbol">(</span>object<span class="symbol">.</span>is_persistent<span class="keyword">and</span><span class="keyword">then</span><a href="../../../library_epom/src/interface/po_cache.html#has" class="feature-name">has</a><span class="symbol">(</span>object<span class="symbol">.</span>attached_pid<span class="symbol">)</span><span class="keyword">and</span><span class="keyword">then</span><a href="../../../library_epom/src/interface/po_cache.html#item" class="feature-name">item</a><span class="symbol">(</span>object<span class="symbol">.</span>attached_pid<span class="symbol">)</span><span class="symbol">=</span>object<span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Element_change" class="keyword">feature</a>
+<span class="comment">-- Element change</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="put"><span class="feature-name">put</span></a> <span class="symbol">(</span>object<span class="symbol">:</span>G<span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Put <span class="feature-name-comment">object</span> in cache.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">object_not_void:</span> object<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">object_persistent:</span> object<span class="symbol">.</span>is_persistent <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <a href="../../../library_epom/src/interface/po_cache.html#has" class="feature-name">has</a><span class="symbol">(</span>object<span class="symbol">.</span>attached_pid<span class="symbol">)</span><span class="keyword">and</span><span class="keyword">then</span><a href="../../../library_epom/src/interface/po_cache.html#item" class="feature-name">item</a><span class="symbol">(</span>object<span class="symbol">.</span>attached_pid<span class="symbol">)</span><span class="symbol">=</span>object <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="put_void"><span class="feature-name">put_void</span></a> <span class="symbol">(</span>pid<span class="symbol">:</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Cache the fact that <span class="feature-name-comment">pid</span> is associated with Void.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">pid_not_void:</span> pid<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <a href="../../../library_epom/src/interface/po_cache.html#has" class="feature-name">has</a><span class="symbol">(</span>pid<span class="symbol">)</span><span class="keyword">and</span><span class="keyword">then</span><a href="../../../library_epom/src/interface/po_cache.html#item" class="feature-name">item</a><span class="symbol">(</span>pid<span class="symbol">)</span><span class="symbol">=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="remove"><span class="feature-name">remove</span></a> <span class="symbol">(</span>pid<span class="symbol">:</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Remove the association [pid, object].<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">pid_not_void:</span> pid<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="keyword">not</span><a href="../../../library_epom/src/interface/po_cache.html#has" class="feature-name">has</a><span class="symbol">(</span>pid<span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Basic_operations" class="keyword">feature</a>
+<span class="comment">-- Basic operations</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="search"><span class="feature-name">search</span></a> <span class="symbol">(</span>a_pid<span class="symbol">:</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Search for <span class="feature-name-comment">a_pid</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">a_pid_not_void:</span> a_pid<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="wipe_out"><span class="feature-name">wipe_out</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Wipe all elements.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">no_items:</span> <a href="../../../library_epom/src/interface/po_cache.html#count" class="feature-name">count</a><span class="symbol">=</span>0 <br/>
+</div>
+</div>
+</div>
+</div>
+<h2 class="keyword" id="invariant">invariant</h2>
+<div class="indent">
+</div>
+<span class="keyword">end</span>
+<hr/>
+<p>
+<br/>
+</p>
+<div class="footer">
+<div class="header-title"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+</body>
+</html>

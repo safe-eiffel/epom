@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PO_ADAPTER (EPOM)</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css"/>
+</head>
+<body>
+<div class="header">
+<div class="header-title" id="top"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+<hr/>
+<div class="cluster-small"><a href="../../../library_epom/cluster.epom_library_epom.html" class="cluster-name">library_epom</a>.<a href="../../../library_epom/src/cluster.epom_src.html" class="cluster-name">src</a>.<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="cluster-name">interface</a></div>
+<h1>Class PO_ADAPTER</h1>
+<hr/>
+<h2>Direct ancestors</h2>
+<div>
+<a href="../../../library_epom/src/interface/po_status_use.html" class="class-name">PO_STATUS_USE</a>, <a href="../../../library_epom/src/interface/po_status_management.html" class="class-name">PO_STATUS_MANAGEMENT</a></div>
+<hr/>
+<h2>Known direct descendants</h2>
+<div>
+<a href="../../../library_epom/src/implementation/ecli/ecli_adapter_common_skeleton.html" class="class-name">ECLI_ADAPTER_COMMON_SKELETON</a>, <a href="../../../library_epom/src/implementation/ecli/ecli_simple_adapter.html" class="class-name">ECLI_SIMPLE_ADAPTER</a></div>
+<hr/>
+<div class="feature-list">
+<h2 id="features-list">Features</h2>
+<ul class="feature-list-clauses">
+<li>
+<strong><a href="#clause-Access">Access</a></strong>
+<ul class="feature-list-features">
+<li><a href="#class_name" class="feature-name">class_name</a></li>
+<li><a href="#datastore" class="feature-name">datastore</a></li>
+<li><a href="#error_handler" class="feature-name">error_handler</a></li>
+<li><a href="#last_cursor" class="feature-name">last_cursor</a></li>
+<li><a href="#object_anchor" class="feature-name">object_anchor</a></li>
+<li><a href="#persistent_class_name" class="feature-name">persistent_class_name</a></li>
+<li><a href="#pid_for_object" class="feature-name">pid_for_object</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Measurement">Measurement</a></strong>
+<ul class="feature-list-features">
+<li><a href="#cache_count" class="feature-name">cache_count</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_report">Status&nbsp;report</a></strong>
+<ul class="feature-list-features">
+<li><a href="#can_delete" class="feature-name">can_delete</a></li>
+<li><a href="#can_read" class="feature-name">can_read</a></li>
+<li><a href="#can_refresh" class="feature-name">can_refresh</a></li>
+<li><a href="#can_update" class="feature-name">can_update</a></li>
+<li><a href="#can_write" class="feature-name">can_write</a></li>
+<li><a href="#is_enabled_cache_on_read" class="feature-name">is_enabled_cache_on_read</a></li>
+<li><a href="#is_enabled_cache_on_write" class="feature-name">is_enabled_cache_on_write</a></li>
+<li><a href="#is_error" class="feature-name">is_error</a></li>
+<li><a href="#is_ok" class="feature-name">is_ok</a></li>
+<li><a href="#is_pid_valid" class="feature-name">is_pid_valid</a></li>
+<li><a href="#no_data_found" class="feature-name">no_data_found</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_setting">Status&nbsp;setting</a></strong>
+<ul class="feature-list-features">
+<li><a href="#disable_cache_on_read" class="feature-name">disable_cache_on_read</a></li>
+<li><a href="#disable_cache_on_write" class="feature-name">disable_cache_on_write</a></li>
+<li><a href="#enable_cache_on_read" class="feature-name">enable_cache_on_read</a></li>
+<li><a href="#enable_cache_on_write" class="feature-name">enable_cache_on_write</a></li>
+<li><a href="#reset_error" class="feature-name">reset_error</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Element_change">Element&nbsp;change</a></strong>
+<ul class="feature-list-features">
+<li><a href="#set_datastore" class="feature-name">set_datastore</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Basic_operations">Basic&nbsp;operations</a></strong>
+<ul class="feature-list-features">
+<li><a href="#clear_cache" class="feature-name">clear_cache</a></li>
+<li><a href="#delete" class="feature-name">delete</a></li>
+<li><a href="#exists" class="feature-name">exists</a></li>
+<li><a href="#read" class="feature-name">read</a></li>
+<li><a href="#refresh" class="feature-name">refresh</a></li>
+<li><a href="#update" class="feature-name">update</a></li>
+<li><a href="#write" class="feature-name">write</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Contract_support">Contract&nbsp;support</a></strong>
+<ul class="feature-list-features">
+<li><a href="#is_cached" class="feature-name">is_cached</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Framework__minus__Access">Framework&nbsp;-&nbsp;Access</a></strong>
+<ul class="feature-list-features">
+<li><a href="#attached_last_object" class="feature-name">attached_last_object</a></li>
+<li><a href="#last_object" class="feature-name">last_object</a></li>
+<li><a href="#attached_last_pid" class="feature-name">attached_last_pid</a></li>
+<li><a href="#last_pid" class="feature-name">last_pid</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Framework__minus__Basic_Operations">Framework&nbsp;-&nbsp;Basic&nbsp;Operations</a></strong>
+<ul class="feature-list-features">
+<li><a href="#on_adapter_connected" class="feature-name">on_adapter_connected</a></li>
+<li><a href="#on_adapter_disconnect" class="feature-name">on_adapter_disconnect</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Framework__minus__Factory">Framework&nbsp;-&nbsp;Factory</a></strong>
+<ul class="feature-list-features">
+<li><a href="#create_pid_from_object" class="feature-name">create_pid_from_object</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#invariant">Invariants</a></h2>
+</div>
+<h2 class="keyword">note</h2>
+<div class="indexing-list indent">
+<h3 class="indexing-tag">description</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Objects that handle all accesses to persistent objects of type G on a datastore.<br/>
+The persistent objects all have <a href="#persistent_class_name" class="feature-name">persistent_class_name</a> as persistence name.<br/>
+Adapters are factories for read objects, which are put into <a href="#last_cursor" class="feature-name">last_cursor</a>.
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">author</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Paul G. Crismer
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">implementation_note</h3>
+<div class="indent">
+<div class="comment">
+<p>
+- implement needed accesses<br/>
+- <a href="#read" class="feature-name">read</a>, <a href="#can_read" class="feature-name">can_read</a><br/>
+- <a href="#write" class="feature-name">write</a>, <a href="#can_write" class="feature-name">can_write</a><br/>
+- <a href="#update" class="feature-name">update</a>, <a href="#can_update" class="feature-name">can_update</a><br/>
+- <a href="#refresh" class="feature-name">refresh</a>, <a href="#can_refresh" class="feature-name">can_refresh</a><br/>
+- <a href="#delete" class="feature-name">delete</a>, <a href="#can_delete" class="feature-name">can_delete</a><br/>
+- implement factories<br/>
+- <a href="#create_pid_from_object" class="feature-name">create_pid_from_object</a>, <a href="#last_pid" class="feature-name">last_pid</a><br/>
+- creation of <a href="#last_object" class="feature-name">last_object</a><br/>
+- inserting <a href="#last_object" class="feature-name">last_object</a> into <a href="#last_cursor" class="feature-name">last_cursor</a><br/>
+- redefine, if needed<br/>
+- <a href="#on_adapter_connected" class="feature-name">on_adapter_connected</a><br/>
+- <a href="#on_adapter_disconnect" class="feature-name">on_adapter_disconnect</a>
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">Usage</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Inherit.  Define all deferred features.
+</p>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">deferred class</span>
+<span class="class-name">PO_ADAPTER</span>
+<span class="non-bold"><span class="symbol">[</span>G<span class="symbol">-&gt;</span><a href="../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a><span class="symbol">]</span> </span>
+</h2>
+<h2 class="keyword">inherit</h2>
+<div class="indent">
+<div><a href="../../../library_epom/src/interface/po_status_use.html" class="class-name">PO_STATUS_USE</a></div>
+<div><a href="../../../library_epom/src/interface/po_status_management.html" class="class-name">PO_STATUS_MANAGEMENT</a></div>
+</div>
+<h2>
+<a id="clause-Access" class="keyword">feature</a>
+<span class="comment">-- Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="class_name"><span class="feature-name">class_name</span></a><span class="symbol">:</span><span class="class-name">STRING</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">obsolete</div>
+<div class="indent">
+<div class="comment">
+<p>
+[2004-08-26] Use <a href="#persistent_class_name" class="feature-name">persistent_class_name</a> instead.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="datastore"><span class="feature-name">datastore</span></a><span class="symbol">:</span><a href="../../../library_epom/src/interface/po_datastore.html" class="class-name">PO_DATASTORE</a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Datastore on which I/O operations will occur.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="error_handler"><span class="feature-name">error_handler</span></a><span class="symbol">:</span><a href="../../../library_epom/src/interface/po_error_handler.html" class="class-name">PO_ERROR_HANDLER</a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="last_cursor"><span class="feature-name">last_cursor</span></a><span class="symbol">:</span><a href="../../../library_epom/src/interface/po_cursor.html" class="class-name">PO_CURSOR</a><span class="symbol">[</span>G<span class="symbol">]</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Last cursor on objects that have been read.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="object_anchor"><span class="feature-name">object_anchor</span></a><span class="symbol">:</span><span class="keyword">detachable</span>G
+</h3>
+<div class="indent">
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="persistent_class_name"><span class="feature-name">persistent_class_name</span></a><span class="symbol">:</span><span class="class-name">STRING</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Persistence class name of objects that this adapter can handle.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="pid_for_object"><span class="feature-name">pid_for_object</span></a> <span class="symbol">(</span>object<span class="symbol">:</span><span class="keyword">attached</span><span class="keyword">like</span><a href="../../../library_epom/src/interface/po_adapter.html#object_anchor" class="feature-name">object_anchor</a><span class="symbol">)</span><span class="symbol">:</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Persistent identifier for <span class="feature-name-comment">object</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">object_not_void:</span> object<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="special-keyword">Result</span><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">pid_of_persistent:</span> object<span class="symbol">.</span>is_persistent<span class="keyword">implies</span><span class="special-keyword">Result</span><span class="symbol">=</span>object<span class="symbol">.</span>pid <br/>
+<span class="assertion-tag">created_for_volatile:</span> object<span class="symbol">.</span>is_volatile<span class="keyword">implies</span><span class="special-keyword">Result</span><span class="symbol">=</span><a href="../../../library_epom/src/interface/po_adapter.html#last_pid" class="feature-name">last_pid</a> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Measurement" class="keyword">feature</a>
+<span class="comment">-- Measurement</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="cache_count"><span class="feature-name">cache_count</span></a><span class="symbol">:</span><span class="class-name">INTEGER</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Number of objects in cache.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_report" class="keyword">feature</a>
+<span class="comment">-- Status report</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="can_delete"><span class="feature-name">can_delete</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- does this adapter implement delete access ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="can_read"><span class="feature-name">can_read</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- does this adapter implement read access ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="can_refresh"><span class="feature-name">can_refresh</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- does this adapter implement refresh access ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="can_update"><span class="feature-name">can_update</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- does this adapter implement update access ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="can_write"><span class="feature-name">can_write</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- does this adapter implement write access ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_enabled_cache_on_read"><span class="feature-name">is_enabled_cache_on_read</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Are read objects inserted in cache ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_enabled_cache_on_write"><span class="feature-name">is_enabled_cache_on_write</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Are written objects inserted in cache ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_error"><span class="feature-name">is_error</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- is the last operation in error ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">obsolete</div>
+<div class="indent">
+<div class="comment">
+<p>
+use <span class="feature-name-comment">status.is_error</span> instead
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_ok"><span class="feature-name">is_ok</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- is the last operation ok ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">obsolete</div>
+<div class="indent">
+<div class="comment">
+<p>
+use <span class="feature-name-comment">status.is_ok</span> instead
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_pid_valid"><span class="feature-name">is_pid_valid</span></a> <span class="symbol">(</span>some_pid<span class="symbol">:</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Is <span class="feature-name-comment">some_pid</span> a valid pid ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">some_pid_not_void:</span> some_pid<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="no_data_found"><span class="feature-name">no_data_found</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- have no data been found ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="special-keyword">Result</span><span class="symbol">=</span><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_adapter.html#last_cursor" class="feature-name">last_cursor</a><span class="symbol">.</span>count<span class="symbol">=</span>0<span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_setting" class="keyword">feature</a>
+<span class="comment">-- Status setting</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="disable_cache_on_read"><span class="feature-name">disable_cache_on_read</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Do not cache objects after they have been read.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="keyword">not</span><a href="../../../library_epom/src/interface/po_adapter.html#is_enabled_cache_on_read" class="feature-name">is_enabled_cache_on_read</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="disable_cache_on_write"><span class="feature-name">disable_cache_on_write</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Do not cache objects after they have been written.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="keyword">not</span><a href="../../../library_epom/src/interface/po_adapter.html#is_enabled_cache_on_write" class="feature-name">is_enabled_cache_on_write</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="enable_cache_on_read"><span class="feature-name">enable_cache_on_read</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Cache objects after they have been read.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <a href="../../../library_epom/src/interface/po_adapter.html#is_enabled_cache_on_read" class="feature-name">is_enabled_cache_on_read</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="enable_cache_on_write"><span class="feature-name">enable_cache_on_write</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Cache objects after they have been written.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <a href="../../../library_epom/src/interface/po_adapter.html#is_enabled_cache_on_write" class="feature-name">is_enabled_cache_on_write</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="reset_error"><span class="feature-name">reset_error</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Reset <a href="#is_error" class="feature-name">is_error</a> so that operations can continue.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">obsolete</div>
+<div class="indent">
+<div class="comment">
+<p>
+use <span class="feature-name-comment">status.reset</span> instead.
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">not_is_error:</span> <span class="keyword">not</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Element_change" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../library_epom/src/interface/po_launcher.html" class="class-name">PO_LAUNCHER</a><span class="symbol">}</span>
+<span class="comment">-- Element change</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="set_datastore"><span class="feature-name">set_datastore</span></a> <span class="symbol">(</span>a_datastore<span class="symbol">:</span><a href="../../../library_epom/src/interface/po_datastore.html" class="class-name">PO_DATASTORE</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Attach to <span class="feature-name-comment">a_datastore</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">a_datastore_not_void:</span> a_datastore<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">datastore_set:</span> <a href="../../../library_epom/src/interface/po_adapter.html#datastore" class="feature-name">datastore</a><span class="symbol">=</span>a_datastore <br/>
+<span class="assertion-tag">adapter_registered_to_datastore:</span> <a href="../../../library_epom/src/interface/po_adapter.html#datastore" class="feature-name">datastore</a><span class="symbol">.</span>adapters<span class="symbol">.</span>has<span class="symbol">(</span><span class="special-keyword">Current</span><span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Basic_operations" class="keyword">feature</a>
+<span class="comment">-- Basic operations</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="clear_cache"><span class="feature-name">clear_cache</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Clear cache.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">cache_count_is_0:</span> <a href="../../../library_epom/src/interface/po_adapter.html#cache_count" class="feature-name">cache_count</a><span class="symbol">=</span>0 <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="delete"><span class="feature-name">delete</span></a> <span class="symbol">(</span>object<span class="symbol">:</span><span class="keyword">attached</span><span class="keyword">like</span><a href="../../../library_epom/src/interface/po_adapter.html#object_anchor" class="feature-name">object_anchor</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+--  Delete <span class="feature-name-comment">object</span>s persistent image.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">can_delete:</span> <a href="../../../library_epom/src/interface/po_adapter.html#can_delete" class="feature-name">can_delete</a> <br/>
+<span class="assertion-tag">object_not_void:</span> object<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">object_already_in_store:</span> <a href="../../../library_epom/src/interface/po_adapter.html#exists" class="feature-name">exists</a><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_adapter.html#pid_for_object" class="feature-name">pid_for_object</a><span class="symbol">(</span>object<span class="symbol">)</span><span class="symbol">)</span> <br/>
+<span class="assertion-tag">datastore_connected:</span> <a href="../../../library_epom/src/interface/po_adapter.html#datastore" class="feature-name">datastore</a><span class="symbol">.</span>is_connected <br/>
+<span class="assertion-tag">is_ok:</span> status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_ok" class="feature-name">is_ok</a> <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">object_deleted:</span> <span class="keyword">not</span>status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a><span class="keyword">implies</span><span class="symbol">(</span>object<span class="symbol">.</span>is_deleted<span class="keyword">and</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_adapter.html#exists" class="feature-name">exists</a><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_adapter.html#pid_for_object" class="feature-name">pid_for_object</a><span class="symbol">(</span>object<span class="symbol">)</span><span class="symbol">)</span><span class="symbol">)</span> <br/>
+<span class="assertion-tag">no_more_cached:</span> <span class="keyword">not</span>status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a><span class="keyword">implies</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_adapter.html#is_cached" class="feature-name">is_cached</a><span class="symbol">(</span>object<span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="exists"><span class="feature-name">exists</span></a> <span class="symbol">(</span>pid<span class="symbol">:</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Does an object identifed by <span class="feature-name-comment">pid</span> exist in datastore ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">pid_not_void:</span> pid<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">pid_is_valid_pid:</span> <a href="../../../library_epom/src/interface/po_adapter.html#is_pid_valid" class="feature-name">is_pid_valid</a><span class="symbol">(</span>pid<span class="symbol">)</span> <br/>
+<span class="assertion-tag">datastore_connected:</span> <a href="../../../library_epom/src/interface/po_adapter.html#datastore" class="feature-name">datastore</a><span class="symbol">.</span>is_connected <br/>
+<span class="assertion-tag">is_ok:</span> status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_ok" class="feature-name">is_ok</a> <br/>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="read"><span class="feature-name">read</span></a> <span class="symbol">(</span>pid<span class="symbol">:</span><span class="keyword">like</span><a href="../../../library_epom/src/interface/po_adapter.html#last_pid" class="feature-name">last_pid</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Read a persistent object using identifier <span class="feature-name-comment">pid</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">can_read:</span> <a href="../../../library_epom/src/interface/po_adapter.html#can_read" class="feature-name">can_read</a> <br/>
+<span class="assertion-tag">pid_not_void:</span> pid<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">pid_is_valid_pid:</span> <a href="../../../library_epom/src/interface/po_adapter.html#is_pid_valid" class="feature-name">is_pid_valid</a><span class="symbol">(</span>pid<span class="symbol">)</span> <br/>
+<span class="assertion-tag">datastore_connected:</span> <a href="../../../library_epom/src/interface/po_adapter.html#datastore" class="feature-name">datastore</a><span class="symbol">.</span>is_connected <br/>
+<span class="assertion-tag">is_ok:</span> status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_ok" class="feature-name">is_ok</a> <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">last_cursor_not_void:</span> <a href="../../../library_epom/src/interface/po_adapter.html#last_cursor" class="feature-name">last_cursor</a><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">empty_cursor_when_error:</span> status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a><span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_adapter.html#last_cursor" class="feature-name">last_cursor</a><span class="symbol">.</span>is_empty <br/>
+<span class="assertion-tag">single_object_read:</span> <span class="symbol">(</span><span class="keyword">not</span>status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a><span class="keyword">and</span><span class="keyword">then</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_adapter.html#last_cursor" class="feature-name">last_cursor</a><span class="symbol">.</span>is_empty<span class="symbol">)</span><span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_adapter.html#last_cursor" class="feature-name">last_cursor</a><span class="symbol">.</span>count<span class="symbol">=</span>1 <br/>
+<span class="assertion-tag">object_cached:</span> <span class="symbol">(</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_adapter.html#last_cursor" class="feature-name">last_cursor</a><span class="symbol">.</span>is_empty<span class="keyword">and</span><span class="keyword">then</span><a href="../../../library_epom/src/interface/po_adapter.html#is_enabled_cache_on_read" class="feature-name">is_enabled_cache_on_read</a><span class="symbol">)</span><span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_adapter.html#is_cached" class="feature-name">is_cached</a><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_adapter.html#last_cursor" class="feature-name">last_cursor</a><span class="symbol">.</span>first<span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="refresh"><span class="feature-name">refresh</span></a> <span class="symbol">(</span>object<span class="symbol">:</span><span class="keyword">attached</span><span class="keyword">like</span><a href="../../../library_epom/src/interface/po_adapter.html#object_anchor" class="feature-name">object_anchor</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Refresh <span class="feature-name-comment">object</span> by reading its persistent state from datastore.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">can_refresh:</span> <a href="../../../library_epom/src/interface/po_adapter.html#can_refresh" class="feature-name">can_refresh</a> <br/>
+<span class="assertion-tag">object_not_void:</span> object<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">object_exists_in_datastore:</span> object<span class="symbol">.</span>is_persistent<span class="keyword">and</span><a href="../../../library_epom/src/interface/po_adapter.html#exists" class="feature-name">exists</a><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_adapter.html#pid_for_object" class="feature-name">pid_for_object</a><span class="symbol">(</span>object<span class="symbol">)</span><span class="symbol">)</span> <br/>
+<span class="assertion-tag">datastore_connected:</span> <a href="../../../library_epom/src/interface/po_adapter.html#datastore" class="feature-name">datastore</a><span class="symbol">.</span>is_connected <br/>
+<span class="assertion-tag">is_ok:</span> status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_ok" class="feature-name">is_ok</a> <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">object_fresh:</span> <span class="keyword">not</span>status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a><span class="keyword">implies</span><span class="keyword">not</span>object<span class="symbol">.</span>is_modified <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="update"><span class="feature-name">update</span></a> <span class="symbol">(</span>object<span class="symbol">:</span><span class="keyword">attached</span><span class="keyword">like</span><a href="../../../library_epom/src/interface/po_adapter.html#object_anchor" class="feature-name">object_anchor</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Update <span class="feature-name-comment">object</span> on persistent datastore.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">can_update:</span> <a href="../../../library_epom/src/interface/po_adapter.html#can_update" class="feature-name">can_update</a> <br/>
+<span class="assertion-tag">object_not_void:</span> object<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">object_updatable:</span> object<span class="symbol">.</span>is_persistent<span class="keyword">or</span><span class="keyword">else</span><a href="../../../library_epom/src/interface/po_adapter.html#exists" class="feature-name">exists</a><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_adapter.html#pid_for_object" class="feature-name">pid_for_object</a><span class="symbol">(</span>object<span class="symbol">)</span><span class="symbol">)</span> <br/>
+<span class="assertion-tag">datastore_connected:</span> <a href="../../../library_epom/src/interface/po_adapter.html#datastore" class="feature-name">datastore</a><span class="symbol">.</span>is_connected <br/>
+<span class="assertion-tag">is_ok:</span> status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_ok" class="feature-name">is_ok</a> <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">object_fresh:</span> <span class="keyword">not</span>status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a><span class="keyword">implies</span><span class="keyword">not</span>object<span class="symbol">.</span>is_modified <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="write"><span class="feature-name">write</span></a> <span class="symbol">(</span>object<span class="symbol">:</span><span class="keyword">attached</span><span class="keyword">like</span><a href="../../../library_epom/src/interface/po_adapter.html#object_anchor" class="feature-name">object_anchor</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Write <span class="feature-name-comment">o</span> on persistent datastore.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">can_write:</span> <a href="../../../library_epom/src/interface/po_adapter.html#can_write" class="feature-name">can_write</a> <br/>
+<span class="assertion-tag">object_not_void:</span> object<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">object_is_volatile:</span> object<span class="symbol">.</span>is_volatile <br/>
+<span class="assertion-tag">object_not_in_datastore:</span> <span class="keyword">not</span><a href="../../../library_epom/src/interface/po_adapter.html#exists" class="feature-name">exists</a><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_adapter.html#pid_for_object" class="feature-name">pid_for_object</a><span class="symbol">(</span>object<span class="symbol">)</span><span class="symbol">)</span> <br/>
+<span class="assertion-tag">datastore_connected:</span> <a href="../../../library_epom/src/interface/po_adapter.html#datastore" class="feature-name">datastore</a><span class="symbol">.</span>is_connected <br/>
+<span class="assertion-tag">is_ok:</span> status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_ok" class="feature-name">is_ok</a> <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">last_pid_created_and_set:</span> <span class="keyword">not</span>status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a><span class="keyword">implies</span>object<span class="symbol">.</span>pid<span class="symbol">=</span><a href="../../../library_epom/src/interface/po_adapter.html#last_pid" class="feature-name">last_pid</a> <br/>
+<span class="assertion-tag">object_fresh:</span> <span class="keyword">not</span>status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a><span class="keyword">implies</span><span class="keyword">not</span>object<span class="symbol">.</span>is_modified <br/>
+<span class="assertion-tag">object_persists:</span> <span class="keyword">not</span>status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a><span class="keyword">implies</span>object<span class="symbol">.</span>is_persistent <br/>
+<span class="assertion-tag">object_cached:</span> <span class="symbol">(</span><span class="keyword">not</span>status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a><span class="keyword">and</span><span class="keyword">then</span><a href="../../../library_epom/src/interface/po_adapter.html#is_enabled_cache_on_write" class="feature-name">is_enabled_cache_on_write</a><span class="symbol">)</span><span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_adapter.html#is_cached" class="feature-name">is_cached</a><span class="symbol">(</span>object<span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Contract_support" class="keyword">feature</a>
+<span class="comment">-- Contract support</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="is_cached"><span class="feature-name">is_cached</span></a> <span class="symbol">(</span>object<span class="symbol">:</span><span class="keyword">attached</span><span class="keyword">like</span><a href="../../../library_epom/src/interface/po_adapter.html#object_anchor" class="feature-name">object_anchor</a><span class="symbol">)</span><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Is <span class="feature-name-comment">object</span> in cache ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">persistent_object:</span> object<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">is_cached_implies_is_persistent:</span> <span class="special-keyword">Result</span><span class="keyword">implies</span>object<span class="symbol">.</span>is_persistent <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Framework__minus__Access" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a><span class="symbol">}</span>
+<span class="comment">-- Framework - Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="attached_last_object"><span class="feature-name">attached_last_object</span></a><span class="symbol">:</span><span class="keyword">attached</span><span class="keyword">like</span><a href="../../../library_epom/src/interface/po_adapter.html#last_object" class="feature-name">last_object</a> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="last_object"><span class="feature-name">last_object</span></a><span class="symbol">:</span><span class="keyword">detachable</span>G 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Last object created by factory features.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">feature</span>
+<span class="symbol">{</span><a href="../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a><span class="symbol">, </span><a href="../../../library_epom/src/interface/po_cursor.html" class="class-name">PO_CURSOR</a><span class="symbol">, </span><a href="../../../library_epom/src/interface/po_reference.html" class="class-name">PO_REFERENCE</a><span class="symbol">, </span><a href="../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a><span class="symbol">, </span><a href="../../../library_epom/src/interface/po_reference_access.html" class="class-name">PO_REFERENCE_ACCESS</a><span class="symbol">}</span>
+<span class="comment">-- Framework - Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="attached_last_pid"><span class="feature-name">attached_last_pid</span></a><span class="symbol">:</span><span class="keyword">attached</span><span class="keyword">like</span><a href="../../../library_epom/src/interface/po_adapter.html#last_pid" class="feature-name">last_pid</a> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="last_pid"><span class="feature-name">last_pid</span></a><span class="symbol">:</span><span class="keyword">detachable</span><a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Last PID created by factory features.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Framework__minus__Basic_Operations" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../library_epom/src/interface/po_datastore.html" class="class-name">PO_DATASTORE</a><span class="symbol">}</span>
+<span class="comment">-- Framework - Basic Operations</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="on_adapter_connected"><span class="feature-name">on_adapter_connected</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Callback after adapter has been connected.<br/>
+-- * to be redefined in descendant classes<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="on_adapter_disconnect"><span class="feature-name">on_adapter_disconnect</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Callback before adapter is disconnected.<br/>
+-- * to be redefined in descendant classes<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Framework__minus__Factory" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../library_epom/src/interface/po_reference.html" class="class-name">PO_REFERENCE</a><span class="symbol">}</span>
+<span class="comment">-- Framework - Factory</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="create_pid_from_object"><span class="feature-name">create_pid_from_object</span></a> <span class="symbol">(</span>an_object<span class="symbol">:</span><span class="keyword">attached</span><span class="keyword">like</span><a href="../../../library_epom/src/interface/po_adapter.html#object_anchor" class="feature-name">object_anchor</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Create a pid from a volatile object.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">object_not_void:</span> an_object<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">object_is_volatile:</span> an_object<span class="symbol">.</span>is_volatile <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">exists_and_valid:</span> <span class="keyword">not</span>status<span class="symbol">.</span><a href="../../../library_epom/src/interface/po_adapter.html#is_error" class="feature-name">is_error</a><span class="keyword">implies</span><span class="symbol">(</span><span class="keyword">attached</span><a href="../../../library_epom/src/interface/po_adapter.html#last_pid" class="feature-name">last_pid</a><span class="keyword">as</span>l_pid<span class="keyword">and</span><span class="keyword">then</span><a href="../../../library_epom/src/interface/po_adapter.html#is_pid_valid" class="feature-name">is_pid_valid</a><span class="symbol">(</span>l_pid<span class="symbol">)</span><span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2 class="keyword" id="invariant">invariant</h2>
+<div class="indent">
+<span class="assertion-tag">class_name_defined:</span> <a href="../../../library_epom/src/interface/po_adapter.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">/=</span><span class="special-keyword">Void</span><span class="keyword">and</span><span class="keyword">then</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_adapter.html#persistent_class_name" class="feature-name">persistent_class_name</a><span class="symbol">.</span>is_empty <br/>
+<span class="assertion-tag">datastore_exists:</span> <a href="../../../library_epom/src/interface/po_adapter.html#datastore" class="feature-name">datastore</a><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">registered_to_datastore:</span> <a href="../../../library_epom/src/interface/po_adapter.html#datastore" class="feature-name">datastore</a><span class="symbol">.</span>adapters<span class="symbol">.</span>has<span class="symbol">(</span><span class="special-keyword">Current</span><span class="symbol">)</span> <br/>
+<span class="assertion-tag">valid_last_pid:</span> <span class="keyword">attached</span><a href="../../../library_epom/src/interface/po_adapter.html#last_pid" class="feature-name">last_pid</a><span class="keyword">as</span>l_pid<span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_adapter.html#is_pid_valid" class="feature-name">is_pid_valid</a><span class="symbol">(</span>l_pid<span class="symbol">)</span> <br/>
+<span class="assertion-tag">last_cursor_not_void:</span> <a href="../../../library_epom/src/interface/po_adapter.html#last_cursor" class="feature-name">last_cursor</a><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">error_handler_not_void:</span> <a href="../../../library_epom/src/interface/po_adapter.html#error_handler" class="feature-name">error_handler</a><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<span class="keyword">end</span>
+<hr/>
+<p>
+<br/>
+</p>
+<div class="footer">
+<div class="header-title"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+</body>
+</html>
