@@ -1,10 +1,12 @@
-indexing
+note
 
 	
 		description: "Update copy"
 	
 	status: "Cursor/Query automatically generated for 'COPY_UPDATE'. DO NOT EDIT!"
-	generated: "2007/01/30 15:29:38.797"
+	generated: "2012/10/16 08:34:16.703"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\copy.xml"
 
 class COPY_UPDATE
 
@@ -19,11 +21,11 @@ create
 
 feature  -- -- Access
 
-	parameters_object: COPY_UPDATE_PARAMETERS
+	parameters_object: detachable COPY_UPDATE_PARAMETERS
 
 feature  -- -- Element change
 
-	set_parameters_object (a_parameters_object: COPY_UPDATE_PARAMETERS) is
+	set_parameters_object (a_parameters_object: COPY_UPDATE_PARAMETERS)
 			-- set `parameters_object' to `a_parameters_object'
 		require
 			a_parameters_object_not_void: a_parameters_object /= Void
@@ -42,7 +44,7 @@ feature  -- -- Element change
 
 feature  -- Constants
 
-	definition: STRING is "[
+	definition: STRING = "[
 update copy 
 set 
 	loc_store=?loc_store, 
@@ -54,4 +56,4 @@ where
 	and serial_number =?serial_number
 ]"
 
-end -- class COPY_UPDATE
+end

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -25,7 +25,7 @@ create
 	
 feature {NONE} -- Initialization
 
-	make is
+	make
 		do
 			create adapters_impl.make
 		ensure
@@ -34,7 +34,7 @@ feature {NONE} -- Initialization
 		
 feature -- Access	
 
-	adapters : DS_LIST[PO_ADAPTER [PO_PERSISTENT]] is
+	adapters : DS_LIST[PO_ADAPTER [PO_PERSISTENT]]
 			-- 
 		do
 			Result := adapters_impl
@@ -46,17 +46,17 @@ feature -- Status report
 
 	can_begin_transaction: BOOLEAN
 		
-	is_error: BOOLEAN is
+	is_error: BOOLEAN
 			-- 
 		do Result := not control.is_ok end
 	
-	valid_connection_parameters: BOOLEAN is
+	valid_connection_parameters: BOOLEAN
 			-- 
 		do
 			Result := handle.login.data_source /= Void and handle.login.name /= Void and handle.login.passwd /= Void
 		end
 
-	is_connected : BOOLEAN is
+	is_connected : BOOLEAN
 		do
 			Result := control.is_connected
 		end
@@ -99,34 +99,34 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
-	begin_transaction is
+	begin_transaction
 			-- 
 		do
 			control.begin
 			transaction_level := transaction_level + 1
 		end
 		
-	commit_transaction is
+	commit_transaction
 			-- 
 		do
 			control.commit
 			transaction_level := transaction_level - 1
 		end
 		
-	connect is
+	connect
 			-- 
 		do
 			control.connect
 			transaction_level := transaction_level - 1
 		end
 		
-	disconnect is
+	disconnect
 			-- 
 		do
 			control.disconnect
 		end
 		
-	rollback_transaction is
+	rollback_transaction
 			-- 
 		do
 			control.rollback
@@ -138,10 +138,10 @@ feature -- Inapplicable
 
 feature {NONE} -- Implementation
 
-	control : DB_CONTROL is
+	control : DB_CONTROL
 			-- 
-		once
-			!!Result.make
+		once 
+			create Result.make
 		end
 
 	adapters_impl : DS_LINKED_LIST[PO_ADAPTER[PO_PERSISTENT]]

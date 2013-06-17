@@ -20,12 +20,14 @@ Library usage:
 
 Directory structure:
 
-	${EPOM}
+<code>
+    ${EPOM}
 	  + doc          documentation/specification
 	  + examples
 	  |  + books     books sample application
 	  |
 	  + src	         source files
+</code>
 
 Variables
 

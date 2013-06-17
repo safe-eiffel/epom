@@ -1,4 +1,4 @@
-indexing
+note
 	description: "Caches that implement the LRU Algorithm."
 	author: "Paul G. Crismer"
 	date: "$Date$"
@@ -23,7 +23,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (new_capacity: INTEGER_32) is
+	make (new_capacity: INTEGER_32)
 			-- <Precursor>
 		do
 			Precursor (new_capacity)
@@ -34,7 +34,7 @@ feature -- Access
 
 	time : INTEGER_64
 
-	item (pid: PO_PID) : G is
+	item (pid: PO_PID) : detachable G
 		do
 			increment_time
 			Result := precursor (pid)
@@ -43,20 +43,20 @@ feature -- Access
 
 feature -- Status report
 
-	full : BOOLEAN is
+	full : BOOLEAN
 		do
 			Result := table.count = capacity
 		end
 
 feature -- Removal
 
-        wipe_out is
+        wipe_out
 		do
 			lru_entries.wipe_out
 			Precursor
 		end
 
-	remove (pid: PO_PID) is
+	remove (pid: PO_PID)
 		do
 			debug ("PO_LRU")
 				print ("Removing " + pid.as_string + "%N")
@@ -67,18 +67,18 @@ feature -- Removal
 
 feature -- Element change
 
-	increment_time is
+	increment_time
 		do
 			time := time + 1
 		end
 
-	put (object: G) is
+	put (object: G)
 		local
 			pid : PO_PID
 			entry : PO_LRU_ENTRY
 		do
 			increment_time
-			pid := object.pid
+			pid := object.attached_pid
 			if full then
 				remove_lru
 			end
@@ -88,7 +88,7 @@ feature -- Element change
 			Precursor (object)
 		end
 
-	put_void (pid: PO_PID) is
+	put_void (pid: PO_PID)
 		local
 			entry : PO_LRU_ENTRY
 		do
@@ -106,15 +106,16 @@ feature {NONE} -- Implementation
 
 	lru_entries : DS_HASH_TABLE[PO_LRU_ENTRY,STRING]
 
-	remove_lru is
+	remove_lru
 		require
 			full: full
 		local
-			lru : PO_LRU_ENTRY
-			cursor : DS_HASH_TABLE_CURSOR[PO_LRU_ENTRY, STRING]
+			lru : detachable PO_LRU_ENTRY
+			cursor : detachable DS_HASH_TABLE_CURSOR[PO_LRU_ENTRY, STRING]
 		do
+			cursor := lru_entries.new_cursor
+			check cursor /= Void end
 			from
-				cursor := lru_entries.new_cursor
 				cursor.start
 			until
 				cursor.off

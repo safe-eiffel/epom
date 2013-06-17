@@ -1,13 +1,12 @@
-indexing
+note
 
 	
 		description: "Search for borrower with name like some pattern"
 	
-	warning: "Generated cursor 'BORROWER_READ_LIKE' : DO NOT EDIT !"
-	author: "QUERY_ASSISTANT"
-	date: "$Date : $"
-	revision: "$Revision : $"
-	licensing: "See notice at end of class"
+	status: "Cursor/Query automatically generated for 'BORROWER_READ_LIKE'. DO NOT EDIT!"
+	generated: "2012/10/16 08:36:39.375"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\borrower.xml"
 
 class BORROWER_READ_LIKE
 
@@ -22,14 +21,14 @@ create
 
 feature  -- -- Access
 
-	parameters_object: BORROWER_READ_LIKE_PARAMETERS
+	parameters_object: detachable BORROWER_READ_LIKE_PARAMETERS
 
 	item: BORROWER_ID
 
 feature  -- -- Element change
 
-	set_parameters_object (a_parameters_object: BORROWER_READ_LIKE_PARAMETERS) is
-			-- Set `parameters_object' to `a_parameters_object'.
+	set_parameters_object (a_parameters_object: BORROWER_READ_LIKE_PARAMETERS)
+			-- set `parameters_object' to `a_parameters_object'
 		require
 			a_parameters_object_not_void: a_parameters_object /= Void
 		do
@@ -42,20 +41,20 @@ feature  -- -- Element change
 
 feature  -- Constants
 
-	definition: STRING is " %
-% select id from borrower where name like ?name %
-% "
+	definition: STRING = "[
+select id from borrower where name like ?name
+]"
 
 feature {NONE} -- Implementation
 
-	create_buffers is
-			-- -- Creation of buffers
+	create_buffers
+			-- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results
 		do
 			create item.make
-			create buffers.make (1,1)
-			buffers.put (item.id, 1)
+			create buffers.make (1,0)
+			buffers.force (item.id, 1)
 			set_results (buffers)
 		end
 

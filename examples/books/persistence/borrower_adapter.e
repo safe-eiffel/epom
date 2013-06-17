@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -22,14 +22,14 @@ feature -- Access
 			
 feature -- Basic operations
 
-	read_by_name_pattern (name_pattern : STRING) is
+	read_by_name_pattern (name_pattern : STRING)
 			-- Read by name like `name_pattern'.
 		require
 			name_pattern_not_void:  name_pattern /= Void
 		deferred
 		end
 
-	read_by_id (id : INTEGER) is
+	read_by_id (id : INTEGER)
 			-- Read by `id'.
 		require
 			id_gt0: id > 0
@@ -38,7 +38,7 @@ feature -- Basic operations
 
 feature {PO_ADAPTER} -- Factory
 
-	create_pid_from_id (id : INTEGER) is
+	create_pid_from_id (id : INTEGER)
 			-- Create PO_PID from `id'.
 		require
 			id_gt0: id > 0

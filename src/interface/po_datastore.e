@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -12,7 +12,7 @@ deferred class PO_DATASTORE
 
 feature -- Access
 
-	adapters : DS_LIST[PO_ADAPTER [PO_PERSISTENT]] is
+	adapters : DS_LIST[PO_ADAPTER [PO_PERSISTENT]]
 			-- Adapters registered for operating on this datastore.
 		deferred
 		end
@@ -29,29 +29,29 @@ feature -- Measurement
 
 feature -- Status report
 
-	is_connected : BOOLEAN is
+	is_connected : BOOLEAN
 			-- is the datastore connected ?
 		deferred
 		end
 
-	is_error : BOOLEAN is
+	is_error : BOOLEAN
 			-- is there an error caused by the latest operation?
 		deferred
 		end
 
-	valid_connection_parameters : BOOLEAN is
+	valid_connection_parameters : BOOLEAN
 			-- are the connection parameters valid ?
 		deferred
 		end
 
-	can_begin_transaction : BOOLEAN is
+	can_begin_transaction : BOOLEAN
 			-- can this datastore begin a new transaction ?
 		deferred
 		end
 
 feature -- Status setting
 
-	connect is
+	connect
 			-- Connect to datastore.
 		require
 			valid_connection_parameters: valid_connection_parameters
@@ -60,7 +60,7 @@ feature -- Status setting
 			connected_if_no_error: not is_error implies is_connected
 		end
 
-	disconnect is
+	disconnect
 			-- Disconnect from datastore.
 		require
 			is_connected: is_connected
@@ -71,7 +71,7 @@ feature -- Status setting
 
 feature -- Element change
 
-	register_adapter (an_adapter : PO_ADAPTER[PO_PERSISTENT]) is
+	register_adapter (an_adapter : PO_ADAPTER[PO_PERSISTENT])
 			-- Register `an_adapter' to datastore.
 		require
 			an_adapter_not_void: an_adapter /= Void
@@ -82,7 +82,7 @@ feature -- Element change
 			registered: adapters.has (an_adapter)
 		end
 
-	set_error_handler (an_error_handler : like error_handler) is
+	set_error_handler (an_error_handler : like error_handler)
 			-- Set `error_handler' to `an_error_handler'.
 		require
 			an_error_handler_not_void: an_error_handler /= Void
@@ -93,7 +93,7 @@ feature -- Element change
 
 feature -- Basic operations
 
-	begin_transaction is
+	begin_transaction
 			-- Begin a new transaction.
 		require
 			can_begin_transaction: can_begin_transaction
@@ -102,7 +102,7 @@ feature -- Basic operations
 			begun_transaction: transaction_level = old transaction_level + 1
 		end
 
-	commit_transaction is
+	commit_transaction
 			-- Commits the current transaction.
 		require
 			in_transaction: transaction_level > 0
@@ -111,7 +111,7 @@ feature -- Basic operations
 			ended_transaction: transaction_level = old transaction_level - 1
 		end
 
-	rollback_transaction is
+	rollback_transaction
 			-- Rollbacks the current transaction.
 		require
 			in_transaction: transaction_level > 0

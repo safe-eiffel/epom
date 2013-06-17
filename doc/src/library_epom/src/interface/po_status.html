@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PO_STATUS (EPOM)</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css"/>
+</head>
+<body>
+<div class="header">
+<div class="header-title" id="top"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+<hr/>
+<div class="cluster-small"><a href="../../../library_epom/cluster.epom_library_epom.html" class="cluster-name">library_epom</a>.<a href="../../../library_epom/src/cluster.epom_src.html" class="cluster-name">src</a>.<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="cluster-name">interface</a></div>
+<h1>Class PO_STATUS</h1>
+<hr/>
+<div class="feature-list">
+<h2 id="features-list">Features</h2>
+<ul class="feature-list-clauses">
+<li>
+<strong><a href="#clause-Initialization">Initialization</a></strong>
+<ul class="feature-list-features">
+<li><a href="#default_create" class="feature-name">default_create</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Access">Access</a></strong>
+<ul class="feature-list-features">
+<li><a href="#code" class="feature-name">code</a></li>
+<li><a href="#is_datastore" class="feature-name">is_datastore</a></li>
+<li><a href="#is_error" class="feature-name">is_error</a></li>
+<li><a href="#is_ok" class="feature-name">is_ok</a></li>
+<li><a href="#is_warning" class="feature-name">is_warning</a></li>
+<li><a href="#message" class="feature-name">message</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Comparison">Comparison</a></strong>
+<ul class="feature-list-features">
+<li><a href="#is_equal" class="feature-name">is_equal</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_report">Status&nbsp;report</a></strong>
+<ul class="feature-list-features">
+<li><a href="#valid_framework_error_code" class="feature-name">valid_framework_error_code</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_setting">Status&nbsp;setting</a></strong>
+<ul class="feature-list-features">
+<li><a href="#reset" class="feature-name">reset</a></li>
+<li><a href="#set_datastore_error" class="feature-name">set_datastore_error</a></li>
+<li><a href="#set_datastore_warning" class="feature-name">set_datastore_warning</a></li>
+<li><a href="#set_framework_error" class="feature-name">set_framework_error</a></li>
+<li><a href="#set_framework_warning" class="feature-name">set_framework_warning</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Duplication">Duplication</a></strong>
+<ul class="feature-list-features">
+<li><a href="#copy" class="feature-name">copy</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Constants">Constants</a></strong>
+<ul class="feature-list-features">
+<li><a href="#error_could_not_create_object" class="feature-name">error_could_not_create_object</a></li>
+<li><a href="#error_could_not_find_adapter" class="feature-name">error_could_not_find_adapter</a></li>
+<li><a href="#error_could_not_refresh_object" class="feature-name">error_could_not_refresh_object</a></li>
+<li><a href="#error_invalid_pid_content" class="feature-name">error_invalid_pid_content</a></li>
+<li><a href="#error_non_conformant_pid" class="feature-name">error_non_conformant_pid</a></li>
+<li><a href="#error_none" class="feature-name">error_none</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Implementation">Implementation</a></strong>
+<ul class="feature-list-features">
+<li><a href="#status" class="feature-name">status</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#invariant">Invariants</a></h2>
+</div>
+<h2 class="keyword">note</h2>
+<div class="indexing-list indent">
+<h3 class="indexing-tag">description</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Objects that give status information about latest persistance operation.
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">copyright</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Copyright (c) 2004, Paul G. Crismer and others
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">license</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Eiffel Forum License v2 (see forum.txt)
+</p>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">class</span>
+<span class="class-name">PO_STATUS</span>
+</h2>
+<h2>
+<a id="clause-Initialization" class="keyword">feature</a>
+<span class="comment">-- Initialization</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="default_create"><span class="feature-name">default_create</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Access" class="keyword">feature</a>
+<span class="comment">-- Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="code"><span class="feature-name">code</span></a><span class="symbol">:</span><span class="class-name">INTEGER</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Code describing the current error or warning.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_datastore"><span class="feature-name">is_datastore</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- is the current description related to a datastore operation ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_error"><span class="feature-name">is_error</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- has the last operation led to an error ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="special-keyword">Result</span><span class="symbol">=</span><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_status.html#status" class="feature-name">status</a><span class="symbol">=</span>Status_error<span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_ok"><span class="feature-name">is_ok</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- was the last operation a success ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="special-keyword">Result</span><span class="symbol">=</span><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_status.html#status" class="feature-name">status</a><span class="symbol">=</span>status_ok<span class="keyword">or</span><span class="keyword">else</span><a href="../../../library_epom/src/interface/po_status.html#is_warning" class="feature-name">is_warning</a><span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_warning"><span class="feature-name">is_warning</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- has the last operation issued a warning ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="special-keyword">Result</span><span class="symbol">=</span><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_status.html#status" class="feature-name">status</a><span class="symbol">=</span>status_warning<span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="message"><span class="feature-name">message</span></a><span class="symbol">:</span><span class="class-name">STRING</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Message describing the current status.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="special-keyword">Result</span><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Comparison" class="keyword">feature</a>
+<span class="comment">-- Comparison</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="is_equal"><span class="feature-name">is_equal</span></a> <span class="symbol">(</span>other<span class="symbol">:</span><span class="keyword">like</span><span class="special-keyword">Current</span><span class="symbol">)</span><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_report" class="keyword">feature</a>
+<span class="comment">-- Status report</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="valid_framework_error_code"><span class="feature-name">valid_framework_error_code</span></a> <span class="symbol">(</span>some_code<span class="symbol">:</span><span class="class-name">INTEGER</span><span class="symbol">)</span><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">definition:</span> <span class="special-keyword">Result</span><span class="symbol">=</span><span class="symbol">(</span>some_code<span class="symbol">&gt;=</span><a href="../../../library_epom/src/interface/po_status.html#error_none" class="feature-name">error_none</a><span class="keyword">and</span><span class="keyword">then</span>some_code<span class="symbol">&lt;=</span><a href="../../../library_epom/src/interface/po_status.html#error_could_not_find_adapter" class="feature-name">error_could_not_find_adapter</a><span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_setting" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../library_epom/src/interface/po_status_management.html" class="class-name">PO_STATUS_MANAGEMENT</a><span class="symbol">}</span>
+<span class="comment">-- Status setting</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="reset"><span class="feature-name">reset</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Reset status.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">ok:</span> <a href="../../../library_epom/src/interface/po_status.html#is_ok" class="feature-name">is_ok</a> <br/>
+<span class="assertion-tag">no_datastore:</span> <span class="keyword">not</span><a href="../../../library_epom/src/interface/po_status.html#is_datastore" class="feature-name">is_datastore</a> <br/>
+<span class="assertion-tag">error_none:</span> <a href="../../../library_epom/src/interface/po_status.html#code" class="feature-name">code</a><span class="symbol">=</span><a href="../../../library_epom/src/interface/po_status.html#error_none" class="feature-name">error_none</a> <br/>
+<span class="assertion-tag">no_message:</span> <a href="../../../library_epom/src/interface/po_status.html#message" class="feature-name">message</a><span class="symbol">.</span><a href="../../../library_epom/src/interface/po_status.html#is_equal" class="feature-name">is_equal</a><span class="symbol">(</span>""<span class="symbol">)</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="set_datastore_error"><span class="feature-name">set_datastore_error</span></a> <span class="symbol">(</span>error_code<span class="symbol">:</span><span class="class-name">INTEGER</span><span class="symbol">;</span>error_message<span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">message_not_void:</span> <a href="../../../library_epom/src/interface/po_status.html#message" class="feature-name">message</a><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">code_set:</span> <a href="../../../library_epom/src/interface/po_status.html#code" class="feature-name">code</a><span class="symbol">=</span>error_code <br/>
+<span class="assertion-tag">is_error:</span> <a href="../../../library_epom/src/interface/po_status.html#is_error" class="feature-name">is_error</a> <br/>
+<span class="assertion-tag">message_set:</span> <a href="../../../library_epom/src/interface/po_status.html#message" class="feature-name">message</a><span class="symbol">.</span><a href="../../../library_epom/src/interface/po_status.html#is_equal" class="feature-name">is_equal</a><span class="symbol">(</span>error_message<span class="symbol">)</span> <br/>
+<span class="assertion-tag">is_datastore:</span> <a href="../../../library_epom/src/interface/po_status.html#is_datastore" class="feature-name">is_datastore</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="set_datastore_warning"><span class="feature-name">set_datastore_warning</span></a> <span class="symbol">(</span>warning_code<span class="symbol">:</span><span class="class-name">INTEGER</span><span class="symbol">;</span>warning_message<span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">message_not_void:</span> <a href="../../../library_epom/src/interface/po_status.html#message" class="feature-name">message</a><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">code_set:</span> <a href="../../../library_epom/src/interface/po_status.html#code" class="feature-name">code</a><span class="symbol">=</span>warning_code <br/>
+<span class="assertion-tag">is_warning:</span> <a href="../../../library_epom/src/interface/po_status.html#is_warning" class="feature-name">is_warning</a> <br/>
+<span class="assertion-tag">message_set:</span> <a href="../../../library_epom/src/interface/po_status.html#message" class="feature-name">message</a><span class="symbol">.</span><a href="../../../library_epom/src/interface/po_status.html#is_equal" class="feature-name">is_equal</a><span class="symbol">(</span>warning_message<span class="symbol">)</span> <br/>
+<span class="assertion-tag">is_datastore:</span> <a href="../../../library_epom/src/interface/po_status.html#is_datastore" class="feature-name">is_datastore</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="set_framework_error"><span class="feature-name">set_framework_error</span></a> <span class="symbol">(</span>error_code<span class="symbol">:</span><span class="class-name">INTEGER</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">error_code_within_bounds:</span> <a href="../../../library_epom/src/interface/po_status.html#valid_framework_error_code" class="feature-name">valid_framework_error_code</a><span class="symbol">(</span>error_code<span class="symbol">)</span> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">code_set:</span> <a href="../../../library_epom/src/interface/po_status.html#code" class="feature-name">code</a><span class="symbol">=</span>error_code <br/>
+<span class="assertion-tag">is_error:</span> <a href="../../../library_epom/src/interface/po_status.html#is_error" class="feature-name">is_error</a> <br/>
+<span class="assertion-tag">not_is_datastore:</span> <span class="keyword">not</span><a href="../../../library_epom/src/interface/po_status.html#is_datastore" class="feature-name">is_datastore</a> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="set_framework_warning"><span class="feature-name">set_framework_warning</span></a> <span class="symbol">(</span>warning_code<span class="symbol">:</span><span class="class-name">INTEGER</span><span class="symbol">;</span>warning_message<span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">message_not_void:</span> <a href="../../../library_epom/src/interface/po_status.html#message" class="feature-name">message</a><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">code_set:</span> <a href="../../../library_epom/src/interface/po_status.html#code" class="feature-name">code</a><span class="symbol">=</span>warning_code <br/>
+<span class="assertion-tag">is_warning:</span> <a href="../../../library_epom/src/interface/po_status.html#is_warning" class="feature-name">is_warning</a> <br/>
+<span class="assertion-tag">message_set:</span> <a href="../../../library_epom/src/interface/po_status.html#message" class="feature-name">message</a><span class="symbol">.</span><a href="../../../library_epom/src/interface/po_status.html#is_equal" class="feature-name">is_equal</a><span class="symbol">(</span>warning_message<span class="symbol">)</span> <br/>
+<span class="assertion-tag">not_is_datastore:</span> <span class="keyword">not</span><a href="../../../library_epom/src/interface/po_status.html#is_datastore" class="feature-name">is_datastore</a> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Duplication" class="keyword">feature</a>
+<span class="comment">-- Duplication</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="copy"><span class="feature-name">copy</span></a> <span class="symbol">(</span>other<span class="symbol">:</span><span class="keyword">like</span><span class="special-keyword">Current</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Constants" class="keyword">feature</a>
+<span class="comment">-- Constants</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="error_could_not_create_object"><span class="feature-name">error_could_not_create_object</span></a><span class="symbol">:</span><span class="class-name">INTEGER</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Precondition to create object has not been met, or error while creating it<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="error_could_not_find_adapter"><span class="feature-name">error_could_not_find_adapter</span></a><span class="symbol">:</span><span class="class-name">INTEGER</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Searched adaptor does not exists.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="error_could_not_refresh_object"><span class="feature-name">error_could_not_refresh_object</span></a><span class="symbol">:</span><span class="class-name">INTEGER</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- No data found while refreshing objects<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="error_invalid_pid_content"><span class="feature-name">error_invalid_pid_content</span></a><span class="symbol">:</span><span class="class-name">INTEGER</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Pid contains information of invalid type<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="error_non_conformant_pid"><span class="feature-name">error_non_conformant_pid</span></a><span class="symbol">:</span><span class="class-name">INTEGER</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Pid type does not conform to expected one<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="error_none"><span class="feature-name">error_none</span></a><span class="symbol">:</span><span class="class-name">INTEGER</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Implementation" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../library_epom/src/interface/po_status.html" class="class-name">PO_STATUS</a><span class="symbol">}</span>
+<span class="comment">-- Implementation</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="status"><span class="feature-name">status</span></a><span class="symbol">:</span><span class="class-name">INTEGER</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2 class="keyword" id="invariant">invariant</h2>
+<div class="indent">
+<span class="assertion-tag">ok:</span> <a href="../../../library_epom/src/interface/po_status.html#is_ok" class="feature-name">is_ok</a><span class="keyword">implies</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_status.html#is_error" class="feature-name">is_error</a> <br/>
+<span class="assertion-tag">warning:</span> <a href="../../../library_epom/src/interface/po_status.html#is_warning" class="feature-name">is_warning</a><span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_status.html#is_ok" class="feature-name">is_ok</a> <br/>
+<span class="assertion-tag">framework_error_code:</span> <span class="symbol">(</span><span class="keyword">not</span><a href="../../../library_epom/src/interface/po_status.html#is_datastore" class="feature-name">is_datastore</a><span class="keyword">and</span><a href="../../../library_epom/src/interface/po_status.html#is_error" class="feature-name">is_error</a><span class="symbol">)</span><span class="keyword">implies</span><a href="../../../library_epom/src/interface/po_status.html#valid_framework_error_code" class="feature-name">valid_framework_error_code</a><span class="symbol">(</span><a href="../../../library_epom/src/interface/po_status.html#code" class="feature-name">code</a><span class="symbol">)</span> <br/>
+<span class="assertion-tag">valid_status:</span> <a href="../../../library_epom/src/interface/po_status.html#status" class="feature-name">status</a><span class="symbol">&gt;=</span>status_ok<span class="keyword">and</span><span class="keyword">then</span><a href="../../../library_epom/src/interface/po_status.html#status" class="feature-name">status</a><span class="symbol">&lt;=</span>status_error <br/>
+</div>
+<span class="keyword">end</span>
+<hr/>
+<p>
+<br/>
+</p>
+<div class="footer">
+<div class="header-title"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+</body>
+</html>

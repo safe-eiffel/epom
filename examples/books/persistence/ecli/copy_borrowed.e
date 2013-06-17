@@ -1,10 +1,12 @@
-indexing
+note
 
 	
 		description: "Get the borrowed copies"
 	
 	status: "Cursor/Query automatically generated for 'COPY_BORROWED'. DO NOT EDIT!"
-	generated: "2007/01/30 15:29:38.750"
+	generated: "2012/10/16 08:34:16.578"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\copy.xml"
 
 class COPY_BORROWED
 
@@ -23,22 +25,22 @@ feature  -- -- Access
 
 feature  -- Constants
 
-	definition: STRING is "[
+	definition: STRING = "[
 select isbn, serial_number from copy where borrower is not null and borrower > 0
 ]"
 
 feature {NONE} -- Implementation
 
-	create_buffers is
+	create_buffers
 			-- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results
 		do
 			create item.make
-			create buffers.make (1,2)
-			buffers.put (item.isbn, 1)
-			buffers.put (item.serial_number, 2)
+			create buffers.make (1,0)
+			buffers.force (item.isbn, 1)
+			buffers.force (item.serial_number, 2)
 			set_results (buffers)
 		end
 
-end -- class COPY_BORROWED
+end

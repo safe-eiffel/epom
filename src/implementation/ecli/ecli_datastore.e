@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -20,7 +20,7 @@ create
 
 feature {NONE} -- Initialisation
 
-	make (a_session : ECLI_SESSION) is
+	make (a_session : ECLI_SESSION)
 			-- Initialise with `a_session'.
 		require
 			a_session_not_void : a_session /= Void
@@ -36,13 +36,13 @@ feature {NONE} -- Initialisation
 
 feature -- Access
 
-	session: ECLI_SESSION is
+	session: ECLI_SESSION
 			-- Session Ecli.
 		do
 			Result := session_impl
 		end
 
-	adapters : DS_LIST [PO_ADAPTER[PO_PERSISTENT]] is
+	adapters : DS_LIST [PO_ADAPTER[PO_PERSISTENT]]
 			--
 		do
 			Result := adapters_impl
@@ -52,17 +52,18 @@ feature -- Access
 
 feature -- Element change
 
-	set_simple_login_strategy (login : ECLI_SIMPLE_LOGIN) is
+	set_simple_login_strategy (login : ECLI_SIMPLE_LOGIN)
 			-- Safe setting of login strategy
 		require
 			login_not_void: login /= Void
+			not_connected: not is_connected
 		do
 			session.set_login_strategy (login)
 		ensure
 			login_strategy_set: session.login_strategy = login
 		end
 
-	set_error_handler (an_error_handler : like error_handler) is
+	set_error_handler (an_error_handler : like error_handler)
 			-- 	<Precursor>
 		do
 			error_handler := an_error_handler
@@ -70,25 +71,25 @@ feature -- Element change
 
 feature -- Status report
 
-	is_connected : BOOLEAN is
+	is_connected : BOOLEAN
 			-- is the datastore connected ?
 		do
 			Result := session.is_connected
 		end
 
-	is_error : BOOLEAN is
+	is_error : BOOLEAN
 			-- is there an error caused by the latest operation?
 		do
 			Result := session.is_error
 		end
 
-	valid_connection_parameters : BOOLEAN is
+	valid_connection_parameters : BOOLEAN
 			-- are the connection parameters valid ?
 		do
 			Result := True
 		end
 
-	can_begin_transaction : BOOLEAN is
+	can_begin_transaction : BOOLEAN
 			-- can this datastore begin a new transaction ?
 		do
 			Result := is_connected and session.is_transaction_capable
@@ -96,10 +97,10 @@ feature -- Status report
 
 feature -- Status setting
 
-	connect is
+	connect
 			-- Connect to datastore.
 		local
-			l_simple_login : ECLI_SIMPLE_LOGIN
+--			l_simple_login : ECLI_SIMPLE_LOGIN
 			l_datastore_name : STRING
 			l_error_code : INTEGER_32
 			l_error_message : STRING
@@ -108,15 +109,16 @@ feature -- Status setting
 			if session.is_connected then
 				on_connected
 			else
-				l_simple_login ?= session.login_strategy
-				l_datastore_name := l_simple_login.datasource_name
-				l_error_code := session.native_code
-				l_error_message := session.diagnostic_message
-				error_handler.report_connection_error (l_datastore_name, l_error_code, l_error_message)
+				if attached {ECLI_SIMPLE_LOGIN} session.login_strategy as l_simple_login then
+					l_datastore_name := l_simple_login.datasource_name
+					l_error_code := session.native_code
+					l_error_message := session.diagnostic_message
+					error_handler.report_connection_error (l_datastore_name, l_error_code, l_error_message)
+				end
 			end
 		end
 
-	disconnect is
+	disconnect
 			-- Disconnect from datastore.
 		do
 			on_disconnect
@@ -125,21 +127,21 @@ feature -- Status setting
 
 feature -- Basic operations
 
-	begin_transaction is
+	begin_transaction
 			-- Begin a new transaction.
 		do
 			session.begin_transaction
 			transaction_level := transaction_level + 1
 		end
 
-	commit_transaction is
+	commit_transaction
 			-- Commits the current transaction.
 		do
 			session.commit
 			transaction_level := transaction_level - 1
 		end
 
-	rollback_transaction is
+	rollback_transaction
 			-- Rollbacks the current transaction.
 		do
 			session.rollback
@@ -152,13 +154,14 @@ feature {NONE} -- Implementation
 
 	adapters_impl : DS_LINKED_LIST[PO_ADAPTER[PO_PERSISTENT]]
 
-	on_connected is
+	on_connected
 			-- <Precursor>
 		local
-			adapters_cursor : DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
+			adapters_cursor : detachable DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
 		do
 			if is_connected then
-				adapters_cursor := adapters.new_cursor
+				adapters_cursor := adapters.new_cursor.as_attached
+--				check adapters_cursor /= Void end
 				from
 					adapters_cursor.start
 				until
@@ -170,13 +173,14 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	on_disconnect is
+	on_disconnect
 			-- <Precursor>
 		local
-			adapters_cursor : DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
+			adapters_cursor : detachable DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
 		do
 			if is_connected then
 				adapters_cursor := adapters.new_cursor
+				check adapters_cursor /= Void end
 				from
 					adapters_cursor.start
 				until

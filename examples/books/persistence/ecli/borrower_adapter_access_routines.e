@@ -1,8 +1,10 @@
-indexing
+note
 
-	description:
-
-		"generated access routines"
+	description:"Generated access routines"
+	status: "Automatically generated.  DOT NOT MODIFY !"
+	generated: "2012/10/16 08:36:39.578"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\borrower.xml"
 	usage: "mix-in"
 
 deferred class BORROWER_ADAPTER_ACCESS_ROUTINES
@@ -14,24 +16,24 @@ inherit
 
 feature  -- Access
 
-	last_object: PO_PERSISTENT is
+	last_object: detachable PO_PERSISTENT
 		deferred
 		end
 
-	last_cursor: PO_CURSOR[like last_object] is
+	last_cursor: PO_CURSOR[attached like last_object]
 		deferred
 		end
 
 feature  -- Status report
 
-	is_error: BOOLEAN is
-			-- did last operation produce an error?
+	is_error: BOOLEAN
+			-- Did last operation produce an error?
 		deferred
 		end
 
 feature  -- Basic operations
 
-	borrower_read_like (name: STRING) is
+	borrower_read_like (name: STRING)
 		require
 			refine_in_descendants: False
 		deferred
@@ -39,10 +41,11 @@ feature  -- Basic operations
 
 feature {NONE} -- Implementation
 
-	do_borrower_read_like (cursor: BORROWER_READ_LIKE; name: STRING) is
-			-- Helper implementation of access `BORROWER_READ_LIKE'.
+	do_borrower_read_like (cursor: BORROWER_READ_LIKE; name: STRING)
+			-- helper implementation of access `BORROWER_READ_LIKE'
 		require
-			cursor_not_void:  cursor /= Void
+			cursor_not_void: cursor /= Void
+			last_cursor_empty: last_cursor /= Void and then last_cursor.is_empty
 		local
 			parameters: BORROWER_READ_LIKE_PARAMETERS
 		do
@@ -65,10 +68,10 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	extend_cursor_from_borrower_id (row: BORROWER_ID) is
+	extend_cursor_from_borrower_id (row: BORROWER_ID)
 		require
-			row_not_void:  row /= Void
-			last_cursor_not_void:  last_cursor /= Void
+			row_not_void: row /= Void
+			last_cursor_not_void: last_cursor /= Void
 		deferred
 		ensure
 			last_cursor_extended: not is_error implies (last_cursor.count = old (last_cursor.count) + 1)

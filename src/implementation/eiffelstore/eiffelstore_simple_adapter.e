@@ -1,23 +1,27 @@
-indexing
+note
 
 	description:
 
-		"EiffelStore partial implementation of PO_ADAPTERs.%N%
-	 % %N%
-	 % Caches all read objects until `clear_cache' is called.%N%
-	 % When `is_enabled_cache_on_write' is True then written object%N%
-	 % also are inserted in the cache."
+	"[
+		EiffelStore partial implementation of PO_ADAPTERs.
+		
+		Caches all read objects until `clear_cache' is called.
+		When `is_enabled_cache_on_write' is True then written object
+		also are inserted in the cache.
+	]"
 		
 	author: "Paul G. Crismer"
 	
-	usage: "%N%
-	%	* Inherit from it.%N% 
-	%	* Implement deferred features. %N%
-	%	* Redefine `last_pid'.%N%
-	%	%N%
-	%	Implement any other access (query) on objects.%N%
-	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
-	%	exact-match or multiple-match queries, respectively."
+	usage: 
+	"[
+		* Inherit from it.
+		* Implement deferred features.
+		* Redefine `last_pid'.
+		
+		Implement any other access (query) on objects.
+		Features `read_one' and `read_object_collection' can be used as facility routines for
+		exact-match or multiple-match queries, respectively.
+	]"
 
 	date: "$Date$"
 	revision: "$Revision$"
@@ -46,15 +50,15 @@ inherit
 		
 feature {NONE} -- Initialization
 
-	make (a_datastore : PO_DATASTORE) is
+	make (a_datastore : PO_DATASTORE)
 			-- Make using `datastore'.
 		require
 			a_datastore_not_void: a_datastore /= Void
 		do
-			datastore ?= a_datastore
-			!! change.make
-			!! selection.make
-			!!cache.make (10)
+			datastore ?= a_datastore 
+			create change.make 
+			create selection.make 
+			create cache.make (10)
 			create last_cursor.make
 			create_row
 			create_pid_row
@@ -94,7 +98,7 @@ feature -- Status setting
 		
 feature -- Measurement
 
-	cache_count : INTEGER is
+	cache_count : INTEGER
 			-- Number of objects in cache.
 		do
 			Result := cache.count
@@ -102,7 +106,7 @@ feature -- Measurement
 
 feature {PO_LAUNCHER} -- Element change
 
-	set_datastore (a_datastore: EIFFELSTORE_DATASTORE) is
+	set_datastore (a_datastore: EIFFELSTORE_DATASTORE)
 		do
 			datastore := a_datastore
 			datastore.register_adapter (Current)
@@ -136,22 +140,22 @@ feature -- Basic operations
 --			end
 --		end
 
-	enable_cache_on_read is
+	enable_cache_on_read
 		do
 			is_enabled_cache_on_read := True
 		end
 		
-	disable_cache_on_read is
+	disable_cache_on_read
 		do
 			is_enabled_cache_on_read := False
 		end
 		
-	enable_cache_on_write is
+	enable_cache_on_write
 		do 
 			is_enabled_cache_on_write := True 
 		end
 
-	disable_cache_on_write is
+	disable_cache_on_write
 		do 
 			is_enabled_cache_on_write := False 
 		end
@@ -160,44 +164,44 @@ feature -- Access
 
 feature {PO_ADAPTER, ESA_ACTION} -- Access
 
-	row : ANY is
+	row : ANY
 			-- Virtual row for objects : exact match queries.
 		deferred
 		end
 
-	pid_row : ANY is
+	pid_row : ANY
 			-- Virtual row for pids : multiple match queries.
 		deferred
 		end
 			
 feature {PO_ADAPTER} -- Access
 
-	Sql_exists : STRING is
+	Sql_exists : STRING
 			-- SQL query for 'exists'.
 		 deferred 
 		 end
 		
-	Sql_read : STRING  is
+	Sql_read : STRING
 			-- SQL query for 'read'.
 		 deferred 
 		 end
 
-	Sql_refresh : STRING  is
+	Sql_refresh : STRING
 			-- SQL query for 'refresh'.
 		 deferred 
 		 end
 
-	Sql_update : STRING  is
+	Sql_update : STRING
 			-- SQL query for 'update'.
 		 deferred 
 		 end
 
-	Sql_write : STRING is
+	Sql_write : STRING
 			-- SQL query for 'write'.
 		 deferred 
 		 end
 
-	Sql_delete : STRING is
+	Sql_delete : STRING
 			-- SQL query for 'delete'.
 		 deferred 
 		 end
@@ -223,12 +227,12 @@ feature -- Measurement
 
 feature -- Basic operations
 
-	create_pid_from_object (an_object: G) is
+	create_pid_from_object (an_object: G)
 			-- Create `last_pid' based on the content of `an_object'.
 		deferred
 		end
 
-	exists (pid: like last_pid): BOOLEAN is
+	exists (pid: like last_pid): BOOLEAN
 			-- Does an object identified by `pid' exist? Uses `Sql_exists'.
 		do
 			status.reset
@@ -249,7 +253,7 @@ feature -- Basic operations
 --			if not selection.is_allocatable then selection.terminate end
 		end
 
-	read (pid: like last_pid) is
+	read (pid: like last_pid)
 			-- Read an object identified by `pid'.  Uses `Sql_read'.
 		do
 			last_object := Void
@@ -287,7 +291,7 @@ feature -- Basic operations
 			end
 		end
 
-	refresh (object: like last_object) is
+	refresh (object: like last_object)
 			-- Refresh `object'.  Uses `Sql_refresh'.
 		do 
 			last_object := Void
@@ -314,7 +318,7 @@ feature -- Basic operations
 			end		
 		end
 
-	delete (object: like last_object) is
+	delete (object: like last_object)
 			-- Delete `object' from datastore.  Uses `Sql_delete'.
 		do  
 			last_object := Void
@@ -337,7 +341,7 @@ feature -- Basic operations
 			end
 		end
 
-	update (object: like last_object) is
+	update (object: like last_object)
 			-- Update `object' on datastore. Uses `Sql_update'.
 		do  
 			current_action := Action_none
@@ -366,7 +370,7 @@ feature -- Basic operations
 			end		
 		end
 
-	write (object: like last_object) is
+	write (object: like last_object)
 			-- Write `object' on datastore. Uses `Sql_write'.
 		do
 			current_action := Action_none
@@ -395,37 +399,37 @@ feature -- Basic operations
 	
 feature {PO_ADAPTER} -- Basic operations
 
-	init_parameters_for_exists (pid : like last_pid) is
+	init_parameters_for_exists (pid : like last_pid)
 			-- Initialize parameters of `Sql_exists' with information from `pid'.
 		deferred
 		end
 
-	init_parameters_for_read (pid : like last_pid) is
+	init_parameters_for_read (pid : like last_pid)
 			-- Initialize parameters of `Sql_read' with information from `pid'.
 		deferred
 		end
 
-	init_parameters_for_refresh (pid : like last_pid) is
+	init_parameters_for_refresh (pid : like last_pid)
 			-- Initialize parameters of `Sql_refresh' with information from `pid'.
 		deferred
 		end
 
-	init_parameters_for_delete (pid : like last_pid) is
+	init_parameters_for_delete (pid : like last_pid)
 			-- Initialize parameters of `Sql_delete' with information from `pid'.
 		deferred
 		end
 
-	init_parameters_for_write (object : like last_object; pid : like last_pid) is
+	init_parameters_for_write (object : like last_object; pid : like last_pid)
 			-- Initialize parameters of `Sql_write' with information from `object' and `pid'.
 		deferred
 		end
 
-	init_parameters_for_update (object : like last_object; pid : like last_pid) is
+	init_parameters_for_update (object : like last_object; pid : like last_pid)
 			-- Initialize parameters of `Sql_update' with information from `object' and `pid'.
 		deferred
 		end
 
-	create_object_from_row is
+	create_object_from_row
 			-- Create object and just ensure invariant.
 
 		require
@@ -436,7 +440,7 @@ feature {PO_ADAPTER} -- Basic operations
 			adapted_count: last_object /= Void
 		end
 
-	create_pid_from_pid_row is
+	create_pid_from_pid_row
 			-- Create `last_object' and just ensure invariant.
 
 		require
@@ -447,27 +451,27 @@ feature {PO_ADAPTER} -- Basic operations
 			adapted_count: last_pid /= Void
 		end
 
-	create_row is
+	create_row
 			-- Create `row' object.
 		deferred
 		ensure
 			row_not_void: row /= Void
 		end
 		
-	create_pid_row is
+	create_pid_row
 			-- Create `pid_row' object.
 		deferred
 		ensure
 			pid_row_not_void: pid_row /= Void
 		end
 		
-	create_cursor is
+	create_cursor
 			-- Create cursor on result-set.
 		do
 			create last_cursor.make
 		end
 		
-	add_pid_to_cursor is
+	add_pid_to_cursor
 			-- Extend last_cursor with a PO_REFERENCE p, with p.pid initialized to `last_pid'.
 		local
 			ref : PO_REFERENCE[G]
@@ -477,7 +481,7 @@ feature {PO_ADAPTER} -- Basic operations
 			last_cursor.add_reference (ref)
 		end
 		
-	add_object_to_cursor is
+	add_object_to_cursor
 			-- Extend last_cursor with a PO_REFERENCE p, with p.pid initialized to `last_pid'.
 		local
 			ref : PO_REFERENCE[G]
@@ -487,7 +491,7 @@ feature {PO_ADAPTER} -- Basic operations
 			last_cursor.add_reference (ref)
 		end
 
-	fill_object_from_row is
+	fill_object_from_row
 			-- Fill `last_object' using `row' content.
 		require
 			row_not_void: row /= Void
@@ -495,7 +499,7 @@ feature {PO_ADAPTER} -- Basic operations
 		deferred
 		end
 
-	read_one (sql : STRING) is 
+	read_one (sql : STRING) 
 			-- Exact-match reading facility.  Calls `create_object_from_row', `fill_object_from_row' for the result.
 		do
 			status.reset
@@ -513,7 +517,7 @@ feature {PO_ADAPTER} -- Basic operations
 			end		
 		end
 	
-	read_pid_collection (sql : STRING) is
+	read_pid_collection (sql : STRING)
 			-- Collection reading facility. A new cursor is created. Calls `create_pid_from_row', `add_pid_to_cursor' for each result.
 			-- 
 		require
@@ -522,7 +526,7 @@ feature {PO_ADAPTER} -- Basic operations
 			execute_and_load (sql, pid_row, create {ESA_READ_PID_COLLECTION_ACTION}.make (Current))--agent execute_read_collection_pid_procedure (row))
 		end
 
-	read_object_collection (sql : STRING) is
+	read_object_collection (sql : STRING)
 		require
 			sql_not_void: sql /= Void
 		do
@@ -531,13 +535,13 @@ feature {PO_ADAPTER} -- Basic operations
 		
 feature {ESA_ACTION} -- Callbacks
 
-	execute_exists_procedure (a_row : like row; an_object : like last_object) is
+	execute_exists_procedure (a_row : like row; an_object : like last_object)
 			do
 				selection.object_convert (Current)
 				selection.cursor_to_object				
 			end
 	
-	execute_read_procedure is
+	execute_read_procedure
 			do
 				selection.object_convert (row)
 				selection.cursor_to_object
@@ -550,7 +554,7 @@ feature {ESA_ACTION} -- Callbacks
 				end
 			end
 	
-	execute_read_collection_pid_procedure (a_row : like pid_row) is
+	execute_read_collection_pid_procedure (a_row : like pid_row)
 			do
 				selection.object_convert (a_row)
 				selection.cursor_to_object
@@ -561,7 +565,7 @@ feature {ESA_ACTION} -- Callbacks
 				end
 			end
 	
-	execute_read_collection_object_procedure is --(a_row : like row) is
+	execute_read_collection_object_procedure --(a_row : like row) is
 			do
 --				selection.object_convert (a_row)
 				selection.cursor_to_object
@@ -573,7 +577,7 @@ feature {ESA_ACTION} -- Callbacks
 				end
 			end
 	
-	execute_refresh_procedure (a_row : like row) is
+	execute_refresh_procedure (a_row : like row)
 			do
 				selection.object_convert (a_row)
 				selection.cursor_to_object
@@ -588,7 +592,7 @@ feature  {NONE} -- Implementation
 	selection : DB_SELECTION
 			-- EiffelStore selection object
 	
-	execute is
+	execute
 		do
 			-- execute does not allow enforcing its precondition (True)
 			-- then delegate to a precondition-checked routine
@@ -648,13 +652,13 @@ feature  {NONE} -- Implementation
 
 	exists_count : INTEGER
 
-	Action_none, Action_exists, Action_read, Action_refresh, Action_read_collection_pid, Action_read_collection_object : INTEGER is unique
+	Action_none, Action_exists, Action_read, Action_refresh, Action_read_collection_pid, Action_read_collection_object : INTEGER = unique
 	
 	current_action : INTEGER
 
 feature -- other services
 
-	execute_and_load (a_sql : STRING; a_row : ANY; a_procedure : like execute_agent) is
+	execute_and_load (a_sql : STRING; a_row : ANY; a_procedure : like execute_agent)
 			-- Execute 'a_sql' and load result-set using 'a_row' as row buffer,.
 			-- 'an_object' as business object to fill and, a_procedure as filling_procedure
 		require
@@ -676,7 +680,7 @@ feature -- other services
 			end		
 		end
 
-	string_from (s : STRING) : STRING is
+	string_from (s : STRING) : STRING
 			-- Create non-void string from s.
 		do
 			if s = Void then

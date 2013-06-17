@@ -1,4 +1,4 @@
-indexing
+note
 	description: "Virtual row on COPY Table."
 	author: "Paul G. Crismer"
 	date: "$Date$"

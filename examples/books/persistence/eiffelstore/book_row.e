@@ -1,4 +1,4 @@
-indexing
+note
 	description: "Virtual Row on BOOK table "
 	author: "Paul G. Crismer"
 	date: "$Date$"

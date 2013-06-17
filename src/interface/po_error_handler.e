@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -19,7 +19,7 @@ create
 
 feature -- Basic operations
 
-	report_datastore_error (an_adapter, an_access_name : STRING; a_code : INTEGER; a_message : STRING) is
+	report_datastore_error (an_adapter, an_access_name : STRING; a_code : INTEGER; a_message : STRING)
 			-- Datastore error in `an_adapter_class'.`an_access_name' : error `a_code' with `a_message'.
 		require
 			an_adapter_not_void: an_adapter /= Void
@@ -32,7 +32,7 @@ feature -- Basic operations
 			report_error (error)
 		end
 
-	report_non_conformant_pid (an_adapter, an_access_name, expected_class_name, actual_class_name : STRING) is
+	report_non_conformant_pid (an_adapter, an_access_name, expected_class_name, actual_class_name : STRING)
 			-- Non conformant pid in `an_adapter_class'.`an_access_name' : got `actual_class_name' instead of `expected_class_name'.
 		require
 			an_adapter_not_void: an_adapter /= Void
@@ -46,7 +46,7 @@ feature -- Basic operations
 			report_error (error)
 		end
 
-	report_could_not_create_object (an_adapter, an_access_name, persistent_class_name : STRING) is
+	report_could_not_create_object (an_adapter, an_access_name, persistent_class_name : STRING)
 			-- Could not create instance of `persistent_class_name' in `an_adapter'.`an_access_name'.
 		require
 			an_adapter_not_void: an_adapter /= Void
@@ -59,7 +59,7 @@ feature -- Basic operations
 			report_error (error)
 		end
 
-	report_could_not_find_adapter (a_persistent_class_name, a_class, a_routine : STRING) is
+	report_could_not_find_adapter (a_persistent_class_name, a_class, a_routine : STRING)
 			-- Could not find adapter for `a_persistent_class_name' in {`a_class'}.`a_routine'.
 		require
 			a_persistent_class_name_not_void: a_persistent_class_name /= Void
@@ -72,7 +72,7 @@ feature -- Basic operations
 			report_error (error)
 		end
 
-	report_could_not_refresh_object (an_adapter : STRING; object : PO_PERSISTENT) is
+	report_could_not_refresh_object (an_adapter : STRING; object : PO_PERSISTENT)
 			-- Could not refresh `object' in `an_adapter' because no data have been found.
 		require
 			an_adapter_not_void: an_adapter /= Void
@@ -84,7 +84,7 @@ feature -- Basic operations
 			create error.make_could_not_refresh_object (an_adapter, object)
 		end
 
-	report_connection_error (datastore_name  : STRING; a_code : INTEGER; a_message : STRING) is
+	report_connection_error (datastore_name  : STRING; a_code : INTEGER; a_message : STRING)
 			-- Datastore connection error to `datastore_name' : error `a_code' with `a_message'.
 		require
 			datastore_name_not_void: datastore_name /= Void

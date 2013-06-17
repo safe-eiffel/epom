@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -13,16 +13,16 @@ class BORROWER
 inherit
 
 	PO_PERSISTENT
-	
+
 	BORROWER_PERSISTENT_CLASS_NAME
-	
+
 create
 
 	make
-	
+
 feature -- Initialization
 
-	make (an_id : INTEGER; a_name, an_address : STRING) is
+	make (an_id : INTEGER; a_name, an_address : STRING)
 			-- Make using `an_id', `a_name', `an_address'.
 		require
 			an_id_stricly_positive: an_id > 0
@@ -37,20 +37,20 @@ feature -- Initialization
 			name_set: name = a_name
 			address_set: address = an_address
 		end
-		
+
 feature -- Access
 
 	id : INTEGER
-		
+
 	name : STRING
-	
+
 	address : STRING
-	
-	borrowed_copies : DS_LIST [COPY] is
+
+	borrowed_copies : detachable DS_LIST [COPY]
 		do
 			--|FIXME: TODO
 		end
-		
+
 invariant
 
 	id_striclty_positive: id > 0

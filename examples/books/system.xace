@@ -9,6 +9,7 @@
 		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
 		date:        "$Date $"
 		revision:    "$Revision$"
+		voidsafety:  confident
 	</description>
 
 	<root class="BOOKS_APPLICATION" creation="make"/>
@@ -31,10 +32,11 @@
 			<cluster name="ecli"/>
 		</cluster>
 	</cluster>
+		<option name="full_class_checking" value="true"/>
+		<option name="void_safety" value="on_demand"/>
+		<option name="attached_by_default" value="true"/>
 
-	<mount location="${EPOM}/library.xace"/>
-	<mount location="${ECLI}/library.xace" unless="${EIFFELSTORE}"/>
-	<mount location="${EPOM}/implementation/eiffelstore/eiffelstore.xace" if="${EIFFELSTORE}"/>
-	<mount location="${GOBO}/library/library.xace"/>
-	<mount location="${GOBO}/library/kernel.xace"/>
+	<mount location="${EPOM}/library-confident.xace"/>
+	<mount location="${ECLI}/library-confident.xace"/>
+	<mount location="${ECLI}/xace/gobo-core-confident.xace"/>
 </system>

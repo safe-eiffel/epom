@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -24,52 +24,52 @@ feature {NONE} -- Framework - Access
 
 feature -- Status report
 
-	can_write : BOOLEAN is do Result := False end
-	can_update : BOOLEAN is do Result := False end
-	can_delete : BOOLEAN is do Result := False end
-	can_refresh : BOOLEAN is do Result := False end
-	can_read : BOOLEAN is do Result := False end
+	can_write : BOOLEAN do Result := False end
+	can_update : BOOLEAN do Result := False end
+	can_delete : BOOLEAN do Result := False end
+	can_refresh : BOOLEAN do Result := False end
+	can_read : BOOLEAN do Result := False end
 
 feature -- Basic operations
 
-	read (pid: like last_pid) is
+	read (pid: like last_pid)
 		do
 			do_nothing
 		end
 
-	update (object: like object_anchor) is
+	update (object: attached like object_anchor)
 		do
 			do_nothing
 		end
 
-	refresh (object: like object_anchor) is
+	refresh (object: attached like object_anchor)
 		do
 			do_nothing
 		end
 
-	write (object: like object_anchor)  is
+	write (object: attached like object_anchor)
 		do
 			do_nothing
 		end
 
-	delete (object: like object_anchor) is
+	delete (object: attached like object_anchor)
 		do
 			do_nothing
 		end
 
 feature {PO_DATASTORE} -- Framework - Basic operations
 
-	on_adapter_connected is
+	on_adapter_connected
 		do
 			do_nothing
 		end
 
-	on_adapter_disconnect is
+	on_adapter_disconnect
 		do
 			do_nothing
 		end
 
-	create_error_handler is
+	create_error_handler
 		do
 			create error_handler.make_standard
 		end

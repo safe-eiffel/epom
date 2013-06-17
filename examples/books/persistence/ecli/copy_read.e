@@ -1,10 +1,12 @@
-indexing
+note
 
 	
 		description: "Read copy"
 	
 	status: "Cursor/Query automatically generated for 'COPY_READ'. DO NOT EDIT!"
-	generated: "2007/01/30 15:29:38.766"
+	generated: "2012/10/16 08:34:16.625"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\copy.xml"
 
 class COPY_READ
 
@@ -19,13 +21,13 @@ create
 
 feature  -- -- Access
 
-	parameters_object: COPY_ID
+	parameters_object: detachable COPY_ID
 
 	item: COPY_ROW
 
 feature  -- -- Element change
 
-	set_parameters_object (a_parameters_object: COPY_ID) is
+	set_parameters_object (a_parameters_object: COPY_ID)
 			-- set `parameters_object' to `a_parameters_object'
 		require
 			a_parameters_object_not_void: a_parameters_object /= Void
@@ -40,7 +42,7 @@ feature  -- -- Element change
 
 feature  -- Constants
 
-	definition: STRING is "[
+	definition: STRING = "[
 select isbn, serial_number, LOC_STORE, LOC_SHELF, LOC_ROW, BORROWER 
 from COPY 
 where isbn=?isbn and serial_number=?serial_number
@@ -48,20 +50,20 @@ where isbn=?isbn and serial_number=?serial_number
 
 feature {NONE} -- Implementation
 
-	create_buffers is
+	create_buffers
 			-- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results
 		do
 			create item.make
-			create buffers.make (1,6)
-			buffers.put (item.isbn, 1)
-			buffers.put (item.serial_number, 2)
-			buffers.put (item.loc_store, 3)
-			buffers.put (item.loc_shelf, 4)
-			buffers.put (item.loc_row, 5)
-			buffers.put (item.borrower, 6)
+			create buffers.make (1,0)
+			buffers.force (item.isbn, 1)
+			buffers.force (item.serial_number, 2)
+			buffers.force (item.loc_store, 3)
+			buffers.force (item.loc_shelf, 4)
+			buffers.force (item.loc_row, 5)
+			buffers.force (item.borrower, 6)
 			set_results (buffers)
 		end
 
-end -- class COPY_READ
+end

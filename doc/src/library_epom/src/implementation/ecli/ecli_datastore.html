@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECLI_DATASTORE (EPOM)</title>
+<link rel="stylesheet" type="text/css" href="../../../../style.css"/>
+</head>
+<body>
+<div class="header">
+<div class="header-title" id="top"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../../index.html" class="button">Overview</a>
+<a href="../../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../../classes.all.html" class="button">Classes</a>
+<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../../index-e.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+<hr/>
+<div class="cluster-small"><a href="../../../../library_epom/cluster.epom_library_epom.html" class="cluster-name">library_epom</a>.<a href="../../../../library_epom/src/cluster.epom_src.html" class="cluster-name">src</a>.<a href="../../../../library_epom/src/implementation/cluster.epom_implementation.html" class="cluster-name">implementation</a>.<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="cluster-name">ecli</a></div>
+<h1>Class ECLI_DATASTORE</h1>
+<hr/>
+<h2>Direct ancestors</h2>
+<div>
+<a href="../../../../library_epom/src/interface/po_datastore.html" class="class-name">PO_DATASTORE</a></div>
+<hr/>
+<div class="feature-list">
+<h2 id="features-list">Creation</h2>
+<ul class="feature-list-features">
+<li><a href="#creator-make" class="feature-name">make</a></li>
+</ul>
+<h2>Features</h2>
+<ul class="feature-list-clauses">
+<li>
+<strong><a href="#clause-Access">Access</a></strong>
+<ul class="feature-list-features">
+<li><a href="#adapters" class="feature-name">adapters</a></li>
+<li><a href="#error_handler" class="feature-name">error_handler</a></li>
+<li><a href="#session" class="feature-name">session</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_report">Status&nbsp;report</a></strong>
+<ul class="feature-list-features">
+<li><a href="#can_begin_transaction" class="feature-name">can_begin_transaction</a></li>
+<li><a href="#is_connected" class="feature-name">is_connected</a></li>
+<li><a href="#is_error" class="feature-name">is_error</a></li>
+<li><a href="#valid_connection_parameters" class="feature-name">valid_connection_parameters</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_setting">Status&nbsp;setting</a></strong>
+<ul class="feature-list-features">
+<li><a href="#connect" class="feature-name">connect</a></li>
+<li><a href="#disconnect" class="feature-name">disconnect</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Element_change">Element&nbsp;change</a></strong>
+<ul class="feature-list-features">
+<li><a href="#set_error_handler" class="feature-name">set_error_handler</a></li>
+<li><a href="#set_simple_login_strategy" class="feature-name">set_simple_login_strategy</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Basic_operations">Basic&nbsp;operations</a></strong>
+<ul class="feature-list-features">
+<li><a href="#begin_transaction" class="feature-name">begin_transaction</a></li>
+<li><a href="#commit_transaction" class="feature-name">commit_transaction</a></li>
+<li><a href="#rollback_transaction" class="feature-name">rollback_transaction</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#invariant">Invariants</a></h2>
+</div>
+<h2 class="keyword">note</h2>
+<div class="indexing-list indent">
+<h3 class="indexing-tag">description</h3>
+<div class="indent">
+<div class="comment">
+<p>
+ECLI implementation of <a href="../../../../library_epom/src/interface/po_datastore.html" class="class-name">PO_DATASTORE</a>.
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">copyright</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Copyright (c) 2004, Paul G. Crismer and others
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">license</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Eiffel Forum License v2 (see forum.txt)
+</p>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">class</span>
+<span class="class-name">ECLI_DATASTORE</span>
+</h2>
+<h2 class="keyword">inherit</h2>
+<div class="indent">
+<div><a href="../../../../library_epom/src/interface/po_datastore.html" class="class-name">PO_DATASTORE</a></div>
+</div>
+<h2>
+<a id="create"><span class="keyword">create</span></a>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="creator-make"><span class="feature-name">make</span></a> <span class="symbol">(</span>a_session<span class="symbol">:</span><span class="class-name">ECLI_SESSION</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Initialise with <span class="feature-name-comment">a_session</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">a_session_not_void:</span> a_session<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">a_session_ready_to_connect:</span> a_session<span class="symbol">.</span>is_ready_to_connect <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">session_set:</span> session_impl<span class="symbol">=</span>a_session <br/>
+<span class="assertion-tag">adapters_not_void:</span> <a href="../../../../library_epom/src/implementation/ecli/ecli_datastore.html#adapters" class="feature-name">adapters</a><span class="symbol">/=</span><span class="special-keyword">Void</span><span class="keyword">and</span><span class="keyword">then</span><a href="../../../../library_epom/src/implementation/ecli/ecli_datastore.html#adapters" class="feature-name">adapters</a><span class="symbol">.</span>is_empty <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Access" class="keyword">feature</a>
+<span class="comment">-- Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="adapters"><span class="feature-name">adapters</span></a><span class="symbol">:</span><span class="class-name">DS_LIST</span><span class="symbol">[</span><a href="../../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a><span class="symbol">[</span><a href="../../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a><span class="symbol">]</span><span class="symbol">]</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+--<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="error_handler"><span class="feature-name">error_handler</span></a><span class="symbol">:</span><a href="../../../../library_epom/src/implementation/ecli/po_ecli_error_handler.html" class="class-name">PO_ECLI_ERROR_HANDLER</a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="session"><span class="feature-name">session</span></a><span class="symbol">:</span><span class="class-name">ECLI_SESSION</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Session Ecli.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_report" class="keyword">feature</a>
+<span class="comment">-- Status report</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="can_begin_transaction"><span class="feature-name">can_begin_transaction</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- can this datastore begin a new transaction ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_connected"><span class="feature-name">is_connected</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- is the datastore connected ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_error"><span class="feature-name">is_error</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- is there an error caused by the latest operation?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="valid_connection_parameters"><span class="feature-name">valid_connection_parameters</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- are the connection parameters valid ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_setting" class="keyword">feature</a>
+<span class="comment">-- Status setting</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="connect"><span class="feature-name">connect</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Connect to datastore.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="disconnect"><span class="feature-name">disconnect</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Disconnect from datastore.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Element_change" class="keyword">feature</a>
+<span class="comment">-- Element change</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="set_error_handler"><span class="feature-name">set_error_handler</span></a> <span class="symbol">(</span>an_error_handler<span class="symbol">:</span><span class="keyword">like</span><a href="../../../../library_epom/src/implementation/ecli/ecli_datastore.html#error_handler" class="feature-name">error_handler</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- 	<Precursor><br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="set_simple_login_strategy"><span class="feature-name">set_simple_login_strategy</span></a> <span class="symbol">(</span>login<span class="symbol">:</span><span class="class-name">ECLI_SIMPLE_LOGIN</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Safe setting of login strategy<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">login_not_void:</span> login<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">not_connected:</span> <span class="keyword">not</span><a href="../../../../library_epom/src/implementation/ecli/ecli_datastore.html#is_connected" class="feature-name">is_connected</a> <br/>
+</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">login_strategy_set:</span> <a href="../../../../library_epom/src/implementation/ecli/ecli_datastore.html#session" class="feature-name">session</a><span class="symbol">.</span>login_strategy<span class="symbol">=</span>login <br/>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Basic_operations" class="keyword">feature</a>
+<span class="comment">-- Basic operations</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="begin_transaction"><span class="feature-name">begin_transaction</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Begin a new transaction.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="commit_transaction"><span class="feature-name">commit_transaction</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Commits the current transaction.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="rollback_transaction"><span class="feature-name">rollback_transaction</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Rollbacks the current transaction.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2 class="keyword" id="invariant">invariant</h2>
+<div class="indent">
+<span class="assertion-tag">session_not_void:</span> <a href="../../../../library_epom/src/implementation/ecli/ecli_datastore.html#session" class="feature-name">session</a><span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+<span class="keyword">end</span>
+<hr/>
+<p>
+<br/>
+</p>
+<div class="footer">
+<div class="header-title"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../../index.html" class="button">Overview</a>
+<a href="../../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../../classes.all.html" class="button">Classes</a>
+<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../../index-e.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+</body>
+</html>

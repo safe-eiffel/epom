@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -22,7 +22,7 @@ feature -- Access
 			
 feature -- Basic operations
 		
-	read_from_isbn_and_number (isbn : STRING; number : INTEGER) is
+	read_from_isbn_and_number (isbn : STRING; number : INTEGER)
 			--  read from  `isbn', `serial_number'
 		require
 			isbn_not_void:  isbn /= Void
@@ -30,14 +30,14 @@ feature -- Basic operations
 		deferred
 		end
 	
-	read_from_isbn (isbn : STRING) is
+	read_from_isbn (isbn : STRING)
 			-- Read copies identified by `isbn'.
 		require
 			isbn_not_void:  isbn /= Void
 		deferred
 		end
 		
-	read_borrowed is
+	read_borrowed
 			-- Read all borrowed copies.
 		deferred
 		end

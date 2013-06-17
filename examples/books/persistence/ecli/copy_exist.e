@@ -1,10 +1,12 @@
-indexing
+note
 
 	
 		description: "Does a COPY exist?"
 	
 	status: "Cursor/Query automatically generated for 'COPY_EXIST'. DO NOT EDIT!"
-	generated: "2007/01/30 15:29:38.750"
+	generated: "2012/10/16 08:34:16.609"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\copy.xml"
 
 class COPY_EXIST
 
@@ -19,13 +21,13 @@ create
 
 feature  -- -- Access
 
-	parameters_object: COPY_ID
+	parameters_object: detachable COPY_ID
 
 	item: EXISTS_COUNT
 
 feature  -- -- Element change
 
-	set_parameters_object (a_parameters_object: COPY_ID) is
+	set_parameters_object (a_parameters_object: COPY_ID)
 			-- set `parameters_object' to `a_parameters_object'
 		require
 			a_parameters_object_not_void: a_parameters_object /= Void
@@ -40,21 +42,21 @@ feature  -- -- Element change
 
 feature  -- Constants
 
-	definition: STRING is "[
+	definition: STRING = "[
 select count (*) as exists_count from COPY where isbn=?isbn and serial_number=?serial_number
 ]"
 
 feature {NONE} -- Implementation
 
-	create_buffers is
+	create_buffers
 			-- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results
 		do
 			create item.make
-			create buffers.make (1,1)
-			buffers.put (item.exists_count, 1)
+			create buffers.make (1,0)
+			buffers.force (item.exists_count, 1)
 			set_results (buffers)
 		end
 
-end -- class COPY_EXIST
+end

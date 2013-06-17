@@ -1,13 +1,12 @@
-indexing
+note
 
 	
 		description: "Read Borrower"
 	
-	warning: "Generated cursor 'BORROWER_READ' : DO NOT EDIT !"
-	author: "QUERY_ASSISTANT"
-	date: "$Date : $"
-	revision: "$Revision : $"
-	licensing: "See notice at end of class"
+	status: "Cursor/Query automatically generated for 'BORROWER_READ'. DO NOT EDIT!"
+	generated: "2012/10/16 08:36:39.437"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\borrower.xml"
 
 class BORROWER_READ
 
@@ -22,14 +21,14 @@ create
 
 feature  -- -- Access
 
-	parameters_object: BORROWER_ID
+	parameters_object: detachable BORROWER_ID
 
 	item: BORROWER_ROW
 
 feature  -- -- Element change
 
-	set_parameters_object (a_parameters_object: BORROWER_ID) is
-			-- Set `parameters_object' to `a_parameters_object'.
+	set_parameters_object (a_parameters_object: BORROWER_ID)
+			-- set `parameters_object' to `a_parameters_object'
 		require
 			a_parameters_object_not_void: a_parameters_object /= Void
 		do
@@ -42,22 +41,22 @@ feature  -- -- Element change
 
 feature  -- Constants
 
-	definition: STRING is " %
-% select id, name, address from borrower where id = ?id %
-% "
+	definition: STRING = "[
+select id, name, address from borrower where id = ?id
+]"
 
 feature {NONE} -- Implementation
 
-	create_buffers is
-			-- -- Creation of buffers
+	create_buffers
+			-- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results
 		do
 			create item.make
-			create buffers.make (1,3)
-			buffers.put (item.id, 1)
-			buffers.put (item.name, 2)
-			buffers.put (item.address, 3)
+			create buffers.make (1,0)
+			buffers.force (item.id, 1)
+			buffers.force (item.name, 2)
+			buffers.force (item.address, 3)
 			set_results (buffers)
 		end
 

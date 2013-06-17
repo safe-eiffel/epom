@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 	"[
@@ -28,7 +28,7 @@ inherit
 
 feature -- Access			
 
-	persistent_class_name: STRING is
+	persistent_class_name: STRING
 			-- Name of class for persistence that this PID identifies.
 			-- Used by PO_REFERENCE to obtain an adapter
 		deferred
@@ -36,7 +36,7 @@ feature -- Access
 
 feature -- Conversion
 
-	to_string : STRING is
+	to_string : STRING
 			-- Stringified PID made by appending.
 			-- class_name and any other identifying query separated by some separator character like ',' or '|'
 		obsolete "Use as_string instead."
@@ -47,7 +47,7 @@ feature -- Conversion
 			class_name_substring: Result.substring (1,persistent_class_name.count).is_equal (persistent_class_name)
 		end
 
-	as_string : STRING is
+	as_string : STRING
 			-- Stringified PID made by appending.
 			-- class_name and any other identifying query separated by some separator character like ',' or '|'
 		deferred
@@ -58,7 +58,7 @@ feature -- Conversion
 
 feature -- Comparison
 
-	is_equal (other : like Current) : BOOLEAN is
+	is_equal (other : like Current) : BOOLEAN
 			-- Comparison.
 		do
 			Result := (as_string.is_equal (other.as_string))

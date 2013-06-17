@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -20,26 +20,42 @@ create
 
 feature -- Access			
 
-	pid : PO_PID
+	pid : detachable PO_PID
 			-- identifier of persistent object
 
-	item : G is
+	attached_pid : attached like pid
+			-- Attached pid
+		require
+			is_identified: is_identified
+		do
+			check attached pid as l_result then
+				Result := l_result
+			end
+		end
+
+	item : G
 			-- Actual value of referenced item.
 		require
 			not_void: not is_void
+		local
+			l_res : detachable like item
 		do
-				if object = Void then
-					object := get_object
+				if attached object as l_object then
+					Result := l_object
+				else
+					check attached get_object as l_object then
+						Result := l_object
+						object := Result
+					end
 				end
-				Result := object
 		ensure
 			exists: Result /= Void
-			same_pid_when_persistent: Result.is_persistent implies Result.pid.is_equal (pid)
+			same_pid_when_persistent: pid /= Void implies (Result.is_persistent implies Result.pid.is_equal (attached_pid))
 		end
 
 feature -- Status report
 
-	is_void : BOOLEAN is
+	is_void : BOOLEAN
 			-- is this a 'Void' reference ?
 		do
 			Result := not is_identified or else not has_item
@@ -47,7 +63,7 @@ feature -- Status report
 			definition: Result = not is_identified or else not has_item
 		end
 
-	is_identified : BOOLEAN is
+	is_identified : BOOLEAN
 			-- is this reference identified by a pid ?
 		do
 			Result := pid /= Void
@@ -55,7 +71,7 @@ feature -- Status report
 			definition: Result = (pid /= Void)
 		end
 
-	has_item : BOOLEAN is
+	has_item : BOOLEAN
 			-- is this reference attached to an item ?
 		require
 			is_identified: is_identified
@@ -68,7 +84,7 @@ feature -- Status report
 
 feature {PO_ADAPTER, PO_PERSISTENT, PO_REFERENCE_ACCESS} -- Element change
 
-	set_pid_from_adapter (an_adapter : PO_ADAPTER[G]) is
+	set_pid_from_adapter (an_adapter : PO_ADAPTER[G])
 			-- Set `pid' to `an_adapter.pid'.
 		require
 			adapter_not_void: an_adapter /= Void
@@ -79,22 +95,22 @@ feature {PO_ADAPTER, PO_PERSISTENT, PO_REFERENCE_ACCESS} -- Element change
 			definition: pid = an_adapter.last_pid
 		end
 
-	set_item (an_object : G) is
+	set_item (an_object : G)
 			--  set `item' to `an_object'
 		require
 			an_object_not_void: an_object /= Void
 		do
 			object := an_object
 			if object.is_volatile then
-				pid := pid_for (object)
+				pid := pid_for (an_object)
 			else
-				pid := object.pid
+				pid := an_object.pid
 			end
 		ensure
 			item_set: item = an_object
 		end
 
-	make_void, reset is
+	make_void, reset
 			-- Reset reference.
 		do
 			pid := Void
@@ -103,20 +119,19 @@ feature {PO_ADAPTER, PO_PERSISTENT, PO_REFERENCE_ACCESS} -- Element change
 
 feature {NONE} -- Implementation
 
-	get_object : G is
+	is_read_done : BOOLEAN
+			-- Has a read operation been done ?
+
+	is_read_void : BOOLEAN
+
+	get_object : detachable G
 			-- Get object.
 		require
 			identified: is_identified
-		local
-			persistent_adapter : PO_ADAPTER[G]
 		do
 			persistence_manager.search_adapter (pid.persistent_class_name)
-			if persistence_manager.found then
-				persistent_adapter ?= persistence_manager.last_adapter
-				check
-					adapter_not_void: persistent_adapter /= Void
-				end
-				persistent_adapter.read (pid)
+			if persistence_manager.found and then attached {PO_ADAPTER[G]} persistence_manager.last_adapter as persistent_adapter then
+				persistent_adapter.read (attached_pid)
 				if persistent_adapter.last_cursor.count > 0 then
 					Result := persistent_adapter.last_cursor.first
 				else
@@ -125,12 +140,12 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	object : G
+	object : detachable G
 
-	pid_for (an_object : G) : PO_PID is
+	pid_for (an_object : G) : detachable PO_PID
 			-- Pid for  `an_object'.
 		local
-			persistent_adapter : PO_ADAPTER[G]
+			persistent_adapter : detachable PO_ADAPTER[G]
 		do
 			persistence_manager.search_adapter (an_object.persistent_class_name)
 			if persistence_manager.found then
@@ -145,7 +160,7 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	set_object (an_object : G) is
+	set_object (an_object : detachable G)
 			-- Set `object' to `an_object'.
 		do
 			object := an_object
@@ -153,6 +168,6 @@ feature {NONE} -- Implementation
 			object_set: object = an_object
 		end
 
-	default_value : G is do  end
-	
+	default_value : detachable G do  end
+
 end

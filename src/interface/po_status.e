@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -15,12 +15,20 @@ inherit
 	ANY
 		redefine
 			is_equal,
-			copy
+			copy,
+			default_create
+		end
+
+feature {} -- Initialization
+
+	default_create
+		do
+			create impl_message.make_empty
 		end
 
 feature -- Access
 
-	is_ok : BOOLEAN is
+	is_ok : BOOLEAN
 			-- was the last operation a success ?
 		do
 			Result := (status = status_ok or else is_warning)
@@ -28,7 +36,7 @@ feature -- Access
 			definition: Result = (status = status_ok or else is_warning)
 		end
 
-	is_error : BOOLEAN is
+	is_error : BOOLEAN
 			-- has the last operation led to an error ?
 		do
 			Result := (status = Status_error)
@@ -36,7 +44,7 @@ feature -- Access
 			definition: Result = (status = Status_error)
 		end
 
-	is_warning : BOOLEAN is
+	is_warning : BOOLEAN
 			-- has the last operation issued a warning ?
 		do
 			Result := (status = status_warning)
@@ -44,19 +52,19 @@ feature -- Access
 			definition: Result = (status = status_warning)
 		end
 
-	is_datastore : BOOLEAN is
+	is_datastore : BOOLEAN
 			-- is the current description related to a datastore operation ?
 		do
 			Result := impl_is_datastore
 		end
 
-	code : INTEGER is
+	code : INTEGER
 			-- Code describing the current error or warning.
 		do
 			Result := impl_code
 		end
 
-	message : STRING is
+	message : STRING
 			-- Message describing the current status.
 		do
 			if is_datastore then
@@ -72,7 +80,7 @@ feature -- Access
 
 feature -- Status report
 
-	valid_framework_error_code (some_code : INTEGER) : BOOLEAN is
+	valid_framework_error_code (some_code : INTEGER) : BOOLEAN
 		do
 			Result := (some_code >= error_none and then some_code <= error_could_not_find_adapter)
 		ensure
@@ -81,7 +89,7 @@ feature -- Status report
 
 feature {PO_STATUS_MANAGEMENT}-- Status setting
 
-	reset is
+	reset
 			-- Reset status.
 		do
 			set_ok
@@ -95,7 +103,7 @@ feature {PO_STATUS_MANAGEMENT}-- Status setting
 			no_message: message.is_equal ("")
 		end
 
-	set_datastore_warning (warning_code : INTEGER; warning_message : STRING) is
+	set_datastore_warning (warning_code : INTEGER; warning_message : STRING)
 		require
 			message_not_void: message /= Void
 		do
@@ -110,7 +118,7 @@ feature {PO_STATUS_MANAGEMENT}-- Status setting
 			is_datastore: is_datastore
 		end
 
-	set_framework_warning (warning_code : INTEGER; warning_message : STRING) is
+	set_framework_warning (warning_code : INTEGER; warning_message : STRING)
 		require
 			message_not_void: message /= Void
 		do
@@ -125,7 +133,7 @@ feature {PO_STATUS_MANAGEMENT}-- Status setting
 			not_is_datastore: not is_datastore
 		end
 
-	set_datastore_error (error_code : INTEGER; error_message : STRING) is
+	set_datastore_error (error_code : INTEGER; error_message : STRING)
 		require
 			message_not_void: message /= Void
 		do
@@ -140,7 +148,7 @@ feature {PO_STATUS_MANAGEMENT}-- Status setting
 			is_datastore: is_datastore
 		end
 
-	set_framework_error (error_code : INTEGER) is
+	set_framework_error (error_code : INTEGER)
 		require
 			error_code_within_bounds: valid_framework_error_code (error_code)
 		do
@@ -155,7 +163,7 @@ feature {PO_STATUS_MANAGEMENT}-- Status setting
 
 feature -- Duplication
 
-	copy (other : like Current) is
+	copy (other : like Current)
 		do
 			if other.is_ok then
 				set_ok
@@ -173,7 +181,7 @@ feature -- Duplication
 
 feature -- Comparison
 
-	is_equal (other : like Current) : BOOLEAN is
+	is_equal (other : like Current) : BOOLEAN
 		do
 			if  status = other .status
 					and then is_datastore = other.is_datastore
@@ -186,21 +194,21 @@ feature -- Comparison
 
 feature -- Constants
 
-	error_none : INTEGER is 0
+	error_none : INTEGER = 0
 
-	error_non_conformant_pid : INTEGER is 1
+	error_non_conformant_pid : INTEGER = 1
 			-- Pid type does not conform to expected one
 
-	error_invalid_pid_content : INTEGER is 2
+	error_invalid_pid_content : INTEGER = 2
 			-- Pid contains information of invalid type
 
-	error_could_not_create_object : INTEGER is 3
+	error_could_not_create_object : INTEGER = 3
 			-- Precondition to create object has not been met, or error while creating it
 
-	error_could_not_refresh_object : INTEGER is 4
+	error_could_not_refresh_object : INTEGER = 4
 			-- No data found while refreshing objects
 
-	error_could_not_find_adapter: INTEGER is 5
+	error_could_not_find_adapter: INTEGER = 5
 			-- Searched adaptor does not exists.
 
 feature {PO_STATUS} -- Implementation
@@ -209,44 +217,44 @@ feature {PO_STATUS} -- Implementation
 
 feature {NONE} -- Implementation
 
-	status_ok : INTEGER is 0
-	status_warning : INTEGER is 1
-	status_error : INTEGER is 2
+	status_ok : INTEGER = 0
+	status_warning : INTEGER = 1
+	status_error : INTEGER = 2
 
 	impl_is_datastore : BOOLEAN
 
 	impl_message : STRING
 
-	set_message (new_message : STRING) is
+	set_message (new_message : STRING)
 		do
 			impl_message := new_message
 		ensure
 			definition: impl_message = new_message
 		end
 
-	reset_message is do set_message (Meaning_none) end
+	reset_message do set_message (Meaning_none) end
 
-	set_is_datastore (value : BOOLEAN) is
+	set_is_datastore (value : BOOLEAN)
 		do
 			impl_is_datastore := value
 		ensure
 			is_datastore = Value
 		end
 
-	set_warning is do status := status_warning end
-	set_ok is do status := status_ok end
-	set_error is do status := status_error end
+	set_warning do status := status_warning end
+	set_ok do status := status_ok end
+	set_error do status := status_error end
 
 	impl_code : INTEGER
 
-	set_code (value : INTEGER) is
+	set_code (value : INTEGER)
 		do
 			impl_code := value
 		ensure
 			definition: code = value
 		end
 
-	error_meaning (a_code : INTEGER) : STRING is
+	error_meaning (a_code : INTEGER) : STRING
 			-- Error meaning for a non-datastore code.
 		require
 			not_is_datastore: not is_datastore
@@ -263,12 +271,12 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	meaning_none : STRING is ""
-	meaning_non_conformant_pid : STRING is "object.pid does not conform to Current.last_pid"
-	meaning_invalid_pid_content : STRING is "object.pid contains information of invalid type"
-	meaning_could_not_create_object : STRING is "last_object not created : creation precondition not met"
-	meaning_could_not_find_adapter: STRING is "Could not find adapter"
-	meaning_could_not_refresh_object : STRING is "Could not refresh object : nothing found in datastore"
+	meaning_none : STRING = ""
+	meaning_non_conformant_pid : STRING = "object.pid does not conform to Current.last_pid"
+	meaning_invalid_pid_content : STRING = "object.pid contains information of invalid type"
+	meaning_could_not_create_object : STRING = "last_object not created : creation precondition not met"
+	meaning_could_not_find_adapter: STRING = "Could not find adapter"
+	meaning_could_not_refresh_object : STRING = "Could not refresh object : nothing found in datastore"
 
 invariant
 

@@ -1,4 +1,4 @@
-indexing
+note
 	description: "Error handlers for ECLI queries/cursors."
 	author: ""
 	date: "$Date$"
@@ -17,7 +17,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make_tee (an_error_handler : UT_ERROR_HANDLER) is
+	make_tee (an_error_handler : UT_ERROR_HANDLER)
 			-- make a T with `an_error_handler'.
 		require
 			an_error_handler_not_void: an_error_handler /= Void
@@ -29,7 +29,7 @@ feature {NONE} -- Initialization
 
 feature -- Basic operations
 
-	report_query_error (an_adapter, a_feature : STRING; a_query : ECLI_QUERY) is
+	report_query_error (an_adapter, a_feature : STRING; a_query : ECLI_QUERY)
 			-- Report Query error in {`an_adapter'}.`a_feature' for `a_query'.
 		require
 			an_adapter_not_void: an_adapter /= Void

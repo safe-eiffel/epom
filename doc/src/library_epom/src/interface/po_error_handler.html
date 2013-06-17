@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PO_ERROR_HANDLER (EPOM)</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css"/>
+</head>
+<body>
+<div class="header">
+<div class="header-title" id="top"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+<hr/>
+<div class="cluster-small"><a href="../../../library_epom/cluster.epom_library_epom.html" class="cluster-name">library_epom</a>.<a href="../../../library_epom/src/cluster.epom_src.html" class="cluster-name">src</a>.<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="cluster-name">interface</a></div>
+<h1>Class PO_ERROR_HANDLER</h1>
+<hr/>
+<h2>Direct ancestors</h2>
+<div>
+<span class="class-name">UT_ERROR_HANDLER</span></div>
+<hr/>
+<h2>Known direct descendants</h2>
+<div>
+<a href="../../../library_epom/src/implementation/ecli/po_ecli_error_handler.html" class="class-name">PO_ECLI_ERROR_HANDLER</a></div>
+<hr/>
+<div class="feature-list">
+<h2 id="features-list">Features</h2>
+<ul class="feature-list-clauses">
+<li>
+<strong><a href="#clause-Basic_operations">Basic&nbsp;operations</a></strong>
+<ul class="feature-list-features">
+<li><a href="#report_connection_error" class="feature-name">report_connection_error</a></li>
+<li><a href="#report_could_not_create_object" class="feature-name">report_could_not_create_object</a></li>
+<li><a href="#report_could_not_find_adapter" class="feature-name">report_could_not_find_adapter</a></li>
+<li><a href="#report_could_not_refresh_object" class="feature-name">report_could_not_refresh_object</a></li>
+<li><a href="#report_datastore_error" class="feature-name">report_datastore_error</a></li>
+<li><a href="#report_non_conformant_pid" class="feature-name">report_non_conformant_pid</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#invariant">Invariants</a></h2>
+</div>
+<h2 class="keyword">note</h2>
+<div class="indexing-list indent">
+<h3 class="indexing-tag">description</h3>
+<div class="indent">
+<div class="comment">
+<p>
+EPOM error handlers.
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">copyright</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Copyright (c) 2004, Paul G. Crismer and others
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">license</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Eiffel Forum License v2 (see forum.txt)
+</p>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">class</span>
+<span class="class-name">PO_ERROR_HANDLER</span>
+</h2>
+<h2 class="keyword">inherit</h2>
+<div class="indent">
+<div><span class="class-name">UT_ERROR_HANDLER</span></div>
+</div>
+<h2>
+<a id="clause-Basic_operations" class="keyword">feature</a>
+<span class="comment">-- Basic operations</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="report_connection_error"><span class="feature-name">report_connection_error</span></a> <span class="symbol">(</span>datastore_name <span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">;</span>a_code<span class="symbol">:</span><span class="class-name">INTEGER</span><span class="symbol">;</span>a_message<span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Datastore connection error to <span class="feature-name-comment">datastore_name</span> : error <span class="feature-name-comment">a_code</span> with <span class="feature-name-comment">a_message</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">datastore_name_not_void:</span> datastore_name<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">a_message_not_void:</span> a_message<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="report_could_not_create_object"><span class="feature-name">report_could_not_create_object</span></a> <span class="symbol">(</span>an_adapter<span class="symbol">,</span>an_access_name<span class="symbol">,</span>persistent_class_name<span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Could not create instance of <span class="feature-name-comment">persistent_class_name</span> in <span class="feature-name-comment">an_adapter</span>.<span class="feature-name-comment">an_access_name</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">an_adapter_not_void:</span> an_adapter<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">an_access_name_not_void:</span> an_access_name<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">persistent_class_name_not_void:</span> persistent_class_name<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="report_could_not_find_adapter"><span class="feature-name">report_could_not_find_adapter</span></a> <span class="symbol">(</span>a_persistent_class_name<span class="symbol">,</span>a_class<span class="symbol">,</span>a_routine<span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Could not find adapter for <span class="feature-name-comment">a_persistent_class_name</span> in {<span class="feature-name-comment">a_class</span>}.<span class="feature-name-comment">a_routine</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">a_persistent_class_name_not_void:</span> a_persistent_class_name<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">a_class_not_void:</span> a_class<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">a_routine_not_void:</span> a_routine<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="report_could_not_refresh_object"><span class="feature-name">report_could_not_refresh_object</span></a> <span class="symbol">(</span>an_adapter<span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">;</span>object<span class="symbol">:</span><a href="../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Could not refresh <span class="feature-name-comment">object</span> in <span class="feature-name-comment">an_adapter</span> because no data have been found.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">an_adapter_not_void:</span> an_adapter<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">object_not_void:</span> object<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">object_is_persistent:</span> object<span class="symbol">.</span>is_persistent <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="report_datastore_error"><span class="feature-name">report_datastore_error</span></a> <span class="symbol">(</span>an_adapter<span class="symbol">,</span>an_access_name<span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">;</span>a_code<span class="symbol">:</span><span class="class-name">INTEGER</span><span class="symbol">;</span>a_message<span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Datastore error in <span class="feature-name-comment">an_adapter_class</span>.<span class="feature-name-comment">an_access_name</span> : error <span class="feature-name-comment">a_code</span> with <span class="feature-name-comment">a_message</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">an_adapter_not_void:</span> an_adapter<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">an_access_name_not_void:</span> an_access_name<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">a_message_not_void:</span> a_message<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="report_non_conformant_pid"><span class="feature-name">report_non_conformant_pid</span></a> <span class="symbol">(</span>an_adapter<span class="symbol">,</span>an_access_name<span class="symbol">,</span>expected_class_name<span class="symbol">,</span>actual_class_name<span class="symbol">:</span><span class="class-name">STRING</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Non conformant pid in <span class="feature-name-comment">an_adapter_class</span>.<span class="feature-name-comment">an_access_name</span> : got <span class="feature-name-comment">actual_class_name</span> instead of <span class="feature-name-comment">expected_class_name</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">an_adapter_not_void:</span> an_adapter<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">an_access_name_not_void:</span> an_access_name<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">expected_class_name_not_void:</span> expected_class_name<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">actual_class_name_not_void:</span> actual_class_name<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2 class="keyword" id="invariant">invariant</h2>
+<div class="indent">
+</div>
+<span class="keyword">end</span>
+<hr/>
+<p>
+<br/>
+</p>
+<div class="footer">
+<div class="header-title"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/interface/cluster.epom_interface.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+</body>
+</html>

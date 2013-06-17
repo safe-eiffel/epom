@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -25,7 +25,7 @@ create
 	
 feature -- Initialization
 
-	make (an_id : INTEGER) is
+	make (an_id : INTEGER)
 			-- Make for `an_id'.
 		require
 			an_id_gt0: an_id > 0
@@ -41,7 +41,7 @@ feature -- Access
 	
 feature -- Conversion
 
-	as_string : STRING is
+	as_string : STRING
 		do
 			create Result.make_from_string (persistent_class_name)
 			Result.append_character(',')

@@ -1,4 +1,4 @@
-indexing
+note
 	description: "Adapters using ECLI that implement read accesses with support for reading collections of objects"
 	author: "Paul G. Crismer"
 	date: "$Date$"
@@ -14,13 +14,13 @@ inherit
 
 feature {PO_ADAPTER} -- Access
 
-	read_pid_cursor : ECLI_CURSOR is
+	read_pid_cursor : ECLI_CURSOR
 		deferred
 		end
 
 feature {PO_ADAPTER} -- Basic operations
 
-	create_pid_from_read_pid_cursor is
+	create_pid_from_read_pid_cursor
 			-- Create `last_pid' based on the content of the read_pid_cursor.
 		require
 			last_pid_void: last_pid = Void
@@ -30,7 +30,7 @@ feature {PO_ADAPTER} -- Basic operations
 			adapted_count:  not status.is_error implies last_pid /= Void
 		end
 
-	create_last_cursor is
+	create_last_cursor
 			-- Create last_cursor on result-set.
 		do
 			create last_cursor.make
@@ -39,7 +39,7 @@ feature {PO_ADAPTER} -- Basic operations
 
 feature  {NONE} -- Implementation facilities for descendants
 
-	read_object_collection is
+	read_object_collection
 			-- Read a collection of objects from current `read_cursor'.
 		require
 			read_cursor_ready: read_cursor /= Void
@@ -55,9 +55,9 @@ feature  {NONE} -- Implementation facilities for descendants
 				loop
 					last_object := default_value
 					create_object_from_read_cursor (read_cursor, Void)
-					if last_object /= Void then
-						fill_object_from_read_cursor (read_cursor, last_object)
-						last_cursor.add_object (last_object)
+					if attached last_object as l_object then
+						fill_object_from_read_cursor (read_cursor, l_object)
+						last_cursor.add_object (l_object)
 					end
 					read_cursor.forth
 				end
@@ -67,7 +67,7 @@ feature  {NONE} -- Implementation facilities for descendants
 			last_object := default_value
 		end
 
-	read_pid_collection is
+	read_pid_collection
 			-- Read a collection of pid from current `read_pid_cursor'.
 			-- uses `create_pid_from_read_pid_cursor' and `add_pid_to_cursor'
 		require

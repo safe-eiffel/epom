@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -30,7 +30,7 @@ feature -- Status report
 	
 feature -- Basic operations
 
-	initialize_persistence_framework is
+	initialize_persistence_framework
 			-- 
 		require
 			not_initialized: not is_persistence_framework_initialized
@@ -68,7 +68,7 @@ feature -- Inapplicable
 
 feature {NONE} -- Implementation
 
-	pom : PO_MANAGER is do Result := persistence_manager end
+	pom : PO_MANAGER do Result := persistence_manager end
 
 	store : EIFFELSTORE_DATASTORE
 	

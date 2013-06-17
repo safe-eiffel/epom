@@ -1,10 +1,12 @@
-indexing
+note
 
 	
 		description: "read book by title"
 	
 	status: "Cursor/Query automatically generated for 'BOOK_READ_BY_TITLE'. DO NOT EDIT!"
-	generated: "2005/08/11 12:39:01.656"
+	generated: "2012/10/16 08:36:50.281"
+	generator_version: "v1.7"
+	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\book.xml"
 
 class BOOK_READ_BY_TITLE
 
@@ -19,13 +21,13 @@ create
 
 feature  -- -- Access
 
-	parameters_object: BOOK_READ_BY_TITLE_PARAMETERS
+	parameters_object: detachable BOOK_READ_BY_TITLE_PARAMETERS
 
 	item: BOOK_ROW
 
 feature  -- -- Element change
 
-	set_parameters_object (a_parameters_object: BOOK_READ_BY_TITLE_PARAMETERS) is
+	set_parameters_object (a_parameters_object: BOOK_READ_BY_TITLE_PARAMETERS)
 			-- set `parameters_object' to `a_parameters_object'
 		require
 			a_parameters_object_not_void: a_parameters_object /= Void
@@ -39,22 +41,23 @@ feature  -- -- Element change
 
 feature  -- Constants
 
-	definition: STRING is "select isbn, title, author from book where title like ?title%N%
-%	"
+	definition: STRING = "[
+select isbn, title, author from book where title like ?title
+]"
 
 feature {NONE} -- Implementation
 
-	create_buffers is
-			-- -- Creation of buffers
+	create_buffers
+			-- Creation of buffers
 		local
-			buffers: ARRAY[like value_anchor]
+			buffers: like results
 		do
 			create item.make
-			create buffers.make (1,3)
-			buffers.put (item.isbn, 1)
-			buffers.put (item.title, 2)
-			buffers.put (item.author, 3)
+			create buffers.make (1,0)
+			buffers.force (item.isbn, 1)
+			buffers.force (item.title, 2)
+			buffers.force (item.author, 3)
 			set_results (buffers)
 		end
 
-end -- class BOOK_READ_BY_TITLE
+end

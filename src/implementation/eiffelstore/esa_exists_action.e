@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -47,7 +47,7 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
-	execute is
+	execute
 		do
 			adapter.execute_exists_procedure (adapter.row, adapter.last_object)
 		end

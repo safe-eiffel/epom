@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECLI_ADAPTER_COMMON_SKELETON (EPOM)</title>
+<link rel="stylesheet" type="text/css" href="../../../../style.css"/>
+</head>
+<body>
+<div class="header">
+<div class="header-title" id="top"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../../index.html" class="button">Overview</a>
+<a href="../../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../../classes.all.html" class="button">Classes</a>
+<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../../index-e.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+<hr/>
+<div class="cluster-small"><a href="../../../../library_epom/cluster.epom_library_epom.html" class="cluster-name">library_epom</a>.<a href="../../../../library_epom/src/cluster.epom_src.html" class="cluster-name">src</a>.<a href="../../../../library_epom/src/implementation/cluster.epom_implementation.html" class="cluster-name">implementation</a>.<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="cluster-name">ecli</a></div>
+<h1>Class ECLI_ADAPTER_COMMON_SKELETON</h1>
+<hr/>
+<h2>Direct ancestors</h2>
+<div>
+<a href="../../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a>, <a href="../../../../library_epom/src/interface/po_shared_manager.html" class="class-name">PO_SHARED_MANAGER</a>, <a href="../../../../library_epom/src/implementation/po_cache_use.html" class="class-name">PO_CACHE_USE</a></div>
+<hr/>
+<h2>Known direct descendants</h2>
+<div>
+<a href="../../../../library_epom/src/implementation/ecli/ecli_adapter_delete_skeleton.html" class="class-name">ECLI_ADAPTER_DELETE_SKELETON</a>, <a href="../../../../library_epom/src/implementation/ecli/ecli_adapter_read_skeleton.html" class="class-name">ECLI_ADAPTER_READ_SKELETON</a>, <a href="../../../../library_epom/src/implementation/ecli/ecli_adapter_refresh_skeleton.html" class="class-name">ECLI_ADAPTER_REFRESH_SKELETON</a>, <a href="../../../../library_epom/src/implementation/ecli/ecli_adapter_sink_skeleton.html" class="class-name">ECLI_ADAPTER_SINK_SKELETON</a>, <a href="../../../../library_epom/src/implementation/ecli/ecli_adapter_update_skeleton.html" class="class-name">ECLI_ADAPTER_UPDATE_SKELETON</a>, <a href="../../../../library_epom/src/implementation/ecli/ecli_adapter_write_skeleton.html" class="class-name">ECLI_ADAPTER_WRITE_SKELETON</a></div>
+<hr/>
+<div class="feature-list">
+<h2 id="features-list">Features</h2>
+<ul class="feature-list-clauses">
+<li>
+<strong><a href="#clause-Access">Access</a></strong>
+<ul class="feature-list-features">
+<li><a href="#datastore" class="feature-name">datastore</a></li>
+<li><a href="#last_cursor" class="feature-name">last_cursor</a></li>
+<li><a href="#error_handler" class="feature-name">error_handler</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Measurement">Measurement</a></strong>
+<ul class="feature-list-features">
+<li><a href="#cache_count" class="feature-name">cache_count</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_report">Status&nbsp;report</a></strong>
+<ul class="feature-list-features">
+<li><a href="#is_enabled_cache_on_read" class="feature-name">is_enabled_cache_on_read</a></li>
+<li><a href="#is_enabled_cache_on_write" class="feature-name">is_enabled_cache_on_write</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Element_change">Element&nbsp;change</a></strong>
+<ul class="feature-list-features">
+<li><a href="#set_datastore" class="feature-name">set_datastore</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Basic_operations">Basic&nbsp;operations</a></strong>
+<ul class="feature-list-features">
+<li><a href="#disable_cache_on_read" class="feature-name">disable_cache_on_read</a></li>
+<li><a href="#disable_cache_on_write" class="feature-name">disable_cache_on_write</a></li>
+<li><a href="#enable_cache_on_read" class="feature-name">enable_cache_on_read</a></li>
+<li><a href="#enable_cache_on_write" class="feature-name">enable_cache_on_write</a></li>
+<li><a href="#exists" class="feature-name">exists</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Framework__minus__Access">Framework&nbsp;-&nbsp;Access</a></strong>
+<ul class="feature-list-features">
+<li><a href="#last_object" class="feature-name">last_object</a></li>
+<li><a href="#last_pid" class="feature-name">last_pid</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#invariant">Invariants</a></h2>
+</div>
+<h2 class="keyword">note</h2>
+<div class="indexing-list indent">
+<h3 class="indexing-tag">description</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Common features of adapters using ECLI
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">copyright</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Copyright (c) 2004, Paul G. Crismer and others
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">license</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Eiffel Forum License v2 (see forum.txt)
+</p>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">deferred class</span>
+<span class="class-name">ECLI_ADAPTER_COMMON_SKELETON</span>
+<span class="non-bold"><span class="symbol">[</span>G<span class="symbol">-&gt;</span><a href="../../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a><span class="symbol">]</span> </span>
+</h2>
+<h2 class="keyword">inherit</h2>
+<div class="indent">
+<div>
+<a href="../../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a>
+<span class="symbol">[</span>G<span class="symbol">]</span> </div>
+<div>
+<a href="../../../../library_epom/src/implementation/po_cache_use.html" class="class-name">PO_CACHE_USE</a>
+<span class="symbol">[</span>G<span class="symbol">]</span> </div>
+</div>
+<h2>
+<a id="clause-Access" class="keyword">feature</a>
+<span class="comment">-- Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="datastore"><span class="feature-name">datastore</span></a><span class="symbol">:</span><a href="../../../../library_epom/src/implementation/ecli/ecli_datastore.html" class="class-name">ECLI_DATASTORE</a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- current datastore<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="last_cursor"><span class="feature-name">last_cursor</span></a><span class="symbol">:</span><a href="../../../../library_epom/src/implementation/po_reference_list_cursor.html" class="class-name">PO_REFERENCE_LIST_CURSOR</a><span class="symbol">[</span>G<span class="symbol">]</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Cursor the handles a linked list of <a href="../../../../library_epom/src/interface/po_reference.html" class="class-name">PO_REFERENCE</a>, i.e implementing load-on-demand of objects<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="error_handler"><span class="feature-name">error_handler</span></a><span class="symbol">:</span><a href="../../../../library_epom/src/implementation/ecli/po_ecli_error_handler.html" class="class-name">PO_ECLI_ERROR_HANDLER</a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Measurement" class="keyword">feature</a>
+<span class="comment">-- Measurement</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="cache_count"><span class="feature-name">cache_count</span></a><span class="symbol">:</span><span class="class-name">INTEGER</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Number of objects in cache.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_report" class="keyword">feature</a>
+<span class="comment">-- Status report</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="is_enabled_cache_on_read"><span class="feature-name">is_enabled_cache_on_read</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Are read objects inserted in cache ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="is_enabled_cache_on_write"><span class="feature-name">is_enabled_cache_on_write</span></a><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Are written objects inserted in cache ?<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Element_change" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../../library_epom/src/interface/po_launcher.html" class="class-name">PO_LAUNCHER</a><span class="symbol">}</span>
+<span class="comment">-- Element change</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="set_datastore"><span class="feature-name">set_datastore</span></a> <span class="symbol">(</span>a_datastore<span class="symbol">:</span><a href="../../../../library_epom/src/implementation/ecli/ecli_datastore.html" class="class-name">ECLI_DATASTORE</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Basic_operations" class="keyword">feature</a>
+<span class="comment">-- Basic operations</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="disable_cache_on_read"><span class="feature-name">disable_cache_on_read</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="disable_cache_on_write"><span class="feature-name">disable_cache_on_write</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="enable_cache_on_read"><span class="feature-name">enable_cache_on_read</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="enable_cache_on_write"><span class="feature-name">enable_cache_on_write</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="exists"><span class="feature-name">exists</span></a> <span class="symbol">(</span>a_pid<span class="symbol">:</span><a href="../../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span><span class="symbol">:</span><span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Does an object identified by <span class="feature-name-comment">a_pid</span> exist? Uses <span class="feature-name-comment">Sql_exists</span>.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Framework__minus__Access" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a><span class="symbol">}</span>
+<span class="comment">-- Framework - Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="last_object"><span class="feature-name">last_object</span></a><span class="symbol">:</span><span class="keyword">detachable</span>G 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Last created object<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">feature</span>
+<span class="symbol">{</span><a href="../../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a><span class="symbol">, </span><a href="../../../../library_epom/src/interface/po_cursor.html" class="class-name">PO_CURSOR</a><span class="symbol">, </span><a href="../../../../library_epom/src/interface/po_reference.html" class="class-name">PO_REFERENCE</a><span class="symbol">, </span><a href="../../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a><span class="symbol">, </span><a href="../../../../library_epom/src/interface/po_reference_access.html" class="class-name">PO_REFERENCE_ACCESS</a><span class="symbol">}</span>
+<span class="comment">-- Framework - Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="last_pid"><span class="feature-name">last_pid</span></a><span class="symbol">:</span><span class="keyword">detachable</span><a href="../../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Last created pid<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2 class="keyword" id="invariant">invariant</h2>
+<div class="indent">
+</div>
+<span class="keyword">end</span>
+<hr/>
+<p>
+<br/>
+</p>
+<div class="footer">
+<div class="header-title"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../../index.html" class="button">Overview</a>
+<a href="../../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../../classes.all.html" class="button">Classes</a>
+<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../../index-e.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+</body>
+</html>

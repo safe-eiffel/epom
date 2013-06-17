@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -57,11 +57,11 @@ create
 
 feature {PO_ADAPTER}-- Access
 
-	last_pid : BOOK_PID
+	last_pid : detachable BOOK_PID
 
 feature {NONE}-- Basic operations
 
-	create_pid_from_object (b : like object_anchor) is
+	create_pid_from_object (b : attached like object_anchor)
 			--
 		do
 			create last_pid.make_from_isbn (b.isbn)
@@ -69,21 +69,21 @@ feature {NONE}-- Basic operations
 
 feature {PO_ADAPTER} -- Factory
 
-	create_pid_for_isbn (an_isbn : STRING) is
+	create_pid_for_isbn (an_isbn : STRING)
 		do
 			create last_pid.make_from_isbn (an_isbn)
 		end
 
 feature -- Basic operations
 
-	read_by_isbn (isbn : STRING) is
+	read_by_isbn (isbn : STRING)
 			-- Read by `isbn'.
 		do
 			create last_pid.make_from_isbn (isbn)
 			read (last_pid)
 		end
 
-	read_by_title (title : STRING) is
+	read_by_title (title : STRING)
 			-- Read by `title'.
 		require else
 			title_not_void:  title /= Void
@@ -102,7 +102,7 @@ feature -- Basic operations
 --			cursor.close
 		end
 
-	read_by_author (author_name : STRING) is
+	read_by_author (author_name : STRING)
 		do
 		end
 
@@ -110,17 +110,17 @@ feature -- Obsolete
 
 feature {NONE} -- Inapplicable
 
-	session : ECLI_SESSION is do Result := datastore.session end
+	session : ECLI_SESSION do Result := datastore.session end
 
 feature {NONE} -- Implementation
 
-	read_cursor : BOOK_READ_BY_ISBN
+	read_cursor : detachable BOOK_READ_BY_ISBN
 
-	update_query : BOOK_UPDATE
+	update_query : detachable BOOK_UPDATE
 
-	delete_query : BOOK_DELETE
+	delete_query : detachable BOOK_DELETE
 
-	on_adapter_connected is
+	on_adapter_connected
 		do
 			create read_cursor.make (session)
 			create write_query.make (session)
@@ -128,7 +128,7 @@ feature {NONE} -- Implementation
 			create delete_query.make (session)
 		end
 
-	on_adapter_disconnect is
+	on_adapter_disconnect
 		do
 			read_cursor.close
 			write_query.close
@@ -136,56 +136,59 @@ feature {NONE} -- Implementation
 			delete_query.close
 		end
 
-	init_parameters_for_read (a_pid : like last_pid) is
+	init_parameters_for_read (a_pid : like last_pid)
 			--
 		do
 			read_cursor.set_parameters_object (book_id_parameter (a_pid))
 		end
 
-	init_parameters_for_delete  (a_pid : like last_pid) is
+	init_parameters_for_delete  (a_pid : attached like last_pid)
 			--
 		do
 			delete_query.set_parameters_object (book_id_parameter (a_pid))
 		end
 
-	create_object_from_read_cursor (a_cursor : like read_cursor; a_pid : like last_pid) is
+	create_object_from_read_cursor (a_cursor : like read_cursor; a_pid : like last_pid)
 		do
 			create_last_object_from_book_row (a_cursor.item)
 		end
 
-	extend_cursor_from_book_row (row : BOOK_ROW) is
+	extend_cursor_from_book_row (row : BOOK_ROW)
 		do
 			create_last_object_from_book_row (row)
-			last_cursor.add_object (last_object)
+			last_cursor.add_object (attached_last_object)
 		end
 
-	create_last_object_from_book_row (row : BOOK_ROW) is
+	create_last_object_from_book_row (row : BOOK_ROW)
+		local
+			l_object : attached like last_object
 		do
-			create last_object.make (row.isbn.as_string, row.title.as_string, row.author.as_string)
-			create_pid_from_object (last_object)
-			last_object.set_pid (last_pid)
+			create l_object.make (row.isbn.as_string, row.title.as_string, row.author.as_string)
+			last_object := l_object
+			create_pid_from_object (l_object)
+			l_object.set_pid (attached_last_pid)
 		end
 
-	fill_object_from_read_cursor (a_cursor : like read_cursor; object : like last_object) is
+	fill_object_from_read_cursor (a_cursor : like read_cursor; object : like last_object)
 			--
 		do
 			do_nothing
 		end
 
-	init_parameters_for_write (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_write (object : like last_object; a_pid : like last_pid)
 		do
 			write_query.set_parameters_object (modify_parameters(object, a_pid))
 		end
 
-	init_parameters_for_update (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_update (object : attached like last_object; a_pid : attached like last_pid)
 			--
 		do
 			update_query.set_parameters_object (modify_parameters (object, a_pid))
 		end
 
-	write_query : BOOK_WRITE
+	write_query : detachable BOOK_WRITE
 
-	modify_parameters (object : like last_object; a_pid : like last_pid) : BOOK_MODIFY_PARAMETERS is
+	modify_parameters (object : like last_object; a_pid : like last_pid) : BOOK_MODIFY_PARAMETERS
 		do
 			create Result.make
 			Result.isbn.set_item (a_pid.isbn)
@@ -193,7 +196,7 @@ feature {NONE} -- Implementation
 			Result.title.set_item (object.title)
 		end
 
-	book_id_parameter (a_pid : like last_pid) : BOOK_ID is
+	book_id_parameter (a_pid : like last_pid) : BOOK_ID
 		do
 			create Result.make
 			Result.isbn.set_item (a_pid.isbn)

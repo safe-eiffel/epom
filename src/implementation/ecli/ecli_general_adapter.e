@@ -1,23 +1,28 @@
-indexing
+note
 
 	description:
 
-		"Ecli partial implementation of PO_ADAPTERs.%
-	%	%
-	%	If `cache_on_read' is true, the adapter caches all read objects until `clear_cache' is called.%
-	%	When `is_enabled_cache_on_write' is True then written object%
-	%	also are inserted in the cache."
+		
+	"[
+		Ecli partial implementation of PO_ADAPTERs.
+			
+		If `cache_on_read' is true, the adapter caches all read objects until `clear_cache' is called.
+		When `is_enabled_cache_on_write' is True then written object
+		also are inserted in the cache.
+	]"
 
 	authors: "Eric Fafchamps, Paul G. Crismer"
 
-	usage: "%N%
-	%	* Inherit from it.%N%
-	%	* Implement deferred features. %N%
-	%	* Redefine `last_pid'.%N%
-	%	%N%
-	%	Implement any other access (query) on objects.%N%
-	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
-	%	exact-match or multiple-match queries, respectively."
+	usage: 
+	"[
+		* Inherit from it.
+		* Implement deferred features.
+		* Redefine `last_pid'.
+		
+		Implement any other access (query) on objects.
+		Features `read_one' and `read_object_collection' can be used as facility routines for
+		exact-match or multiple-match queries, respectively.
+	]"
 
 	date: "$Date$"
 	revision: "$Revision$"
@@ -42,43 +47,43 @@ feature -- Access
 
 feature {PO_ADAPTER} -- Basic operations
 
-	init_parameters_for_exists (a_pid : like last_pid) is
+	init_parameters_for_exists (a_pid : like last_pid)
 			-- Initialize parameters of `Sql_exists' with information from `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
-	init_parameters_for_read (a_pid : like last_pid) is
+	init_parameters_for_read (a_pid : like last_pid)
 			-- Initialize parameters of `Sql_read' with information from `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
-	init_parameters_for_refresh (a_pid : like last_pid) is
+	init_parameters_for_refresh (a_pid : like last_pid)
 			-- Initialize parameters of `Sql_refresh' with information from `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
-	init_parameters_for_delete (a_pid : like last_pid) is
+	init_parameters_for_delete (a_pid : attached like last_pid)
 			-- Initialize parameters of `Sql_delete' with information from `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
-	init_parameters_for_write (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_write (object : attached like last_object; a_pid : like last_pid)
 			-- Initialize parameters of `Sql_write' with information from `object' and `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
-	init_parameters_for_update (object : like last_object; a_pid : like last_pid) is
+	init_parameters_for_update (object : attached like last_object; a_pid : attached like last_pid)
 			-- Initialize parameters of `Sql_update' with information from `object' and `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
-	create_pid_from_object (object : like last_object) is
+	create_pid_from_object (object : attached like last_object)
 			--
 		do
 			--|TODO redefine in descendant classes
@@ -100,11 +105,11 @@ feature {PO_ADAPTER} -- Implementation
 
 	exists_cursor : ECLI_CURSOR
 
-	exists_value : INTEGER is
+	exists_value : INTEGER
 		deferred
 		end
 
-	create_error_handler is
+	create_error_handler
 		do
 			create error_handler.make_null
 		end

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -12,21 +12,23 @@ class PO_STATUS_USE
 
 feature -- Access
 
-	status : PO_STATUS is
+	status : PO_STATUS
 			-- Status related to latest persistance operation.
 		do
-			if impl_status = Void then
-				create impl_status
+			if attached impl_status as l_result then
+				Result := l_result
+			else
+				create Result
+				impl_status := Result
 			end
-			Result := impl_status
 		end
 
 feature {NONE} -- Implementation
 
-	impl_status : like status
-	
+	impl_status : detachable like status
+
 invariant
 
-	status_not_void: status /= Void
+	status_not_void: status /= Void --FIXME: VS-DEL
 
 end

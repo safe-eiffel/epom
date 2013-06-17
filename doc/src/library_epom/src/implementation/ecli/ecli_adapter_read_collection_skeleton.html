@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECLI_ADAPTER_READ_COLLECTION_SKELETON (EPOM)</title>
+<link rel="stylesheet" type="text/css" href="../../../../style.css"/>
+</head>
+<body>
+<div class="header">
+<div class="header-title" id="top"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../../index.html" class="button">Overview</a>
+<a href="../../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../../classes.all.html" class="button">Classes</a>
+<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../../index-e.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+<hr/>
+<div class="cluster-small"><a href="../../../../library_epom/cluster.epom_library_epom.html" class="cluster-name">library_epom</a>.<a href="../../../../library_epom/src/cluster.epom_src.html" class="cluster-name">src</a>.<a href="../../../../library_epom/src/implementation/cluster.epom_implementation.html" class="cluster-name">implementation</a>.<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="cluster-name">ecli</a></div>
+<h1>Class ECLI_ADAPTER_READ_COLLECTION_SKELETON</h1>
+<hr/>
+<h2>Direct ancestors</h2>
+<div>
+<a href="../../../../library_epom/src/implementation/ecli/ecli_adapter_read_skeleton.html" class="class-name">ECLI_ADAPTER_READ_SKELETON</a></div>
+<hr/>
+<h2>Known direct descendants</h2>
+<div>
+<a href="../../../../library_epom/src/implementation/ecli/ecli_general_adapter.html" class="class-name">ECLI_GENERAL_ADAPTER</a></div>
+<hr/>
+<div class="feature-list">
+<h2 id="features-list">Features</h2>
+<ul class="feature-list-clauses">
+<li>
+<strong><a href="#clause-Access">Access</a></strong>
+<ul class="feature-list-features">
+<li><a href="#read_pid_cursor" class="feature-name">read_pid_cursor</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Basic_operations">Basic&nbsp;operations</a></strong>
+<ul class="feature-list-features">
+<li><a href="#create_last_cursor" class="feature-name">create_last_cursor</a></li>
+<li><a href="#create_pid_from_read_pid_cursor" class="feature-name">create_pid_from_read_pid_cursor</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#invariant">Invariants</a></h2>
+</div>
+<h2 class="keyword">note</h2>
+<div class="indexing-list indent">
+<h3 class="indexing-tag">description</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Adapters using ECLI that implement read accesses with support for reading collections of objects
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">author</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Paul G. Crismer
+</p>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">deferred class</span>
+<span class="class-name">ECLI_ADAPTER_READ_COLLECTION_SKELETON</span>
+<span class="non-bold"><span class="symbol">[</span>G<span class="symbol">-&gt;</span><a href="../../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a><span class="symbol">]</span> </span>
+</h2>
+<h2 class="keyword">obsolete</h2>
+<div class="indent">
+<div class="comment">
+<p>
+Please use query assistant generated access routines
+</p>
+</div>
+</div>
+<h2 class="keyword">inherit</h2>
+<div class="indent">
+<div>
+<a href="../../../../library_epom/src/implementation/ecli/ecli_adapter_read_skeleton.html" class="class-name">ECLI_ADAPTER_READ_SKELETON</a>
+<span class="symbol">[</span>G<span class="symbol">]</span> </div>
+</div>
+<h2>
+<a id="clause-Access" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a><span class="symbol">}</span>
+<span class="comment">-- Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="read_pid_cursor"><span class="feature-name">read_pid_cursor</span></a><span class="symbol">:</span><span class="class-name">ECLI_CURSOR</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+<div class="keyword">deferred</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Basic_operations" class="keyword">feature</a>
+<span class="symbol">{</span><a href="../../../../library_epom/src/interface/po_adapter.html" class="class-name">PO_ADAPTER</a><span class="symbol">}</span>
+<span class="comment">-- Basic operations</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="create_last_cursor"><span class="feature-name">create_last_cursor</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Create last_cursor on result-set.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="create_pid_from_read_pid_cursor"><span class="feature-name">create_pid_from_read_pid_cursor</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- Create <span class="feature-name-comment">last_pid</span> based on the content of the read_pid_cursor.<br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+<h4 class="keyword">require</h4>
+<div class="indent">
+<span class="assertion-tag">last_pid_void:</span> last_pid<span class="symbol">=</span><span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">row_exists:</span> <a href="../../../../library_epom/src/implementation/ecli/ecli_adapter_read_collection_skeleton.html#read_pid_cursor" class="feature-name">read_pid_cursor</a><span class="symbol">/=</span><span class="special-keyword">Void</span><span class="keyword">and</span><span class="keyword">then</span><span class="keyword">not</span><a href="../../../../library_epom/src/implementation/ecli/ecli_adapter_read_collection_skeleton.html#read_pid_cursor" class="feature-name">read_pid_cursor</a><span class="symbol">.</span>off <br/>
+</div>
+<div class="keyword">deferred</div>
+<h4 class="keyword">ensure</h4>
+<div class="indent">
+<span class="assertion-tag">adapted_count:</span> <span class="keyword">not</span>status<span class="symbol">.</span>is_error<span class="keyword">implies</span>last_pid<span class="symbol">/=</span><span class="special-keyword">Void</span> <br/>
+</div>
+</div>
+</div>
+</div>
+<h2 class="keyword" id="invariant">invariant</h2>
+<div class="indent">
+</div>
+<span class="keyword">end</span>
+<hr/>
+<p>
+<br/>
+</p>
+<div class="footer">
+<div class="header-title"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../../index.html" class="button">Overview</a>
+<a href="../../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../../classes.all.html" class="button">Classes</a>
+<a href="../../../../library_epom/src/implementation/ecli/cluster.epom_ecli.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../../index-e.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -16,7 +16,7 @@ inherit
 
 feature -- Status report
 
-	can_delete : BOOLEAN is
+	can_delete : BOOLEAN
 		do
 			Result := True
 		ensure then
@@ -25,26 +25,32 @@ feature -- Status report
 
 feature -- Basic operations
 
-	delete (object: like object_anchor) is
+	delete (object: attached like object_anchor)
 			-- Delete `object' from datastore using `delete_query'.
+		local
+			default_pid : like last_pid
 		do
 			status.reset
-			last_pid ?= pid_for_object (object)
+			if attached {attached like last_pid} pid_for_object (object) as l_pid then
+				last_pid := l_pid
+			else
+				last_pid := default_pid
+			end
 
 			last_object := default_value
-			if last_pid /= Void then
-				init_parameters_for_delete (last_pid)
-				delete_query.execute
-				if delete_query.is_ok then
+			if attached {attached like last_pid} pid_for_object (object) as l_pid and then attached delete_query as l_delete_query then
+				init_parameters_for_delete (l_pid)
+				l_delete_query.execute
+				if l_delete_query.is_ok then
 					status.reset
-					cache.search (last_pid)
+					cache.search (l_pid)
 					if cache.found then
-						cache.remove (last_pid)
+						cache.remove (l_pid)
 					end
 					object.set_deleted
 				else
-					status.set_datastore_error (delete_query.native_code, delete_query.diagnostic_message)
-					error_handler.report_query_error (generator, "delete", delete_query)
+					status.set_datastore_error (l_delete_query.native_code, l_delete_query.diagnostic_message)
+					error_handler.report_query_error (generator, "delete", l_delete_query)
 				end
 			else
 				status.set_framework_error (status.error_non_conformant_pid)
@@ -54,13 +60,13 @@ feature -- Basic operations
 
 feature {NONE} -- Framework - Access
 
-	delete_query : ECLI_QUERY is
+	delete_query : detachable ECLI_QUERY
 		deferred
 		end
 
 feature {PO_ADAPTER} -- Framework - Basic operations
 
-	init_parameters_for_delete (a_pid : like last_pid) is
+	init_parameters_for_delete (a_pid : attached like last_pid)
 			-- Initialize parameters of `delete_query' with information from `a_pid'.
 		require
 			a_pid_not_void: a_pid /= Void

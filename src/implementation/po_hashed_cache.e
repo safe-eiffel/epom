@@ -1,4 +1,4 @@
-indexing
+note
 	description: "Caches of Persistent objects, implemented with a hash table"
 	author: "Paul G. Crismer"
 	date: "$Date$"
@@ -15,7 +15,7 @@ create
 
 feature -- Initialization
 
-	make (new_capacity : INTEGER) is
+	make (new_capacity : INTEGER)
 			-- Make with capacity `new_capacity'
 		do
 			create table.make (new_capacity)
@@ -27,38 +27,46 @@ feature -- Initialization
 
 feature -- Access
 
-	item (pid : PO_PID) : G is
+	item (pid : PO_PID) : detachable G
+			-- <Precursor>
 		do
 			Result := table.item (pid.as_string)
 		end
 
-	new_cursor : DS_LIST_CURSOR [PO_PID] is
+	new_cursor : DS_LIST_CURSOR [PO_PID]
+			-- <Precursor>	
+		local
+			r : detachable like new_cursor
 		do
-			Result := pid_list.new_cursor
+			r := pid_list.new_cursor
+			check r /= Void end
+			Result := r
 		end
 
-	found_item : G is
+	found_item : detachable G
+			-- <Precursor>
 		do
 			Result := table.found_item
 		end
 
 feature -- Measurement
 
-	count : INTEGER is
-			-- Count of items.
+	count : INTEGER
+			-- <Precursor>
 		do
 			Result := table.count
 		end
 
-	capacity : INTEGER is
-			-- Capacity of container.
+	capacity : INTEGER
+			-- <Precursor>
 		do
 			Result := table.capacity
 		end
 
 feature -- Status report
 
-	has (pid : PO_PID) : BOOLEAN is
+	has (pid : PO_PID) : BOOLEAN
+			-- <Precursor>
 		do
 			Result := table.has (pid.as_string)
 		end
@@ -67,13 +75,15 @@ feature -- Status report
 
 feature -- Element change
 
-	put (object : G) is
+	put (object : G)
+			-- <Precursor>
 		do
 			table.force (object, object.pid.as_string)
-			pid_list.put_last (object.pid)
+			pid_list.put_last (object.attached_pid)
 		end
 
-	put_void (pid : PO_PID) is
+	put_void (pid : PO_PID)
+			-- <Precursor>
 		do
 			table.force (default_value, pid.as_string)
 			pid_list.put_last (pid)
@@ -81,12 +91,14 @@ feature -- Element change
 
 feature -- Removal
 
-	remove (pid : PO_PID) is
+	remove (pid : PO_PID)
+			-- <Precursor>
 		local
-			cursor : DS_LIST_CURSOR[PO_PID]
+			cursor : detachable DS_LIST_CURSOR[PO_PID]
 		do
 			table.remove (pid.as_string)
 			cursor := pid_list.new_cursor
+			check cursor /= Void end
 			cursor.start
 			cursor.search_forth (pid)
 			if not cursor.off then
@@ -96,7 +108,8 @@ feature -- Removal
 			removed_from_list: not pid_list.has (pid)
 		end
 
-	wipe_out is
+	wipe_out
+			-- <Precursor>
 		do
 			table.wipe_out
 			pid_list.wipe_out
@@ -104,7 +117,8 @@ feature -- Removal
 
 feature -- Basic operations
 
-	search (a_pid : PO_PID) is
+	search (a_pid : PO_PID)
+			-- <Precursor>
 		do
 			table.search (a_pid.as_string)
 			found := table.found
@@ -114,9 +128,9 @@ feature {NONE} -- Implementation
 
 	pid_list : DS_LINKED_LIST[PO_PID]
 
-	table : DS_HASH_TABLE [G, STRING]
+	table : DS_HASH_TABLE [detachable G, STRING]
 
-	default_value : G is do  end
+	default_value : detachable G do  end
 
 invariant
 

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PO_LRU_HASHED_CACHE (EPOM)</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css"/>
+</head>
+<body>
+<div class="header">
+<div class="header-title" id="top"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/implementation/cluster.epom_implementation.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+<hr/>
+<div class="cluster-small"><a href="../../../library_epom/cluster.epom_library_epom.html" class="cluster-name">library_epom</a>.<a href="../../../library_epom/src/cluster.epom_src.html" class="cluster-name">src</a>.<a href="../../../library_epom/src/implementation/cluster.epom_implementation.html" class="cluster-name">implementation</a></div>
+<h1>Class PO_LRU_HASHED_CACHE</h1>
+<hr/>
+<h2>Direct ancestors</h2>
+<div>
+<a href="../../../library_epom/src/implementation/po_hashed_cache.html" class="class-name">PO_HASHED_CACHE</a></div>
+<hr/>
+<div class="feature-list">
+<h2 id="features-list">Creation</h2>
+<ul class="feature-list-features">
+<li><a href="#creator-make" class="feature-name">make</a></li>
+</ul>
+<h2>Features</h2>
+<ul class="feature-list-clauses">
+<li>
+<strong><a href="#clause-Access">Access</a></strong>
+<ul class="feature-list-features">
+<li><a href="#item" class="feature-name">item</a></li>
+<li><a href="#time" class="feature-name">time</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Status_report">Status&nbsp;report</a></strong>
+<ul class="feature-list-features">
+<li><a href="#full" class="feature-name">full</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Element_change">Element&nbsp;change</a></strong>
+<ul class="feature-list-features">
+<li><a href="#increment_time" class="feature-name">increment_time</a></li>
+<li><a href="#put" class="feature-name">put</a></li>
+<li><a href="#put_void" class="feature-name">put_void</a></li>
+</ul>
+</li>
+<li>
+<strong><a href="#clause-Removal">Removal</a></strong>
+<ul class="feature-list-features">
+<li><a href="#remove" class="feature-name">remove</a></li>
+<li><a href="#wipe_out" class="feature-name">wipe_out</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#invariant">Invariants</a></h2>
+</div>
+<h2 class="keyword">note</h2>
+<div class="indexing-list indent">
+<h3 class="indexing-tag">description</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Caches that implement the LRU Algorithm.
+</p>
+</div>
+</div>
+<h3 class="indexing-tag">author</h3>
+<div class="indent">
+<div class="comment">
+<p>
+Paul G. Crismer
+</p>
+</div>
+</div>
+</div>
+<h2>
+<span class="keyword">class</span>
+<span class="class-name">PO_LRU_HASHED_CACHE</span>
+<span class="non-bold"><span class="symbol">[</span>G <span class="symbol">-&gt;</span> <a href="../../../library_epom/src/interface/po_persistent.html" class="class-name">PO_PERSISTENT</a><span class="symbol">]</span> </span>
+</h2>
+<h2 class="keyword">inherit</h2>
+<div class="indent">
+<div>
+<a href="../../../library_epom/src/implementation/po_hashed_cache.html" class="class-name">PO_HASHED_CACHE</a>
+<span class="symbol">[</span>G<span class="symbol">]</span> </div>
+</div>
+<h2>
+<a id="create"><span class="keyword">create</span></a>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="creator-make"><span class="feature-name">make</span></a> <span class="symbol">(</span>new_capacity<span class="symbol">:</span> <span class="class-name">INTEGER_32</span><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+-- <Precursor><br/>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Access" class="keyword">feature</a>
+<span class="comment">-- Access</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="item"><span class="feature-name">item</span></a> <span class="symbol">(</span>pid<span class="symbol">:</span> <a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span> <span class="symbol">:</span> <span class="keyword">detachable</span> G 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="time"><span class="feature-name">time</span></a><span class="symbol">:</span> <span class="class-name">INTEGER_64</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Status_report" class="keyword">feature</a>
+<span class="comment">-- Status report</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="full"><span class="feature-name">full</span></a><span class="symbol">:</span> <span class="class-name">BOOLEAN</span>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Element_change" class="keyword">feature</a>
+<span class="comment">-- Element change</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="increment_time"><span class="feature-name">increment_time</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="put"><span class="feature-name">put</span></a> <span class="symbol">(</span>object<span class="symbol">:</span> G<span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="put_void"><span class="feature-name">put_void</span></a> <span class="symbol">(</span>pid<span class="symbol">:</span> <a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>
+<a id="clause-Removal" class="keyword">feature</a>
+<span class="comment">-- Removal</span>
+</h2>
+<div class="indent">
+<div class="feature">
+<h3>
+<a id="remove"><span class="feature-name">remove</span></a> <span class="symbol">(</span>pid<span class="symbol">:</span> <a href="../../../library_epom/src/interface/po_pid.html" class="class-name">PO_PID</a><span class="symbol">)</span> 
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="feature">
+<h3>
+<a id="wipe_out"><span class="feature-name">wipe_out</span></a>
+</h3>
+<div class="indent">
+<div class="indent">
+<div class="comment">
+<p>
+</p>
+<p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2 class="keyword" id="invariant">invariant</h2>
+<div class="indent">
+<span class="assertion-tag">lru_entries_not_void:</span> lru_entries <span class="symbol">/=</span> <span class="special-keyword">Void</span> <br/>
+<span class="assertion-tag">count_consistency:</span> lru_entries<span class="symbol">.</span>count <span class="symbol">=</span> count <br/>
+</div>
+<span class="keyword">end</span>
+<hr/>
+<p>
+<br/>
+</p>
+<div class="footer">
+<div class="header-title"><a href="http://safe.sf.net" class="button">EPOM</a> 2.2.0.0</div>
+<div class="buttons">
+<a href="../../../index.html" class="button">Overview</a>
+<a href="../../../clusters.all.html" class="button">Clusters</a>
+<a href="../../../classes.all.html" class="button">Classes</a>
+<a href="../../../library_epom/src/implementation/cluster.epom_implementation.html" class="button">Cluster</a>
+<span class="active-button">Class</span>
+<a href="../../../index-p.html" class="button">Index</a>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<a href="#top" class="button">Top</a>
+<a href="#features-list" class="button">Features</a>
+</div>
+</div>
+</body>
+</html>
