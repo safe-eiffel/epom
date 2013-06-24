@@ -4,15 +4,18 @@ note
 		description: "Get the borrowed copies"
 	
 	status: "Cursor/Query automatically generated for 'COPY_BORROWED'. DO NOT EDIT!"
-	generated: "2012/10/16 08:34:16.578"
-	generator_version: "v1.7"
-	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\copy.xml"
+	generated: "2013/06/20 17:52:20.031"
+	generator_version: "v1.7.2"
+	source_filename: "copy.xml"
 
 class COPY_BORROWED
 
 inherit
 
 	ECLI_CURSOR
+		redefine
+			initialize
+		end
 
 
 create
@@ -36,11 +39,19 @@ feature {NONE} -- Implementation
 		local
 			buffers: like results
 		do
-			create item.make
 			create buffers.make (1,0)
 			buffers.force (item.isbn, 1)
 			buffers.force (item.serial_number, 2)
 			set_results (buffers)
+		end
+
+feature {NONE} -- Initialization
+
+	initialize
+			-- <Precursor>
+		do
+			Precursor
+			create item.make
 		end
 
 end

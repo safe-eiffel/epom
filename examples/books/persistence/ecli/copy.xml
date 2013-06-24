@@ -53,7 +53,8 @@ where isbn=?isbn and serial_number=?serial_number
 		description: "Insert a copy"
 	</description>
 	<sql>
-insert into copy values (?isbn, ?serial_number, ?loc_store, ?loc_shelf, ?loc_row, ?borrower )
+insert into copy (isbn, serial_number, loc_store, loc_shelf, loc_row, borrower)
+values (?isbn, ?serial_number, ?loc_store, ?loc_shelf, ?loc_row, ?borrower )
 	</sql>
 	<parameter_set>
 		<parameter name="loc_store" table="COPY" column="loc_store" sample="1"/> 

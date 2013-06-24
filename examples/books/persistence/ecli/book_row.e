@@ -2,9 +2,9 @@ note
 
 	description: "Buffer objects for database transfer."
 	status: "Automatically generated.  DOT NOT MODIFY !"
-	generated: "2012/10/16 08:36:50.406"
-	generator_version: "v1.7"
-	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\book.xml"
+	generated: "2013/06/18 08:20:38.390"
+	generator_version: "v1.7.2"
+	source_filename: "book.xml"
 
 class BOOK_ROW
 

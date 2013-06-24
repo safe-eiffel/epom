@@ -34,6 +34,6 @@
 
 	<mount location="${EPOM}/library-confident.xace"/>
 	<mount location="${ECLI}/library-confident.xace"/>
-	<mount location="${ECLI}/xace/gobo-core-confident.xace"/>
+<!--	<mount location="${ECLI}/xace/gobo-core-confident.xace"/> -->
 <!--	<mount location="${ECLI}/library-voidconfident.xace"/> -->
 </system>

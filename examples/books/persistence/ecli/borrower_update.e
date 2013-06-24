@@ -4,9 +4,9 @@ note
 		description: "Update borrower"
 	
 	status: "Cursor/Query automatically generated for 'BORROWER_UPDATE'. DO NOT EDIT!"
-	generated: "2012/10/16 08:36:39.453"
-	generator_version: "v1.7"
-	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\borrower.xml"
+	generated: "2013/06/18 08:20:47.468"
+	generator_version: "v1.7.2"
+	source_filename: "borrower.xml"
 
 class BORROWER_UPDATE
 

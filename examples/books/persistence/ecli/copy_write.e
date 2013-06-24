@@ -4,9 +4,9 @@ note
 		description: "Insert a copy"
 	
 	status: "Cursor/Query automatically generated for 'COPY_WRITE'. DO NOT EDIT!"
-	generated: "2012/10/16 08:34:16.656"
-	generator_version: "v1.7"
-	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\copy.xml"
+	generated: "2013/06/20 17:52:20.328"
+	generator_version: "v1.7.2"
+	source_filename: "copy.xml"
 
 class COPY_WRITE
 
@@ -45,7 +45,8 @@ feature  -- -- Element change
 feature  -- Constants
 
 	definition: STRING = "[
-insert into copy values (?isbn, ?serial_number, ?loc_store, ?loc_shelf, ?loc_row, ?borrower )
+insert into copy (isbn, serial_number, loc_store, loc_shelf, loc_row, borrower)
+values (?isbn, ?serial_number, ?loc_store, ?loc_shelf, ?loc_row, ?borrower )
 ]"
 
 end

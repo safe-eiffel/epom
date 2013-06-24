@@ -4,9 +4,9 @@ note
 		description: "Delete copy"
 	
 	status: "Cursor/Query automatically generated for 'COPY_DELETE'. DO NOT EDIT!"
-	generated: "2012/10/16 08:34:16.640"
-	generator_version: "v1.7"
-	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\copy.xml"
+	generated: "2013/06/20 17:52:20.265"
+	generator_version: "v1.7.2"
+	source_filename: "copy.xml"
 
 class COPY_DELETE
 

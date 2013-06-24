@@ -4,15 +4,18 @@ note
 		description: "read book by isbn"
 	
 	status: "Cursor/Query automatically generated for 'BOOK_READ_BY_ISBN'. DO NOT EDIT!"
-	generated: "2012/10/16 08:36:50.281"
-	generator_version: "v1.7"
-	source_filename: "C:\User\Eiffel\Dev\github\epom\examples\books\persistence\ecli\book.xml"
+	generated: "2013/06/18 08:20:38.156"
+	generator_version: "v1.7.2"
+	source_filename: "book.xml"
 
 class BOOK_READ_BY_ISBN
 
 inherit
 
 	ECLI_CURSOR
+		redefine
+			initialize
+		end
 
 
 create
@@ -52,12 +55,20 @@ feature {NONE} -- Implementation
 		local
 			buffers: like results
 		do
-			create item.make
 			create buffers.make (1,0)
 			buffers.force (item.isbn, 1)
 			buffers.force (item.title, 2)
 			buffers.force (item.author, 3)
 			set_results (buffers)
+		end
+
+feature {NONE} -- Initialization
+
+	initialize
+			-- <Precursor>
+		do
+			Precursor
+			create item.make
 		end
 
 end
