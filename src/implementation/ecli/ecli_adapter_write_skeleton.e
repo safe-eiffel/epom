@@ -60,7 +60,7 @@ feature {NONE} -- Framework - Basic operations
 			-- Initialize parameters of `write_query' with information from `object' and `a_pid'.
 		require
 			object_not_void: object /= Void
-			write_query_not_attached: attached write_query
+			write_query_attached: attached write_query
 			a_pid_not_void: a_pid /= Void
 		deferred
 		ensure
