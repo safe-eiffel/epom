@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<system xmlns="http://www.eiffel.com/developers/xml/configuration-1-5-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-5-0 http://www.eiffel.com/developers/xml/configuration-1-5-0.xsd" name="epom" uuid="44CCBBB6-2876-42B1-BC4F-F9CA617957FE" library_target="epom">
+	<target name="epom">
+		<root all_classes="true"/>
+		<option warning="true" full_class_checking="true" is_attached_by_default="true" void_safety="none" syntax="transitional">
+			<assertions precondition="true" postcondition="true" check="true" invariant="true" loop="true" supplier_precondition="true"/>
+		</option>
+		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
+		<library name="gobo-core-confident" location="$GOBO\library\gobo-core.ecf"/>
+		<library name="gobo-kernel-safe" location="$GOBO\library\kernel\library.ecf"/>
+		<library name="gobo-structure-confident" location="$GOBO\library\structure\gobo-structure.ecf"/>
+		<library name="ecli" location="$ECLI\ecli.ecf"/>
+		<cluster name="epom" location=".\src" recursive="true">
+			<file_rule>
+                                <exclude>/eiffelstore$</exclude>
+			</file_rule>
+		</cluster>
+	</target>
+</system>
