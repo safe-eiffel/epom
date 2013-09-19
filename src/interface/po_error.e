@@ -1,7 +1,7 @@
 note
 
 	description: "Object that represent EPOM framework errors."
-	
+
 class PO_ERROR
 
 inherit
@@ -29,7 +29,7 @@ feature {NONE} -- Initialization
 		do
 			default_template := tpl_datastore_error
 			code := code_datastore_error
-			create parameters.make (1, 5)
+			create parameters.make_filled ("", 1, 5)
 			parameters.put (code, 1)
 			parameters.put (an_adapter, 2)
 			parameters.put (an_access_name, 3)
@@ -50,8 +50,7 @@ feature {NONE} -- Initialization
 		do
 			default_template := tpl_non_conformant_pid
 			code := code_non_conformant_pid
-			create parameters.make (1, 5)
-			parameters.make (1, 5)
+			create parameters.make_filled ("", 1, 5)
 			parameters.put (code, 1)
 			parameters.put (an_adapter, 2)
 			parameters.put (an_access_name, 3)
@@ -71,7 +70,7 @@ feature {NONE} -- Initialization
 		do
 			default_template := tpl_could_not_create_object
 			code := code_could_not_create_object
-			create parameters.make (1, 4)
+			create parameters.make_filled ("", 1, 4)
 			parameters.put (code, 1)
 			parameters.put (an_adapter, 2)
 			parameters.put (an_access_name, 3)
@@ -90,7 +89,7 @@ feature {NONE} -- Initialization
 		do
 			default_template := tpl_could_not_find_adapter
 			code := code_could_not_find_adapter
-			create parameters.make (1, 4)
+			create parameters.make_filled ("", 1, 4)
 			parameters.put (code, 1)
 			parameters.put (a_class, 2)
 			parameters.put (a_routine, 3)
@@ -108,7 +107,7 @@ feature {NONE} -- Initialization
 		do
 			default_template := tpl_could_not_refresh_object
 			code := code_could_not_refresh_object
-			create parameters.make (1,3)
+			create parameters.make_filled ("", 1,3)
 			parameters.put (code, 1)
 			parameters.put (an_adapter, 2)
 			parameters.put (object.pid.as_string, 3)
@@ -125,7 +124,7 @@ feature {NONE} -- Initialization
 		do
 			default_template := tpl_connection_error
 			code := code_connection_error
-			create parameters.make (1, 4)
+			create parameters.make_filled ("", 1, 4)
 			parameters.put (code, 1)
 			parameters.put (datastore_name, 2)
 			parameters.put (a_code.out, 3)
